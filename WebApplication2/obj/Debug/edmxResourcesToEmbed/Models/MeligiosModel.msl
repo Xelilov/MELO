@@ -1,0 +1,1640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MelogisModelStoreContainer" CdmEntityContainer="MelogisEntities">
+    <EntitySetMapping Name="ADDRESSes">
+      <EntityTypeMapping TypeName="MelogisModel.ADDRESS">
+        <MappingFragment StoreEntitySet="ADDRESS">
+          <ScalarProperty Name="OBJECTID_12" ColumnName="OBJECTID_12" />
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="ADDRESS_ID" ColumnName="ADDRESS_ID" />
+          <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+          <ScalarProperty Name="RESID_ID" ColumnName="RESID_ID" />
+          <ScalarProperty Name="RESID_NAME" ColumnName="RESID_NAME" />
+          <ScalarProperty Name="NAME_AZ" ColumnName="NAME_AZ" />
+          <ScalarProperty Name="ADDRESS_NA" ColumnName="ADDRESS_NA" />
+          <ScalarProperty Name="ADDRESS_NU" ColumnName="ADDRESS_NU" />
+          <ScalarProperty Name="REGION_NAM" ColumnName="REGION_NAM" />
+          <ScalarProperty Name="ADDRESS__1" ColumnName="ADDRESS__1" />
+          <ScalarProperty Name="GLOBALID" ColumnName="GLOBALID" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BORDERs">
+      <EntityTypeMapping TypeName="MelogisModel.BORDER">
+        <MappingFragment StoreEntitySet="BORDER">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="CODE_TYPE" ColumnName="CODE_TYPE" />
+          <ScalarProperty Name="SHAPE_LENG" ColumnName="SHAPE_LENG" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BUILDINGs">
+      <EntityTypeMapping TypeName="MelogisModel.BUILDING">
+        <MappingFragment StoreEntitySet="BUILDING">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="kategori" ColumnName="kategori" />
+          <ScalarProperty Name="kategori_e" ColumnName="kategori_e" />
+          <ScalarProperty Name="Shape_Leng" ColumnName="Shape_Leng" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BUILDINGS1">
+      <EntityTypeMapping TypeName="MelogisModel.BUILDING1">
+        <MappingFragment StoreEntitySet="BUILDINGS">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="EXPLONATIO" ColumnName="EXPLONATIO" />
+          <ScalarProperty Name="REGION" ColumnName="REGION" />
+          <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+          <ScalarProperty Name="ASSIGMENT" ColumnName="ASSIGMENT" />
+          <ScalarProperty Name="PROTECTING" ColumnName="PROTECTING" />
+          <ScalarProperty Name="TOTAL_AREA" ColumnName="TOTAL_AREA" />
+          <ScalarProperty Name="TECHNICAL_" ColumnName="TECHNICAL_" />
+          <ScalarProperty Name="USING_MODE" ColumnName="USING_MODE" />
+          <ScalarProperty Name="PROPERTY_T" ColumnName="PROPERTY_T" />
+          <ScalarProperty Name="PROPERTY" ColumnName="PROPERTY" />
+          <ScalarProperty Name="SERVICE_AR" ColumnName="SERVICE_AR" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CASPIANs">
+      <EntityTypeMapping TypeName="MelogisModel.CASPIAN">
+        <MappingFragment StoreEntitySet="CASPIAN">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MP_TYPE" ColumnName="MP_TYPE" />
+          <ScalarProperty Name="MARINE" ColumnName="MARINE" />
+          <ScalarProperty Name="DEPTH" ColumnName="DEPTH" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHANNELs">
+      <EntityTypeMapping TypeName="MelogisModel.CHANNEL">
+        <MappingFragment StoreEntitySet="CHANNEL">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="assigment" ColumnName="assigment" />
+          <ScalarProperty Name="Channel1" ColumnName="Channel" />
+          <ScalarProperty Name="water_capa" ColumnName="water_capa" />
+          <ScalarProperty Name="exlo_date" ColumnName="exlo_date" />
+          <ScalarProperty Name="served_reg" ColumnName="served_reg" />
+          <ScalarProperty Name="served_are" ColumnName="served_are" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="water_rele" ColumnName="water_rele" />
+          <ScalarProperty Name="tech_condi" ColumnName="tech_condi" />
+          <ScalarProperty Name="wtrprf_wid" ColumnName="wtrprf_wid" />
+          <ScalarProperty Name="ownership" ColumnName="ownership" />
+          <ScalarProperty Name="property_t" ColumnName="property_t" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="device_tot" ColumnName="device_tot" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHANNEL_1">
+      <EntityTypeMapping TypeName="MelogisModel.CHANNEL_1">
+        <MappingFragment StoreEntitySet="CHANNEL_1">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adı" ColumnName="Adı" />
+          <ScalarProperty Name="Mənbəyi" ColumnName="Mənbəyi" />
+          <ScalarProperty Name="Uzunluq" ColumnName="Uzunluq" />
+          <ScalarProperty Name="Su_Buraxma" ColumnName="Su_Buraxma" />
+          <ScalarProperty Name="Üst_e" ColumnName="Üst_e" />
+          <ScalarProperty Name="Dib_e" ColumnName="Dib_e" />
+          <ScalarProperty Name="Dərinlik" ColumnName="Dərinlik" />
+          <ScalarProperty Name="Mailliyi" ColumnName="Mailliyi" />
+          <ScalarProperty Name="Orta_en_k" ColumnName="Orta_en_k" />
+          <ScalarProperty Name="Ümumi_h" ColumnName="Ümumi_h" />
+          <ScalarProperty Name="Xidməte_s" ColumnName="Xidməte_s" />
+          <ScalarProperty Name="F_İ_Ə" ColumnName="F_İ_Ə" />
+          <ScalarProperty Name="Hidrotexni" ColumnName="Hidrotexni" />
+          <ScalarProperty Name="Su_ay" ColumnName="Su_ay" />
+          <ScalarProperty Name="Hidropostl" ColumnName="Hidropostl" />
+          <ScalarProperty Name="ör_n" ColumnName="ör_n" />
+          <ScalarProperty Name="Növ" ColumnName="Növ" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHANNELS1">
+      <EntityTypeMapping TypeName="MelogisModel.CHANNEL1">
+        <MappingFragment StoreEntitySet="CHANNELS">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ASSIGMENT" ColumnName="ASSIGMENT" />
+          <ScalarProperty Name="WATER_CAPABILITY" ColumnName="WATER_CAPABILITY" />
+          <ScalarProperty Name="EXPLONATION_DATE" ColumnName="EXPLONATION_DATE" />
+          <ScalarProperty Name="SERVED_AREA" ColumnName="SERVED_AREA" />
+          <ScalarProperty Name="ACTIVITY" ColumnName="ACTIVITY" />
+          <ScalarProperty Name="PROPERTY_TYPE" ColumnName="PROPERTY_TYPE" />
+          <ScalarProperty Name="PROPERTY" ColumnName="PROPERTY" />
+          <ScalarProperty Name="TECHNICAL_CONDITION" ColumnName="TECHNICAL_CONDITION" />
+          <ScalarProperty Name="WATERPROOF_WIDTH" ColumnName="WATERPROOF_WIDTH" />
+          <ScalarProperty Name="SERVERD_REGION" ColumnName="SERVERD_REGION" />
+          <ScalarProperty Name="KIND" ColumnName="KIND" />
+          <ScalarProperty Name="DEVICE_SUM" ColumnName="DEVICE_SUM" />
+          <ScalarProperty Name="SOURCE" ColumnName="SOURCE" />
+          <ScalarProperty Name="FACTICAL_LENGTH" ColumnName="FACTICAL_LENGTH" />
+          <ScalarProperty Name="EMPLOYEE" ColumnName="EMPLOYEE" />
+          <ScalarProperty Name="COVER_TYPE" ColumnName="COVER_TYPE" />
+          <ScalarProperty Name="SIBS" ColumnName="SIBS" />
+          <ScalarProperty Name="CHANNEL_ID" ColumnName="CHANNEL_ID" />
+          <ScalarProperty Name="ID_CHANNEL" ColumnName="ID_CHANNEL" />
+          <ScalarProperty Name="RESID_IDS" ColumnName="RESID_IDS" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COAST_LINE">
+      <EntityTypeMapping TypeName="MelogisModel.COAST_LINE">
+        <MappingFragment StoreEntitySet="COAST_LINE">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="F_OBJECTID" ColumnName="F_OBJECTID" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SHAPE_LENG" ColumnName="SHAPE_LENG" />
+          <ScalarProperty Name="F_STATUS" ColumnName="F_STATUS" />
+          <ScalarProperty Name="NAME_AZ" ColumnName="NAME_AZ" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTMENTS">
+      <EntityTypeMapping TypeName="MelogisModel.DEPARTMENT">
+        <MappingFragment StoreEntitySet="DEPARTMENTS">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEVICEs">
+      <EntityTypeMapping TypeName="MelogisModel.DEVICE">
+        <MappingFragment StoreEntitySet="DEVICE">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="EMPLOYEE" ColumnName="EMPLOYEE" />
+          <ScalarProperty Name="CHANNEL_ID" ColumnName="CHANNEL_ID" />
+          <ScalarProperty Name="ID_CHANNEL" ColumnName="ID_CHANNEL" />
+          <ScalarProperty Name="LOCATED_NETWORK" ColumnName="LOCATED_NETWORK" />
+          <ScalarProperty Name="EXPLONATION_DATE" ColumnName="EXPLONATION_DATE" />
+          <ScalarProperty Name="NETWORK_TYPE" ColumnName="NETWORK_TYPE" />
+          <ScalarProperty Name="WATER_CAPABILITY" ColumnName="WATER_CAPABILITY" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="PROPERTY_TYPE" ColumnName="PROPERTY_TYPE" />
+          <ScalarProperty Name="Property" ColumnName="Property" />
+          <ScalarProperty Name="TECHNICAL_CONDITION" ColumnName="TECHNICAL_CONDITION" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DISTRICTs">
+      <EntityTypeMapping TypeName="MelogisModel.DISTRICT">
+        <MappingFragment StoreEntitySet="DISTRICT">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="NameAU" ColumnName="NameAU" />
+          <ScalarProperty Name="CodeER" ColumnName="CodeER" />
+          <ScalarProperty Name="CodeAU" ColumnName="CodeAU" />
+          <ScalarProperty Name="TypeAU" ColumnName="TypeAU" />
+          <ScalarProperty Name="Subordinat" ColumnName="Subordinat" />
+          <ScalarProperty Name="CadNumbAU" ColumnName="CadNumbAU" />
+          <ScalarProperty Name="SHAPE_Leng" ColumnName="SHAPE_Leng" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DRENAJs">
+      <EntityTypeMapping TypeName="MelogisModel.DRENAJ">
+        <MappingFragment StoreEntitySet="DRENAJ">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="KIND" ColumnName="KIND" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="WATERPROOF_WIDTH" ColumnName="WATERPROOF_WIDTH" />
+          <ScalarProperty Name="SERVED_AREA" ColumnName="SERVED_AREA" />
+          <ScalarProperty Name="PASSING_AREAS" ColumnName="PASSING_AREAS" />
+          <ScalarProperty Name="TECHNICAL_CONDITION" ColumnName="TECHNICAL_CONDITION" />
+          <ScalarProperty Name="DEVICE_SUM" ColumnName="DEVICE_SUM" />
+          <ScalarProperty Name="WATER_CAPABILITY" ColumnName="WATER_CAPABILITY" />
+          <ScalarProperty Name="PROPERTY_TYPE" ColumnName="PROPERTY_TYPE" />
+          <ScalarProperty Name="PROPERTY" ColumnName="PROPERTY" />
+          <ScalarProperty Name="FACTICAL_LENGTH" ColumnName="FACTICAL_LENGTH" />
+          <ScalarProperty Name="EXPLONATION_DATE" ColumnName="EXPLONATION_DATE" />
+          <ScalarProperty Name="ACTIVITY" ColumnName="ACTIVITY" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ASSIGMENT" ColumnName="ASSIGMENT" />
+          <ScalarProperty Name="WATER_CONSUPTION" ColumnName="WATER_CONSUPTION" />
+          <ScalarProperty Name="DRENAJ_RECIEVER" ColumnName="DRENAJ_RECIEVER" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXPLOITATION_ROAD">
+      <EntityTypeMapping TypeName="MelogisModel.EXPLOITATION_ROAD">
+        <MappingFragment StoreEntitySet="EXPLOITATION_ROAD">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="LENGHT" ColumnName="LENGHT" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORESTs">
+      <EntityTypeMapping TypeName="MelogisModel.FOREST">
+        <MappingFragment StoreEntitySet="FOREST">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="SHAPE_LENG" ColumnName="SHAPE_LENG" />
+          <ScalarProperty Name="TYPE_AZ" ColumnName="TYPE_AZ" />
+          <ScalarProperty Name="SHAPE_Le_1" ColumnName="SHAPE_Le_1" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GDB_ITEMRELATIONSHIPS">
+      <EntityTypeMapping TypeName="MelogisModel.GDB_ITEMRELATIONSHIPS">
+        <MappingFragment StoreEntitySet="GDB_ITEMRELATIONSHIPS">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="OriginID" ColumnName="OriginID" />
+          <ScalarProperty Name="DestID" ColumnName="DestID" />
+          <ScalarProperty Name="Properties" ColumnName="Properties" />
+          <ScalarProperty Name="Attributes" ColumnName="Attributes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GDB_ITEMS">
+      <EntityTypeMapping TypeName="MelogisModel.GDB_ITEMS">
+        <MappingFragment StoreEntitySet="GDB_ITEMS">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PhysicalName" ColumnName="PhysicalName" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Properties" ColumnName="Properties" />
+          <ScalarProperty Name="Defaults" ColumnName="Defaults" />
+          <ScalarProperty Name="DatasetSubtype1" ColumnName="DatasetSubtype1" />
+          <ScalarProperty Name="DatasetSubtype2" ColumnName="DatasetSubtype2" />
+          <ScalarProperty Name="DatasetInfo1" ColumnName="DatasetInfo1" />
+          <ScalarProperty Name="DatasetInfo2" ColumnName="DatasetInfo2" />
+          <ScalarProperty Name="Definition" ColumnName="Definition" />
+          <ScalarProperty Name="Documentation" ColumnName="Documentation" />
+          <ScalarProperty Name="ItemInfo" ColumnName="ItemInfo" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HYDRO_OBJECT">
+      <EntityTypeMapping TypeName="MelogisModel.HYDRO_OBJECT">
+        <MappingFragment StoreEntitySet="HYDRO_OBJECT">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="Shape_Leng" ColumnName="Shape_Leng" />
+          <ScalarProperty Name="name_az" ColumnName="name_az" />
+          <ScalarProperty Name="name_eng" ColumnName="name_eng" />
+          <ScalarProperty Name="type_az" ColumnName="type_az" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HYDRO_POLY">
+      <EntityTypeMapping TypeName="MelogisModel.HYDRO_POLY">
+        <MappingFragment StoreEntitySet="HYDRO_POLY">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="gid" ColumnName="gid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i10">
+      <EntityTypeMapping TypeName="MelogisModel.i10">
+        <MappingFragment StoreEntitySet="i10">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i11">
+      <EntityTypeMapping TypeName="MelogisModel.i11">
+        <MappingFragment StoreEntitySet="i11">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i12">
+      <EntityTypeMapping TypeName="MelogisModel.i12">
+        <MappingFragment StoreEntitySet="i12">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i13">
+      <EntityTypeMapping TypeName="MelogisModel.i13">
+        <MappingFragment StoreEntitySet="i13">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i14">
+      <EntityTypeMapping TypeName="MelogisModel.i14">
+        <MappingFragment StoreEntitySet="i14">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i15">
+      <EntityTypeMapping TypeName="MelogisModel.i15">
+        <MappingFragment StoreEntitySet="i15">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i16">
+      <EntityTypeMapping TypeName="MelogisModel.i16">
+        <MappingFragment StoreEntitySet="i16">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i17">
+      <EntityTypeMapping TypeName="MelogisModel.i17">
+        <MappingFragment StoreEntitySet="i17">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i18">
+      <EntityTypeMapping TypeName="MelogisModel.i18">
+        <MappingFragment StoreEntitySet="i18">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i19">
+      <EntityTypeMapping TypeName="MelogisModel.i19">
+        <MappingFragment StoreEntitySet="i19">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i2">
+      <EntityTypeMapping TypeName="MelogisModel.i2">
+        <MappingFragment StoreEntitySet="i2">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i20">
+      <EntityTypeMapping TypeName="MelogisModel.i20">
+        <MappingFragment StoreEntitySet="i20">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i21">
+      <EntityTypeMapping TypeName="MelogisModel.i21">
+        <MappingFragment StoreEntitySet="i21">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i22">
+      <EntityTypeMapping TypeName="MelogisModel.i22">
+        <MappingFragment StoreEntitySet="i22">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i23">
+      <EntityTypeMapping TypeName="MelogisModel.i23">
+        <MappingFragment StoreEntitySet="i23">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i24">
+      <EntityTypeMapping TypeName="MelogisModel.i24">
+        <MappingFragment StoreEntitySet="i24">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i25">
+      <EntityTypeMapping TypeName="MelogisModel.i25">
+        <MappingFragment StoreEntitySet="i25">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i26">
+      <EntityTypeMapping TypeName="MelogisModel.i26">
+        <MappingFragment StoreEntitySet="i26">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i27">
+      <EntityTypeMapping TypeName="MelogisModel.i27">
+        <MappingFragment StoreEntitySet="i27">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i28">
+      <EntityTypeMapping TypeName="MelogisModel.i28">
+        <MappingFragment StoreEntitySet="i28">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i29">
+      <EntityTypeMapping TypeName="MelogisModel.i29">
+        <MappingFragment StoreEntitySet="i29">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i3">
+      <EntityTypeMapping TypeName="MelogisModel.i3">
+        <MappingFragment StoreEntitySet="i3">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i30">
+      <EntityTypeMapping TypeName="MelogisModel.i30">
+        <MappingFragment StoreEntitySet="i30">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i31">
+      <EntityTypeMapping TypeName="MelogisModel.i31">
+        <MappingFragment StoreEntitySet="i31">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i32">
+      <EntityTypeMapping TypeName="MelogisModel.i32">
+        <MappingFragment StoreEntitySet="i32">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i33">
+      <EntityTypeMapping TypeName="MelogisModel.i33">
+        <MappingFragment StoreEntitySet="i33">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i34">
+      <EntityTypeMapping TypeName="MelogisModel.i34">
+        <MappingFragment StoreEntitySet="i34">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i35">
+      <EntityTypeMapping TypeName="MelogisModel.i35">
+        <MappingFragment StoreEntitySet="i35">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i36">
+      <EntityTypeMapping TypeName="MelogisModel.i36">
+        <MappingFragment StoreEntitySet="i36">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i37">
+      <EntityTypeMapping TypeName="MelogisModel.i37">
+        <MappingFragment StoreEntitySet="i37">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i4">
+      <EntityTypeMapping TypeName="MelogisModel.i4">
+        <MappingFragment StoreEntitySet="i4">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i5">
+      <EntityTypeMapping TypeName="MelogisModel.i5">
+        <MappingFragment StoreEntitySet="i5">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i6">
+      <EntityTypeMapping TypeName="MelogisModel.i6">
+        <MappingFragment StoreEntitySet="i6">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i7">
+      <EntityTypeMapping TypeName="MelogisModel.i7">
+        <MappingFragment StoreEntitySet="i7">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i8">
+      <EntityTypeMapping TypeName="MelogisModel.i8">
+        <MappingFragment StoreEntitySet="i8">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="i9">
+      <EntityTypeMapping TypeName="MelogisModel.i9">
+        <MappingFragment StoreEntitySet="i9">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="num_ids" ColumnName="num_ids" />
+          <ScalarProperty Name="last_id" ColumnName="last_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POIs">
+      <EntityTypeMapping TypeName="MelogisModel.POI">
+        <MappingFragment StoreEntitySet="POI">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="gid" ColumnName="gid" />
+          <ScalarProperty Name="F__gid" ColumnName="F__gid" />
+          <ScalarProperty Name="name_az" ColumnName="name_az" />
+          <ScalarProperty Name="type_az" ColumnName="type_az" />
+          <ScalarProperty Name="name_eng" ColumnName="name_eng" />
+          <ScalarProperty Name="type_aa" ColumnName="type_aa" />
+          <ScalarProperty Name="number_aa" ColumnName="number_aa" />
+          <ScalarProperty Name="address_aa" ColumnName="address_aa" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PUMPSTATIONs">
+      <EntityTypeMapping TypeName="MelogisModel.PUMPSTATION">
+        <MappingFragment StoreEntitySet="PUMPSTATION">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="PLACED_AREA" ColumnName="PLACED_AREA" />
+          <ScalarProperty Name="PLACED_SOURCE" ColumnName="PLACED_SOURCE" />
+          <ScalarProperty Name="EXPLONATION_DATE" ColumnName="EXPLONATION_DATE" />
+          <ScalarProperty Name="PUMP_KIND" ColumnName="PUMP_KIND" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="POWER" ColumnName="POWER" />
+          <ScalarProperty Name="PRODUCTIVITY" ColumnName="PRODUCTIVITY" />
+          <ScalarProperty Name="PURPOSEFUL" ColumnName="PURPOSEFUL" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="BRAND_OFF_AGGREGATE" ColumnName="BRAND_OFF_AGGREGATE" />
+          <ScalarProperty Name="PIPELINE" ColumnName="PIPELINE" />
+          <ScalarProperty Name="AGREGAT_SUM" ColumnName="AGREGAT_SUM" />
+          <ScalarProperty Name="PIPELINE_LENGHT" ColumnName="PIPELINE_LENGHT" />
+          <ScalarProperty Name="PIPELINE_DIAMETER" ColumnName="PIPELINE_DIAMETER" />
+          <ScalarProperty Name="PIPELINE_MATERIAL" ColumnName="PIPELINE_MATERIAL" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION_BORDER">
+      <EntityTypeMapping TypeName="MelogisModel.REGION_BORDER">
+        <MappingFragment StoreEntitySet="REGION_BORDER">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="gid" ColumnName="gid" />
+          <ScalarProperty Name="F__gid" ColumnName="F__gid" />
+          <ScalarProperty Name="name_az" ColumnName="name_az" />
+          <ScalarProperty Name="code_type" ColumnName="code_type" />
+          <ScalarProperty Name="name_eng" ColumnName="name_eng" />
+          <ScalarProperty Name="region_typ" ColumnName="region_typ" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION_CENTER">
+      <EntityTypeMapping TypeName="MelogisModel.REGION_CENTER">
+        <MappingFragment StoreEntitySet="REGION_CENTER">
+          <ScalarProperty Name="OBJECTID_12" ColumnName="OBJECTID_12" />
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="TYPE_AZ" ColumnName="TYPE_AZ" />
+          <ScalarProperty Name="NAMEAZ" ColumnName="NAMEAZ" />
+          <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+          <ScalarProperty Name="POINTTYPE" ColumnName="POINTTYPE" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION_CENTER_1">
+      <EntityTypeMapping TypeName="MelogisModel.REGION_CENTER_1">
+        <MappingFragment StoreEntitySet="REGION_CENTER_1">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="TYPE_AZ" ColumnName="TYPE_AZ" />
+          <ScalarProperty Name="NAMEAZ" ColumnName="NAMEAZ" />
+          <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+          <ScalarProperty Name="POINTTYPE" ColumnName="POINTTYPE" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGIONS">
+      <EntityTypeMapping TypeName="MelogisModel.REGION">
+        <MappingFragment StoreEntitySet="REGIONS">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="NAME_AZ" ColumnName="NAME_AZ" />
+          <ScalarProperty Name="NAME_ENG" ColumnName="NAME_ENG" />
+          <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="TYPE_AZ" ColumnName="TYPE_AZ" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESIDENTIAL_AREA">
+      <EntityTypeMapping TypeName="MelogisModel.RESIDENTIAL_AREA">
+        <MappingFragment StoreEntitySet="RESIDENTIAL_AREA">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="gid" ColumnName="gid" />
+          <ScalarProperty Name="F__gid" ColumnName="F__gid" />
+          <ScalarProperty Name="type_az" ColumnName="type_az" />
+          <ScalarProperty Name="type_code" ColumnName="type_code" />
+          <ScalarProperty Name="name_az" ColumnName="name_az" />
+          <ScalarProperty Name="name_eng" ColumnName="name_eng" />
+          <ScalarProperty Name="type_eng" ColumnName="type_eng" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESIDENTIALAREAFORFILTERs">
+      <EntityTypeMapping TypeName="MelogisModel.RESIDENTIALAREAFORFILTER">
+        <MappingFragment StoreEntitySet="RESIDENTIALAREAFORFILTER">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+          <ScalarProperty Name="F__GID" ColumnName="F__GID" />
+          <ScalarProperty Name="TYPE_AZ" ColumnName="TYPE_AZ" />
+          <ScalarProperty Name="TYPE_CODE" ColumnName="TYPE_CODE" />
+          <ScalarProperty Name="NAME_AZ" ColumnName="NAME_AZ" />
+          <ScalarProperty Name="NAME_ENG" ColumnName="NAME_ENG" />
+          <ScalarProperty Name="TYPE_ENG" ColumnName="TYPE_ENG" />
+          <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+          <ScalarProperty Name="RESID_ID" ColumnName="RESID_ID" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RIVERBANDs">
+      <EntityTypeMapping TypeName="MelogisModel.RIVERBAND">
+        <MappingFragment StoreEntitySet="RIVERBAND">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+          <ScalarProperty Name="LENGTH" ColumnName="LENGTH" />
+          <ScalarProperty Name="EXPLONATION_DATE" ColumnName="EXPLONATION_DATE" />
+          <ScalarProperty Name="GENERAL_TYPE" ColumnName="GENERAL_TYPE" />
+          <ScalarProperty Name="TECHNICAL_CONDITION" ColumnName="TECHNICAL_CONDITION" />
+          <ScalarProperty Name="PROPERTY_TYPE" ColumnName="PROPERTY_TYPE" />
+          <ScalarProperty Name="PROPERTY" ColumnName="PROPERTY" />
+          <ScalarProperty Name="ASSIGMENT" ColumnName="ASSIGMENT" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RIVERS">
+      <EntityTypeMapping TypeName="MelogisModel.RIVER">
+        <MappingFragment StoreEntitySet="RIVERS">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="GID" ColumnName="GID" />
+          <ScalarProperty Name="ENG_NAME" ColumnName="ENG_NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="AZ_NAME" ColumnName="AZ_NAME" />
+          <ScalarProperty Name="LINESIZE" ColumnName="LINESIZE" />
+          <ScalarProperty Name="TYPE_AZ" ColumnName="TYPE_AZ" />
+          <ScalarProperty Name="GLOBALID" ColumnName="GLOBALID" />
+          <ScalarProperty Name="SHAPE_Leng" ColumnName="SHAPE_Leng" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROADS">
+      <EntityTypeMapping TypeName="MelogisModel.ROAD">
+        <MappingFragment StoreEntitySet="ROADS">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name_az" ColumnName="name_az" />
+          <ScalarProperty Name="type_az" ColumnName="type_az" />
+          <ScalarProperty Name="name_eng" ColumnName="name_eng" />
+          <ScalarProperty Name="region_nam" ColumnName="region_nam" />
+          <ScalarProperty Name="resid_name" ColumnName="resid_name" />
+          <ScalarProperty Name="road_type" ColumnName="road_type" />
+          <ScalarProperty Name="resid_id" ColumnName="resid_id" />
+          <ScalarProperty Name="region_id" ColumnName="region_id" />
+          <ScalarProperty Name="road_id" ColumnName="road_id" />
+          <ScalarProperty Name="ID_ROAD" ColumnName="ID_ROAD" />
+          <ScalarProperty Name="Shape_Leng" ColumnName="Shape_Leng" />
+          <ScalarProperty Name="road_index" ColumnName="road_index" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SABIRABADs">
+      <EntityTypeMapping TypeName="MelogisModel.SABIRABAD">
+        <MappingFragment StoreEntitySet="SABIRABAD">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="NAME_AZ" ColumnName="NAME_AZ" />
+          <ScalarProperty Name="NAME_ENG" ColumnName="NAME_ENG" />
+          <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="TYPE_AZ" ColumnName="TYPE_AZ" />
+          <ScalarProperty Name="SHAPE_Leng" ColumnName="SHAPE_Leng" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_archives">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_archives">
+        <MappingFragment StoreEntitySet="SDE_archives">
+          <ScalarProperty Name="archiving_regid" ColumnName="archiving_regid" />
+          <ScalarProperty Name="history_regid" ColumnName="history_regid" />
+          <ScalarProperty Name="from_date" ColumnName="from_date" />
+          <ScalarProperty Name="to_date" ColumnName="to_date" />
+          <ScalarProperty Name="archive_date" ColumnName="archive_date" />
+          <ScalarProperty Name="archive_flags" ColumnName="archive_flags" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_column_registry">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_column_registry">
+        <MappingFragment StoreEntitySet="SDE_column_registry">
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="column_name" ColumnName="column_name" />
+          <ScalarProperty Name="sde_type" ColumnName="sde_type" />
+          <ScalarProperty Name="column_size" ColumnName="column_size" />
+          <ScalarProperty Name="decimal_digits" ColumnName="decimal_digits" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="object_flags" ColumnName="object_flags" />
+          <ScalarProperty Name="object_id" ColumnName="object_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_dbtune">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_dbtune">
+        <MappingFragment StoreEntitySet="SDE_dbtune">
+          <ScalarProperty Name="keyword" ColumnName="keyword" />
+          <ScalarProperty Name="parameter_name" ColumnName="parameter_name" />
+          <ScalarProperty Name="config_string" ColumnName="config_string" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_geometry_columns">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_geometry_columns">
+        <MappingFragment StoreEntitySet="SDE_geometry_columns">
+          <ScalarProperty Name="f_table_catalog" ColumnName="f_table_catalog" />
+          <ScalarProperty Name="f_table_schema" ColumnName="f_table_schema" />
+          <ScalarProperty Name="f_table_name" ColumnName="f_table_name" />
+          <ScalarProperty Name="f_geometry_column" ColumnName="f_geometry_column" />
+          <ScalarProperty Name="g_table_catalog" ColumnName="g_table_catalog" />
+          <ScalarProperty Name="g_table_schema" ColumnName="g_table_schema" />
+          <ScalarProperty Name="g_table_name" ColumnName="g_table_name" />
+          <ScalarProperty Name="storage_type" ColumnName="storage_type" />
+          <ScalarProperty Name="geometry_type" ColumnName="geometry_type" />
+          <ScalarProperty Name="coord_dimension" ColumnName="coord_dimension" />
+          <ScalarProperty Name="max_ppr" ColumnName="max_ppr" />
+          <ScalarProperty Name="srid" ColumnName="srid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY1">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY1">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY1">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY10">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY10">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY10">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY11">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY11">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY11">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY12">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY12">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY12">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY13">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY13">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY13">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY14">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY14">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY14">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY15">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY15">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY15">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY16">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY16">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY16">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY17">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY17">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY17">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY18">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY18">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY18">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY19">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY19">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY19">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY2">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY2">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY2">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY20">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY20">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY20">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY21">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY21">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY21">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY22">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY22">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY22">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY23">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY23">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY23">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY24">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY24">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY24">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY25">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY25">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY25">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY26">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY26">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY26">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY27">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY27">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY27">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY28">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY28">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY28">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY29">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY29">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY29">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY3">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY3">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY3">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY30">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY30">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY30">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY31">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY31">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY31">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY32">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY32">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY32">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY4">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY4">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY4">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY5">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY5">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY5">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY6">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY6">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY6">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY7">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY7">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY7">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY8">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY8">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY8">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_GEOMETRY9">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_GEOMETRY9">
+        <MappingFragment StoreEntitySet="SDE_GEOMETRY9">
+          <ScalarProperty Name="GEOMETRY_ID" ColumnName="GEOMETRY_ID" />
+          <ScalarProperty Name="CAD" ColumnName="CAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_layer_locks">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_layer_locks">
+        <MappingFragment StoreEntitySet="SDE_layer_locks">
+          <ScalarProperty Name="sde_id" ColumnName="sde_id" />
+          <ScalarProperty Name="layer_id" ColumnName="layer_id" />
+          <ScalarProperty Name="autolock" ColumnName="autolock" />
+          <ScalarProperty Name="lock_type" ColumnName="lock_type" />
+          <ScalarProperty Name="lock_time" ColumnName="lock_time" />
+          <ScalarProperty Name="minx" ColumnName="minx" />
+          <ScalarProperty Name="miny" ColumnName="miny" />
+          <ScalarProperty Name="maxx" ColumnName="maxx" />
+          <ScalarProperty Name="maxy" ColumnName="maxy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_layer_stats">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_layer_stats">
+        <MappingFragment StoreEntitySet="SDE_layer_stats">
+          <ScalarProperty Name="oid" ColumnName="oid" />
+          <ScalarProperty Name="layer_id" ColumnName="layer_id" />
+          <ScalarProperty Name="version_id" ColumnName="version_id" />
+          <ScalarProperty Name="minx" ColumnName="minx" />
+          <ScalarProperty Name="miny" ColumnName="miny" />
+          <ScalarProperty Name="maxx" ColumnName="maxx" />
+          <ScalarProperty Name="maxy" ColumnName="maxy" />
+          <ScalarProperty Name="minz" ColumnName="minz" />
+          <ScalarProperty Name="minm" ColumnName="minm" />
+          <ScalarProperty Name="maxz" ColumnName="maxz" />
+          <ScalarProperty Name="maxm" ColumnName="maxm" />
+          <ScalarProperty Name="total_features" ColumnName="total_features" />
+          <ScalarProperty Name="total_points" ColumnName="total_points" />
+          <ScalarProperty Name="last_analyzed" ColumnName="last_analyzed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_layers">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_layers">
+        <MappingFragment StoreEntitySet="SDE_layers">
+          <ScalarProperty Name="layer_id" ColumnName="layer_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="spatial_column" ColumnName="spatial_column" />
+          <ScalarProperty Name="eflags" ColumnName="eflags" />
+          <ScalarProperty Name="layer_mask" ColumnName="layer_mask" />
+          <ScalarProperty Name="gsize1" ColumnName="gsize1" />
+          <ScalarProperty Name="gsize2" ColumnName="gsize2" />
+          <ScalarProperty Name="gsize3" ColumnName="gsize3" />
+          <ScalarProperty Name="minx" ColumnName="minx" />
+          <ScalarProperty Name="miny" ColumnName="miny" />
+          <ScalarProperty Name="maxx" ColumnName="maxx" />
+          <ScalarProperty Name="maxy" ColumnName="maxy" />
+          <ScalarProperty Name="minz" ColumnName="minz" />
+          <ScalarProperty Name="maxz" ColumnName="maxz" />
+          <ScalarProperty Name="minm" ColumnName="minm" />
+          <ScalarProperty Name="maxm" ColumnName="maxm" />
+          <ScalarProperty Name="cdate" ColumnName="cdate" />
+          <ScalarProperty Name="layer_config" ColumnName="layer_config" />
+          <ScalarProperty Name="optimal_array_size" ColumnName="optimal_array_size" />
+          <ScalarProperty Name="stats_date" ColumnName="stats_date" />
+          <ScalarProperty Name="minimum_id" ColumnName="minimum_id" />
+          <ScalarProperty Name="srid" ColumnName="srid" />
+          <ScalarProperty Name="base_layer_id" ColumnName="base_layer_id" />
+          <ScalarProperty Name="secondary_srid" ColumnName="secondary_srid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_lineages_modified">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_lineages_modified">
+        <MappingFragment StoreEntitySet="SDE_lineages_modified">
+          <ScalarProperty Name="lineage_name" ColumnName="lineage_name" />
+          <ScalarProperty Name="time_last_modified" ColumnName="time_last_modified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_locators">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_locators">
+        <MappingFragment StoreEntitySet="SDE_locators">
+          <ScalarProperty Name="locator_id" ColumnName="locator_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_logfile_pool">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_logfile_pool">
+        <MappingFragment StoreEntitySet="SDE_logfile_pool">
+          <ScalarProperty Name="table_id" ColumnName="table_id" />
+          <ScalarProperty Name="sde_id" ColumnName="sde_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_metadata">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_metadata">
+        <MappingFragment StoreEntitySet="SDE_metadata">
+          <ScalarProperty Name="record_id" ColumnName="record_id" />
+          <ScalarProperty Name="object_database" ColumnName="object_database" />
+          <ScalarProperty Name="object_name" ColumnName="object_name" />
+          <ScalarProperty Name="object_owner" ColumnName="object_owner" />
+          <ScalarProperty Name="object_type" ColumnName="object_type" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+          <ScalarProperty Name="property" ColumnName="property" />
+          <ScalarProperty Name="prop_value" ColumnName="prop_value" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_object_ids">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_object_ids">
+        <MappingFragment StoreEntitySet="SDE_object_ids">
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="base_id" ColumnName="base_id" />
+          <ScalarProperty Name="object_type" ColumnName="object_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_object_locks">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_object_locks">
+        <MappingFragment StoreEntitySet="SDE_object_locks">
+          <ScalarProperty Name="sde_id" ColumnName="sde_id" />
+          <ScalarProperty Name="object_id" ColumnName="object_id" />
+          <ScalarProperty Name="object_type" ColumnName="object_type" />
+          <ScalarProperty Name="application_id" ColumnName="application_id" />
+          <ScalarProperty Name="autolock" ColumnName="autolock" />
+          <ScalarProperty Name="lock_type" ColumnName="lock_type" />
+          <ScalarProperty Name="lock_time" ColumnName="lock_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_process_information">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_process_information">
+        <MappingFragment StoreEntitySet="SDE_process_information">
+          <ScalarProperty Name="sde_id" ColumnName="sde_id" />
+          <ScalarProperty Name="spid" ColumnName="spid" />
+          <ScalarProperty Name="server_id" ColumnName="server_id" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="rcount" ColumnName="rcount" />
+          <ScalarProperty Name="wcount" ColumnName="wcount" />
+          <ScalarProperty Name="opcount" ColumnName="opcount" />
+          <ScalarProperty Name="numlocks" ColumnName="numlocks" />
+          <ScalarProperty Name="fb_partial" ColumnName="fb_partial" />
+          <ScalarProperty Name="fb_count" ColumnName="fb_count" />
+          <ScalarProperty Name="fb_fcount" ColumnName="fb_fcount" />
+          <ScalarProperty Name="fb_kbytes" ColumnName="fb_kbytes" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="direct_connect" ColumnName="direct_connect" />
+          <ScalarProperty Name="sysname" ColumnName="sysname" />
+          <ScalarProperty Name="nodename" ColumnName="nodename" />
+          <ScalarProperty Name="xdr_needed" ColumnName="xdr_needed" />
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_raster_columns">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_raster_columns">
+        <MappingFragment StoreEntitySet="SDE_raster_columns">
+          <ScalarProperty Name="rastercolumn_id" ColumnName="rastercolumn_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="raster_column" ColumnName="raster_column" />
+          <ScalarProperty Name="cdate" ColumnName="cdate" />
+          <ScalarProperty Name="config_keyword" ColumnName="config_keyword" />
+          <ScalarProperty Name="minimum_id" ColumnName="minimum_id" />
+          <ScalarProperty Name="base_rastercolumn_id" ColumnName="base_rastercolumn_id" />
+          <ScalarProperty Name="rastercolumn_mask" ColumnName="rastercolumn_mask" />
+          <ScalarProperty Name="srid" ColumnName="srid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_server_config">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_server_config">
+        <MappingFragment StoreEntitySet="SDE_server_config">
+          <ScalarProperty Name="prop_name" ColumnName="prop_name" />
+          <ScalarProperty Name="char_prop_value" ColumnName="char_prop_value" />
+          <ScalarProperty Name="num_prop_value" ColumnName="num_prop_value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_spatial_references">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_spatial_references">
+        <MappingFragment StoreEntitySet="SDE_spatial_references">
+          <ScalarProperty Name="srid" ColumnName="srid" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="auth_name" ColumnName="auth_name" />
+          <ScalarProperty Name="auth_srid" ColumnName="auth_srid" />
+          <ScalarProperty Name="falsex" ColumnName="falsex" />
+          <ScalarProperty Name="falsey" ColumnName="falsey" />
+          <ScalarProperty Name="xyunits" ColumnName="xyunits" />
+          <ScalarProperty Name="falsez" ColumnName="falsez" />
+          <ScalarProperty Name="zunits" ColumnName="zunits" />
+          <ScalarProperty Name="falsem" ColumnName="falsem" />
+          <ScalarProperty Name="munits" ColumnName="munits" />
+          <ScalarProperty Name="xycluster_tol" ColumnName="xycluster_tol" />
+          <ScalarProperty Name="zcluster_tol" ColumnName="zcluster_tol" />
+          <ScalarProperty Name="mcluster_tol" ColumnName="mcluster_tol" />
+          <ScalarProperty Name="object_flags" ColumnName="object_flags" />
+          <ScalarProperty Name="srtext" ColumnName="srtext" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_state_lineages">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_state_lineages">
+        <MappingFragment StoreEntitySet="SDE_state_lineages">
+          <ScalarProperty Name="lineage_name" ColumnName="lineage_name" />
+          <ScalarProperty Name="lineage_id" ColumnName="lineage_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_state_locks">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_state_locks">
+        <MappingFragment StoreEntitySet="SDE_state_locks">
+          <ScalarProperty Name="sde_id" ColumnName="sde_id" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="autolock" ColumnName="autolock" />
+          <ScalarProperty Name="lock_type" ColumnName="lock_type" />
+          <ScalarProperty Name="lock_time" ColumnName="lock_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_states">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_states">
+        <MappingFragment StoreEntitySet="SDE_states">
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+          <ScalarProperty Name="closing_time" ColumnName="closing_time" />
+          <ScalarProperty Name="parent_state_id" ColumnName="parent_state_id" />
+          <ScalarProperty Name="lineage_name" ColumnName="lineage_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_table_locks">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_table_locks">
+        <MappingFragment StoreEntitySet="SDE_table_locks">
+          <ScalarProperty Name="sde_id" ColumnName="sde_id" />
+          <ScalarProperty Name="registration_id" ColumnName="registration_id" />
+          <ScalarProperty Name="lock_type" ColumnName="lock_type" />
+          <ScalarProperty Name="lock_time" ColumnName="lock_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_table_registry">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_table_registry">
+        <MappingFragment StoreEntitySet="SDE_table_registry">
+          <ScalarProperty Name="registration_id" ColumnName="registration_id" />
+          <ScalarProperty Name="database_name" ColumnName="database_name" />
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="rowid_column" ColumnName="rowid_column" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="object_flags" ColumnName="object_flags" />
+          <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+          <ScalarProperty Name="config_keyword" ColumnName="config_keyword" />
+          <ScalarProperty Name="minimum_id" ColumnName="minimum_id" />
+          <ScalarProperty Name="imv_view_name" ColumnName="imv_view_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_tables_modified">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_tables_modified">
+        <MappingFragment StoreEntitySet="SDE_tables_modified">
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="time_last_modified" ColumnName="time_last_modified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_version">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_version">
+        <MappingFragment StoreEntitySet="SDE_version">
+          <ScalarProperty Name="MAJOR" ColumnName="MAJOR" />
+          <ScalarProperty Name="MINOR" ColumnName="MINOR" />
+          <ScalarProperty Name="BUGFIX" ColumnName="BUGFIX" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="RELEASE" ColumnName="RELEASE" />
+          <ScalarProperty Name="SDESVR_REL_LOW" ColumnName="SDESVR_REL_LOW" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_versions">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_versions">
+        <MappingFragment StoreEntitySet="SDE_versions">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="version_id" ColumnName="version_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="parent_name" ColumnName="parent_name" />
+          <ScalarProperty Name="parent_owner" ColumnName="parent_owner" />
+          <ScalarProperty Name="parent_version_id" ColumnName="parent_version_id" />
+          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_xml_columns">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_xml_columns">
+        <MappingFragment StoreEntitySet="SDE_xml_columns">
+          <ScalarProperty Name="column_id" ColumnName="column_id" />
+          <ScalarProperty Name="registration_id" ColumnName="registration_id" />
+          <ScalarProperty Name="column_name" ColumnName="column_name" />
+          <ScalarProperty Name="index_id" ColumnName="index_id" />
+          <ScalarProperty Name="minimum_id" ColumnName="minimum_id" />
+          <ScalarProperty Name="config_keyword" ColumnName="config_keyword" />
+          <ScalarProperty Name="xflags" ColumnName="xflags" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_xml_index_tags">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_xml_index_tags">
+        <MappingFragment StoreEntitySet="SDE_xml_index_tags">
+          <ScalarProperty Name="index_id" ColumnName="index_id" />
+          <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+          <ScalarProperty Name="tag_name" ColumnName="tag_name" />
+          <ScalarProperty Name="data_type" ColumnName="data_type" />
+          <ScalarProperty Name="tag_alias" ColumnName="tag_alias" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="is_excluded" ColumnName="is_excluded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SDE_xml_indexes">
+      <EntityTypeMapping TypeName="MelogisModel.SDE_xml_indexes">
+        <MappingFragment StoreEntitySet="SDE_xml_indexes">
+          <ScalarProperty Name="index_id" ColumnName="index_id" />
+          <ScalarProperty Name="index_name" ColumnName="index_name" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="index_type" ColumnName="index_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="MelogisModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEGETATIONs">
+      <EntityTypeMapping TypeName="MelogisModel.VEGETATION">
+        <MappingFragment StoreEntitySet="VEGETATION">
+          <ScalarProperty Name="OBJECTID_1" ColumnName="OBJECTID_1" />
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="gid" ColumnName="gid" />
+          <ScalarProperty Name="name_eng" ColumnName="name_eng" />
+          <ScalarProperty Name="Shape_Leng" ColumnName="Shape_Leng" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Shape" ColumnName="Shape" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WELLs">
+      <EntityTypeMapping TypeName="MelogisModel.WELL">
+        <MappingFragment StoreEntitySet="WELL">
+          <ScalarProperty Name="OBJECTID" ColumnName="OBJECTID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Well_type" ColumnName="Well_type" />
+          <ScalarProperty Name="Assigment" ColumnName="Assigment" />
+          <ScalarProperty Name="SIB" ColumnName="SIB" />
+          <ScalarProperty Name="Explonation_date" ColumnName="Explonation_date" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="Irrigated_area" ColumnName="Irrigated_area" />
+          <ScalarProperty Name="Technical_condition" ColumnName="Technical_condition" />
+          <ScalarProperty Name="Depth" ColumnName="Depth" />
+          <ScalarProperty Name="Property_type" ColumnName="Property_type" />
+          <ScalarProperty Name="Property" ColumnName="Property" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Productivity" ColumnName="Productivity" />
+          <ScalarProperty Name="Security_type" ColumnName="Security_type" />
+          <ScalarProperty Name="SHAPE" ColumnName="SHAPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GDB_ITEMRELATIONSHIPTYPES">
+      <EntityTypeMapping TypeName="MelogisModel.GDB_ITEMRELATIONSHIPTYPES">
+        <MappingFragment StoreEntitySet="GDB_ITEMRELATIONSHIPTYPES">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ForwardLabel" ColumnName="ForwardLabel" />
+          <ScalarProperty Name="BackwardLabel" ColumnName="BackwardLabel" />
+          <ScalarProperty Name="OrigItemTypeID" ColumnName="OrigItemTypeID" />
+          <ScalarProperty Name="DestItemTypeID" ColumnName="DestItemTypeID" />
+          <ScalarProperty Name="IsContainment" ColumnName="IsContainment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GDB_ITEMTYPES">
+      <EntityTypeMapping TypeName="MelogisModel.GDB_ITEMTYPES">
+        <MappingFragment StoreEntitySet="GDB_ITEMTYPES">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ParentTypeID" ColumnName="ParentTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GDB_REPLICALOG">
+      <EntityTypeMapping TypeName="MelogisModel.GDB_REPLICALOG">
+        <MappingFragment StoreEntitySet="GDB_REPLICALOG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ReplicaID" ColumnName="ReplicaID" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+          <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="SourceBeginGen" ColumnName="SourceBeginGen" />
+          <ScalarProperty Name="SourceEndGen" ColumnName="SourceEndGen" />
+          <ScalarProperty Name="TargetGen" ColumnName="TargetGen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GDB_TABLES_LAST_MODIFIED">
+      <EntityTypeMapping TypeName="MelogisModel.GDB_TABLES_LAST_MODIFIED">
+        <MappingFragment StoreEntitySet="GDB_TABLES_LAST_MODIFIED">
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="last_modified_count" ColumnName="last_modified_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SDE_mvtables_modified" TypeName="MelogisModel.SDE_mvtables_modified" StoreEntitySet="SDE_mvtables_modified">
+      <EndProperty Name="SDE_states">
+        <ScalarProperty Name="state_id" ColumnName="state_id" />
+      </EndProperty>
+      <EndProperty Name="SDE_table_registry">
+        <ScalarProperty Name="registration_id" ColumnName="registration_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

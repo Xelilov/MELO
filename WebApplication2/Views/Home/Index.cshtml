@@ -1,0 +1,864 @@
+﻿@using WebApplication2.SimpleModel
+@model List<Regions>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Meliogis.com</title>
+
+    <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <![endif]-->
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2d71e2" />
+
+    <meta name="msapplication-TileImage" content="/assets/images/favicon.png">
+    <meta name="msapplication-TileColor" content="#2d71e2" />
+    <meta name="msapplication-navbutton-color" content="#2d71e2" />
+    <meta name="theme-color" content="#2d71e2" />
+
+    <meta name="robots" content="noindex, nofollow, noarchive, noodp, noydir" />
+
+    <meta name="country" content="Azerbaijan" />
+    <meta name="language" content="Azerbaijani" />
+    <meta name="content-language" content="az_AZ" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="designer" content="Kamal Balayev" />
+    <meta name="generator" content="Beekoder web studio" />
+    <meta name="copyright" content="Ontravel.com (c) 2017 Bütün hüquqlar qorunur" />
+
+    <meta name="description" content="Description" />
+
+    <link rel="canonical" href="http://www.ontravel.az/" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="~/Public/assets/images/favicon.png" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/Public/assets/css/main.css" />
+    <link rel="stylesheet" href="~/Public/assets/css/pi.css">
+    <link rel="stylesheet" href="~/Public/assets/icons/style.css" />
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.25/esri/css/esri.css" />
+    <style>
+        html, body, #mapDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+    <script src="https://js.arcgis.com/3.25/"></script>
+    <script>
+        var map;
+
+        require([
+            "esri/map",
+            "esri/layers/ArcGISDynamicMapServiceLayer",
+            "esri/layers/ImageParameters"
+        ], function MapFunction(
+            Map, ArcGISDynamicMapServiceLayer, ImageParameters) {
+
+            map = new Map("mapDiv", {
+                basemap: "topo",
+                center: [49.465965, 40.437018],
+                zoom: 8,
+                sliderOrientation : "horizontal"
+            });
+
+            //Takes a URL to a non cached map service.
+            var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer", {
+                "opacity" : 10
+            });
+
+            map.addLayer(dynamicMapServiceLayer);
+        });
+
+    </script>
+
+</head>
+
+<!-- Header -->
+<header class="header clear w-100p">
+
+    <a href="index.php" title="Meliogis" class="logo float-left" lang="en">
+        <strong>
+            M<span class="hide-xxs">eliogis</span>
+        </strong>
+    </a>
+
+    <form class="search-form relative bg-white float-left tr-3s mr-5">
+
+        <div class="input-group">
+
+            <input type="search" id="search-input" class="input no-border" placeholder="Axtar">
+
+            <span class="input-group-btn">
+
+                <button type="submit" class="btn bg-white no-border" aria-label="Axtar">
+                    <i aria-hidden="true" class="icon-search"></i>
+                </button>
+
+                <button type="button" class="search-toggle btn bg-white no-border hide-lg hide-md hide-sm" aria-label="Bağla">
+                    <i aria-hidden="true" class="icon-close"></i>
+                </button>
+
+            </span>
+        </div>
+
+        <div class="search-filter animated fadeInUp mt-5 bg-white shadow w-100p light scroll" role="dialog" hidden>
+
+            <div class="filter-list" role="group" aria-hidden="true">
+
+                <ul class="type-none m-0 p-0" role="listbox" aria-hidden="true">
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
+                        <span class="line-camp line-1">
+                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
+                            <span>Search result</span>
+                        </span>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="empty-result text-center text-gray pt-40 pb-40 border-top" role="presentation" aria-hidden="true" hidden>
+                <p class="h1"><i aria-hidden="true" class="fa fa-search"></i></p>
+                <span>Uyğun nəticə tapılmadı</span>
+            </div>
+
+        </div>
+
+    </form>
+
+    <div class="float-left clear mr-5">
+        <div class="drop district-menu float-left">
+
+            <span role="button" class="drop-toggle btn bg-white no-border caret" id="district-menu-search" aria-label="Rayonlar" aria-haspopup="true" aria-expanded="true">
+                Rayon seç
+            </span>
+
+            <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu-search">
+                <div class="menu-body">
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="all-d" checked>
+                            <label for="all-d">Hamısı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-d-1">
+                            <label for="rayon-d-1">Rayon adı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-d-2">
+                            <label for="rayon-d-2">Rayon adı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-d-3">
+                            <label for="rayon-d-3">Rayon adı</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="drop district-menu float-left">
+
+            <span role="button" class="drop-toggle btn bg-white no-border caret" id="village-menu-search" aria-label="Kəndlər" aria-haspopup="true" aria-expanded="true">
+                Kən seç
+            </span>
+
+            <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="village-menu-search">
+                <div class="menu-body">
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="all-v" checked>
+                            <label for="all-v">Hamısı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="kend-v-1">
+                            <label for="kend-v-1">Kənd adı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="kend-v-2">
+                            <label for="kend-v-2">Kənd adı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="kend-v-3">
+                            <label for="kend-v-3">Kənd adı</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="drop district-menu float-left">
+
+            <span role="button" class="drop-toggle btn bg-white no-border caret" id="attribute-menu-search" aria-label="Atributlar" aria-haspopup="true" aria-expanded="true">
+                Seç
+            </span>
+
+            <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="attribute-menu-search">
+                <div class="menu-body">
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="all-a" checked>
+                            <label for="all-a">Hamısı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-a-1">
+                            <label for="rayon-a-1">Atribut adı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-a-2">
+                            <label for="rayon-a-2">Atribut adı</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-a-3">
+                            <label for="rayon-a-3">Atribut adı</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn bg-white no-border float-left" aria-label="Axtar">
+            <i aria-hidden="true" class="icon-check"></i>
+        </button>
+
+    </div>
+
+    <div class="drop map-change float-left ml-5">
+
+        <span role="button"
+              class="drop-toggle btn bg-white no-border caret mr-5"
+              id="map-menu"
+              aria-label="Xəritələr"
+              aria-haspopup="true"
+              aria-expanded="false">
+            <i aria-hidden="true" class="icon-map"></i>
+        </span>
+
+        <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="map-menu">
+            <div class="menu-header">
+                <strong>Xəritə tipi</strong>
+            </div>
+            <div class="menu-body">
+                <div class="ckbox">
+                    <input type="radio" name="map-type" id="main-map" checked onclick="MapFunction()">
+                    <label for="main-map">Əsas xəritə</label>
+                </div>
+                <div class="ckbox">
+                    <input type="radio" name="map-type" id="osm" onclick="OsmFunction()">
+                    <label for="osm">OSM</label>
+                </div>
+                <div class="ckbox">
+                    <input type="radio" name="map-type" id="bing" onclick="BingFunction()">
+                    <label for="bing">Bing</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- Sidebar menu -->
+<aside class="main-sidebar bg-white shadow tr-3s" aria-labelledby="side-menu">
+
+    <span role="button"
+          aria-hidden="true"
+          aria-label="Side toggle"
+          class="side-toggle btn bg-white no-border float-right"
+          aria-haspopup="true"
+          aria-expanded="false" id="side-menu">
+        <i aria-hidden="true" class="v-icon icon-menu-nav"></i>
+        <i aria-hidden="true" class="h-icon icon-close"></i>
+    </span>
+
+    <div class="border-bottom">
+        <ul class="tab-nav scrolling-menu float-center mw-100p" role="tablist">
+
+            <li role="presentation" class="active">
+                <span role="tab" class="menu-item p-15" data-target-tab="network">
+                    <i aria-hidden="true" class="icon-player-random mr-10"></i>
+                    Şəbəkələr
+                </span>
+            </li>
+
+            <li role="presentation">
+                <span role="tab" class="menu-item p-15" data-target-tab="layers">
+                    <i aria-hidden="true" class="icon-layout-carousel mr-10"></i>
+                    Laylar
+                </span>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="tab-content">
+
+        <div class="tab-panel scroll o-auto p-20 active" role="tabpanel" data-tab="network">
+
+            <div class="group mb-20">
+                <label for="district-menu">Rayonlar</label>
+
+                <div class="drop district-menu w-100p">
+
+                    <span role="button" class="drop-toggle input caret" id="district-menu" aria-label="Rayonlar" aria-haspopup="true" aria-expanded="true">
+                        Seç
+                    </span>
+                    <span id="testsearch" class="btn btn-primary">
+                        search
+                    </span>
+
+                    <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu">
+                        <div class="menu-body RegionList">
+                            <div class="menu-item">
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="0">
+                                    <label for="0">Hamısı</label>
+                                </div>
+                            </div>
+                            @foreach (var region in Model)
+                            {
+                                <div class="menu-item">
+                                    <div class="ckbox">
+                                        <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
+                                        <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
+                                    </div>
+                                </div>
+                            }
+                             
+                            @*<div class="menu-item">
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="rayon-1">
+                                    <label for="rayon-1">Rayon adı</label>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="rayon-2">
+                                    <label for="rayon-2">Rayon adı</label>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="rayon-3">
+                                    <label for="rayon-3">Rayon adı</label>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="group mb-20">
+
+                <strong class="d-block mb-10">Açıq suvarma şəbəkəsi</strong>
+
+                <div class="pl-10 riverband">
+                    @*<div class="ckbox">
+                        <input type="checkbox" id="network-1">
+                        <label for="network-1">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-2">
+                        <label for="network-2">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-3">
+                        <label for="network-3">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-4">
+                        <label for="network-4">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-5">
+                        <label for="network-5">Network name</label>
+                    </div>*@
+                </div>
+
+            </div>
+
+            <div class="group mb-20">
+
+                <strong class="d-block mb-10">Kollektor Drenaj Şəbəkəsi</strong>
+
+                <div class="pl-10 Network">
+                    @*<div class="ckbox">
+                        <input type="checkbox" id="network-6">
+                        <label for="network-6">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-7">
+                        <label for="network-7">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-8">
+                        <label for="network-8">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-9">
+                        <label for="network-9">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-10">
+                        <label for="network-10">Network name</label>
+                    </div>*@
+                </div>
+
+            </div>
+
+            <div class="group mb-20">
+
+                <strong class="d-block mb-10">Mühafizə bəndləri</strong>
+
+                <div class="pl-10">
+                    @*<div class="ckbox">
+                        <input type="checkbox" id="network-11">
+                        <label for="network-11">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-12">
+                        <label for="network-12">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-13">
+                        <label for="network-13">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-14">
+                        <label for="network-14">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-15">
+                        <label for="network-15">Network name</label>
+                    </div>*@
+                </div>
+
+            </div>
+
+            <div class="group mb-20">
+
+                <strong class="d-block mb-10">Digər obyektlər</strong>
+
+                <div class="pl-10">
+                    @*<div class="ckbox">
+                        <input type="checkbox" id="network-16">
+                        <label for="network-16">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-17">
+                        <label for="network-17">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-18">
+                        <label for="network-18">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-19">
+                        <label for="network-19">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-20">
+                        <label for="network-20">Network name</label>
+                    </div>*@
+                </div>
+
+            </div>
+
+            @*<div class="group mb-20">
+
+                <strong class="d-block mb-10">Saatlı</strong>
+
+                <div class="pl-10">
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-21">
+                        <label for="network-21">Network name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-22">
+                        <label for="network-22">Network name</label>
+                    </div>
+                </div>
+
+            </div>*@
+
+        </div>
+       
+        <div class="tab-panel scroll o-auto p-20" role="tabpanel" data-tab="layers">
+
+            <div class="row as-7 xxs-5">
+
+                <div class="col as-6 mb-20">
+                    <label for="select-district">Rayonlar</label>
+                    <select name="" id="select-district" class="input">
+                        <option>Seç</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.OBJECTID_1">@item.NAME_AZ</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col as-6 mb-20">
+                    <label for="select-village">Kəndlər</label>
+                    <select name="" id="select-village" class="input" disabled>
+                        <option>Seç</option>
+                        <option value="village-name">Village name</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="channels-list scroll o-auto">
+
+                <strong class="d-block mb-10">Channel</strong>
+
+                <div class="pl-10 CHannels">
+                    @*<div class="ckbox">
+                        <input type="radio" name="channels" id="channel-name-1">
+                        <label for="channel-name-1">Channel name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="radio" name="channels" id="channel-name-2">
+                        <label for="channel-name-2">Channel name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="radio" name="channels" id="channel-name-3">
+                        <label for="channel-name-3">Channel name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="radio" name="channels" id="channel-name-4">
+                        <label for="channel-name-4">Channel name</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="radio" name="channels" id="channel-name-5">
+                        <label for="channel-name-5">Channel name</label>
+                    </div>*@
+                </div>
+
+            </div>
+
+            <div class="devices mt-20">
+
+                <strong class="d-block mb-10">Qurğular</strong>
+
+                <div class="pl-10 DeviceList">
+                    @*<div class="ckbox">
+                        <input type="radio" name="devices" id="duke">
+                        <label for="duke">Düker</label>
+                    </div>
+
+                    <div class="ckbox">
+                        <input type="radio" name="devices" id="bridge">
+                        <label for="bridge">Körpü</label>
+                    </div>*@
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+<!-- Map wrap-->
+<main class="map-wrap responsive w-100p tr-3s">
+    <div id="mapDiv">      
+
+
+    </div>
+</main>
+
+<footer class="footer w-100p p-15 clear">
+
+    <div class="map-navigator responsive pb-100 bg-white shadow float-left hide-xs hide-xxs mr-15"></div>
+
+    <span class="float-left">
+        <img src="" alt="şərti işarələr" height="40">
+    </span>
+
+    <strong class="maus-position float-right hide-xs hide-xxs">55.854689 76.114988</strong>
+
+</footer>
+
+<div class="alert-modal modal lg"
+     data-modal="terms-of-use"
+     data-open-animation="zoomIn"
+     data-close-animation="zoomOut"
+     role="dialog"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-content panel">
+        <div class="panel-header">
+            <span class="panel-title">İstifadəçi hüquqları</span>
+        </div>
+
+        <div class="panel-body p-40">
+            <h5>Lorem ipsum dolor sit amet</h5>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam dignissimos doloribus, ipsum maiores reprehenderit vero. Ab aliquid, cupiditate dignissimos iure necessitatibus non obcaecati possimus quae quo vero. Amet, vel?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam dignissimos doloribus, ipsum maiores reprehenderit vero. Ab aliquid, cupiditate dignissimos iure necessitatibus non obcaecati possimus quae quo vero. Amet, vel?
+            </p>
+            <h5>Lorem ipsum dolor sit amet</h5>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam dignissimos doloribus, ipsum maiores reprehenderit vero. Ab aliquid, cupiditate dignissimos iure necessitatibus non obcaecati possimus quae quo vero. Amet, vel?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam dignissimos doloribus, ipsum maiores reprehenderit vero. Ab aliquid, cupiditate dignissimos iure necessitatibus non obcaecati possimus quae quo vero. Amet, vel?
+            </p>
+            <h5>Lorem ipsum dolor sit amet</h5>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam dignissimos doloribus, ipsum maiores reprehenderit vero. Ab aliquid, cupiditate dignissimos iure necessitatibus non obcaecati possimus quae quo vero. Amet, vel?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam dignissimos doloribus, ipsum maiores reprehenderit vero. Ab aliquid, cupiditate dignissimos iure necessitatibus non obcaecati possimus quae quo vero. Amet, vel?
+            </p>
+        </div>
+
+        <div class="panel-footer text-center">
+            <button class="btn bg-white no-border" data-close="terms-of-use">Bağla</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="~/Public/assets/js/jquery.min.js"></script>
+<script src="~/Public/assets/js/pi.js"></script>
+
+<script>
+
+    $("#select-district").on("change", function () {        
+        var regionid = document.querySelector("#select-district").value;
+        $.ajax({
+            url: "/Home/Village/" + regionid,   
+            method: "post",
+            dataType: "JSON",
+            success: function (res) {                
+                var village = res.data;
+                $("#select-village option").remove();
+                $("#select-village").attr("disabled", false);
+                for (var i = 0; i < village.length; i++) {
+                    $("#select-village").append("<option value=" + village[i].OBJECTID + ">" + village[i].Name + "</option>")
+                }
+            }
+        })
+    })
+
+
+    $("#select-village").on("change", function () {
+        $.ajax({
+        url: "/Home/Laylar",
+        method: "post",
+        dataType: "JSON",
+        success: function (res) {
+                var DEvices = res.data.Device;
+                $(".DeviceList div").remove();
+                for (var i = 0; i<DEvices.length; i++) {
+                    $(".DeviceList").append("<div class='ckbox'><input type='radio' name='devices' id='" + i + "'><label for='" + i + "'>" + DEvices[i].NAME + "</label></div>")                        
+
+                }
+
+                var Channels = res.data.Channels;
+                $(".CHannels div").remove();                
+                for (var i = 0; i < Channels.length; i++) {                    
+                    $(".CHannels").append("<div class='ckbox'><input type='radio' name='channels' id='" + i + "'><label for='" + i +"'>"+Channels[i].NAME+"</label></div>")                        
+                        
+                }
+
+            }
+        })
+    })      
+    var Listid = [];
+    $(".RegionList .ckbox input").click(function () {        
+        let count = $(this).attr("id");
+        if (checkElementInArr(Listid, parseInt(count))) {
+            var index = Listid.indexOf(parseInt(count));
+            Listid.splice(index, 1);
+        } else {
+            Listid.push(parseInt(count));
+        } 
+    });
+    function checkElementInArr(array, value) {
+        return array.indexOf(value) > -1;
+    }    
+
+
+    $("#testsearch").on("click", function () {
+        $.ajax({
+            url: "/Home/All",
+            data: { id: Listid },
+            method: "post",
+            type: "JSON",
+            success: function (response) {
+                $(".Network div").remove();
+                var Drenaj = response.data.Drenaj;
+                for (var i = 0; i < Drenaj.length; i++) {
+                    $(".Network").append("<div class='ckbox'><input type='checkbox' id='" +Drenaj[i].OBJECTID +"'><label for='" +Drenaj[i].OBJECTID+"'>" + Drenaj[i].NAME + "</label></div>");
+                }
+
+                $(".riverband div").remove();
+                var riverband = response.data.riverbandcs;
+                for (var i = 0; i < riverband.length; i++) {
+                    $(".riverband").append("<div class='ckbox'><input type='checkbox' id='" + riverband[i].OBJECTID + "'><label for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
+                }
+
+                
+                
+            }
+        })
+    })    
+</script>
+<script>
+
+    const $body = $('body');
+
+    $('.side-toggle').on('click', function () {
+        $body.toggleClass('side-shown');
+        if($body.hasClass('side-shown')){
+            $(this).attr('aria-expanded', 'true');
+        }else{
+            $(this).attr('aria-expanded', 'false');
+        }
+    });
+
+    $('.search-toggle').on('click', function () {
+        $body.toggleClass('search-open');
+    });
+
+    $('*').click(function (e) {
+
+        /*if (!$(e.target).is('.side-toggle')
+            && !$(e.target).is('.side-toggle *')
+            && !$(e.target).is('.side-menu')
+            && !$(e.target).is('.side-menu *')) {
+            $body.removeClass('side-shown');
+        }*/
+
+        if (!$(e.target).is('#search-input')
+            && !$(e.target).is('#search-input *')) {
+            $searchFilter.attr('hidden', true);
+        }
+    });
+
+    const $searchFilter = $('.search-filter');
+    const $searchInput = $('#search-input');
+
+    $searchInput.on('focus',function () {
+        $searchFilter.attr('hidden', false);
+    });
+
+</script>
+
+</body>
+
+</html>

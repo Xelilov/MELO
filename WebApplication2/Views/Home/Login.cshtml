@@ -1,0 +1,188 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Meliogis.com</title>
+
+    <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <![endif]-->
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2d71e2" />
+
+    <meta name="msapplication-TileImage" content="/assets/images/favicon.png">
+    <meta name="msapplication-TileColor" content="#2d71e2" />
+    <meta name="msapplication-navbutton-color" content="#2d71e2" />
+    <meta name="theme-color" content="#2d71e2" />
+
+    <meta name="robots" content="noindex, nofollow, noarchive, noodp, noydir" />
+
+    <meta name="country" content="Azerbaijan" />
+    <meta name="language" content="Azerbaijani" />
+    <meta name="content-language" content="az_AZ" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="designer" content="Kamal Balayev" />
+    <meta name="generator" content="Beekoder web studio" />
+    <meta name="copyright" content="Ontravel.com (c) 2017 Bütün hüquqlar qorunur" />
+
+    <meta name="description" content="Description" />
+
+    <link rel="canonical" href="http://www.ontravel.az/" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="~/Public/assets/images/favicon.png" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/Public/assets/css/main.css" />
+    <link rel="stylesheet" href="~/Public/assets/css/pi.css">
+    <link rel="stylesheet" href="~/Public/assets/icons/style.css" />
+
+</head>
+<style>
+
+
+    .glass:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+
+    .login-container {
+        min-height: 100vh;
+        background-image: url("/Public/assets/images/login-bg.png");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-wrap {
+        width: 400px !important;
+        max-width: 100%;
+    }
+
+    .m-style .input-group-addon {
+        border: 0;
+        padding: 0 10px 0 0 !important;
+        font-size: 20px;
+        width: 40px;
+        height: 38px;
+        line-height: 44px;
+        text-align: center;
+        display: block;
+    }
+
+    .m-style .input {
+        border: 0;
+        border-bottom: 1px solid #ddd;
+        padding-left: 0;
+    }
+</style>
+
+<div class="login-container d-flex-center pl-10 pr-10 relative glass">
+
+    <div class="login-wrap bg-white shadow-big p-40 float-center relative z-index-1">
+        <h1 class="login-logo h3 bold text-center text-uppercase text-blue mb-40" lang="en">Meliogis</h1>
+
+        <form method="post" class="login-form">
+
+            <div class="clear mb-20">
+
+                <label for="user-name" class="mb-7">İstifadəçi adı</label>
+
+                <div class="input-group m-style">
+                    <span class="input-group-addon">
+                        <i aria-hidden="true" class="icon-user"></i>
+                    </span>
+                    <input type="text" id="user-name" name="username" class="input" placeholder="İstifadəçi adınızı qeyd edin">
+                </div>
+
+            </div>
+
+            <div class="clear mb-20">
+
+                <label for="password" class="mb-7">Şifrə</label>
+
+                <div class="input-group m-style">
+                    <span class="input-group-addon">
+                        <i aria-hidden="true" class="icon-user-key"></i>
+                    </span>
+                    <input type="password" id="password" name="pass" class="input" placeholder="Şifrənizi qeyd edin">
+                </div>
+
+            </div>
+
+            <div class="ckbox mb-40">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Girişi xatirla</label>
+            </div>
+
+            <button type="submit" class="btn bg-blue dark w-100p radius-20 text-uppercase">Daxil ol</button>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- Scripts -->
+<script src="~/Public/assets/js/jquery.min.js"></script>
+<script src="~/Public/assets/js/pi.js"></script>
+
+<script>
+
+    const $body = $('body');
+
+    $('.side-toggle').on('click', function () {
+        $body.toggleClass('side-shown');
+        if($body.hasClass('side-shown')){
+            $(this).attr('aria-expanded', 'true');
+        }else{
+            $(this).attr('aria-expanded', 'false');
+        }
+    });
+
+    $('.search-toggle').on('click', function () {
+        $body.toggleClass('search-open');
+    });
+
+    $('*').click(function (e) {
+
+        /*if (!$(e.target).is('.side-toggle')
+            && !$(e.target).is('.side-toggle *')
+            && !$(e.target).is('.side-menu')
+            && !$(e.target).is('.side-menu *')) {
+            $body.removeClass('side-shown');
+        }*/
+
+        if (!$(e.target).is('#search-input')
+            && !$(e.target).is('#search-input *')) {
+            $searchFilter.attr('hidden', true);
+        }
+    });
+
+    const $searchFilter = $('.search-filter');
+    const $searchInput = $('#search-input');
+
+    $searchInput.on('focus',function () {
+        $searchFilter.attr('hidden', false);
+    });
+
+</script>
+
+</body>
+
+</html>
