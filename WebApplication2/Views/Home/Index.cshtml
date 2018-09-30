@@ -202,7 +202,16 @@
 
             <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu-search">
                 <div class="menu-body">
-                    <div class="menu-item">
+                    @foreach (var region in Model)
+                    {
+                        <div class="menu-item">
+                            <div class="ckbox">
+                                <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
+                                <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
+                            </div>
+                        </div>
+                    }
+                    @*<div class="menu-item">
                         <div class="ckbox">
                             <input type="checkbox" name="rayon" id="all-d" checked>
                             <label for="all-d">Hamısı</label>
@@ -225,7 +234,7 @@
                             <input type="checkbox" name="rayon" id="rayon-d-3">
                             <label for="rayon-d-3">Rayon adı</label>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
 
