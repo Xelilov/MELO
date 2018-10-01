@@ -83,9 +83,11 @@ namespace WebApplication2.Controllers
             SebekelerViewModel sebekelerViewModel = new SebekelerViewModel();
             using (Context con = new Context())
             {
+                //string list = "";
+                //List<string> list2 = new List<string>();
                 for (int i = 0; i < id.Length; i++)
                 {
-                    if (id[i]==0)
+                    if (id[i] == 0)
                     {
                         sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select * from DRENAJ").ToList();
                         break;
@@ -93,9 +95,14 @@ namespace WebApplication2.Controllers
                     else
                     {
                         string Reggionname = con.Region.QueryStringFind($"select * from MELOREGIONS where OBJECTID_1='{id[i]}'").NAME_AZ;
-                        sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select * from DRENAJ where PASSING_AREAS='{Reggionname}'").ToList();
+                        //list2.Add(Reggionname);
+                        //list += Reggionname + ",";
+                        sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select * from DRENAJ where PASSING_AREAS ='{Reggionname}'").ToList();
                     }
                 }
+                //list = list.Remove(list.Length - 1, 1);
+                //sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select * from DRENAJ where PASSING_AREAS IN ({list2})").ToList();
+
                 sebekelerViewModel.riverbandcs = con.riverband.QueryStringAsList("select * from RIVERBAND").ToList();
             }          
 

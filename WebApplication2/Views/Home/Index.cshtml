@@ -59,31 +59,67 @@
     </style>
     <script src="https://js.arcgis.com/3.25/"></script>
     <script>
-        var map;
+        function MapFunction() {
+            var map;
+            require([
+                "esri/map",
+                "esri/layers/ArcGISDynamicMapServiceLayer",
+                "esri/layers/ImageParameters"
+            ], function MapFunction(
+                Map, ArcGISDynamicMapServiceLayer, ImageParameters) {
+                    map = new Map("mapDiv", {
+                        basemap: "topo",
+                        center: [49.465965, 40.437018],
+                        zoom: 8,
+                        sliderOrientation: "horizontal"
+                    });
+                    //Takes a URL to a non cached map service.
+                    var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer", {
+                        "opacity": 10
+                    });
 
-        require([
-            "esri/map",
-            "esri/layers/ArcGISDynamicMapServiceLayer",
-            "esri/layers/ImageParameters"
-        ], function MapFunction(
-            Map, ArcGISDynamicMapServiceLayer, ImageParameters) {
-
-            map = new Map("mapDiv", {
-                basemap: "topo",
-                center: [49.465965, 40.437018],
-                zoom: 8,
-                sliderOrientation : "horizontal"
-            });
-
-            //Takes a URL to a non cached map service.
-            var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer", {
-                "opacity" : 10
-            });
-
-            map.addLayer(dynamicMapServiceLayer);
-        });
-
+                    map.addLayer(dynamicMapServiceLayer);
+                });
+        }
     </script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=YourBingMapsKey&callback=loadMapScenario' async defer></script>
+    <script type='text/javascript'>
+        function loadMapScenario() {
+            var map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {});
+            map.setView({
+                mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+                center: new Microsoft.Maps.Location(40.437018, 49.465965),
+                zoom: 8
+            });
+
+        }
+    </script>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script>
+        function OsmFunction() {
+            //map = new OpenLayers.Map("mapdiv");
+            //map.addLayer(new OpenLayers.Layer.OSM());
+
+            //var pois = new OpenLayers.Layer.Text("My Points",
+            //    {
+            //        location: "lat 48.9459301	lon 9.6075669",
+            //        projection: map.displayProjection
+            //    });
+            //map.addLayer(pois);
+            //// create layer switcher widget in top right corner of map.
+            //var layer_switcher = new OpenLayers.Control.LayerSwitcher({});
+            //map.addControl(layer_switcher);
+            ////Set start centrepoint and zoom    
+            //var lonLat = new OpenLayers.LonLat(9.5788, 48.9773)
+            //    .transform(
+            //    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            //    map.getProjectionObject() // to Spherical Mercator Projection
+            //    );
+            //var zoom = 11;
+            //map.setCenter(lonLat, zoom);
+        }
+    </script>
+
 
 </head>
 
@@ -202,7 +238,7 @@
 
             <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu-search">
                 <div class="menu-body">
-                    @foreach (var region in Model)
+                    @*@foreach (var region in Model)
                     {
                         <div class="menu-item">
                             <div class="ckbox">
@@ -210,8 +246,8 @@
                                 <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
                             </div>
                         </div>
-                    }
-                    @*<div class="menu-item">
+                    }*@
+                    <div class="menu-item">
                         <div class="ckbox">
                             <input type="checkbox" name="rayon" id="all-d" checked>
                             <label for="all-d">Hamısı</label>
@@ -234,7 +270,7 @@
                             <input type="checkbox" name="rayon" id="rayon-d-3">
                             <label for="rayon-d-3">Rayon adı</label>
                         </div>
-                    </div>*@
+                    </div>
                 </div>
             </div>
 
@@ -345,7 +381,7 @@
                     <label for="osm">OSM</label>
                 </div>
                 <div class="ckbox">
-                    <input type="radio" name="map-type" id="bing" onclick="BingFunction()">
+                    <input type="radio" name="map-type" id="bing" onclick="loadMapScenario()">
                     <label for="bing">Bing</label>
                 </div>
             </div>
@@ -684,9 +720,9 @@
 
 <!-- Map wrap-->
 <main class="map-wrap responsive w-100p tr-3s">
-    <div id="mapDiv">      
+    <div id="mapDiv" style="width:100%; height:620px">
 
-
+        @*<div>     <iframe width="800" height="620" frameborder="0" src="https://www.bing.com/maps/embed?h=620&w=800&cp=40.33111076245651~47.90663402743529&lvl=7&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">     </iframe>     <div style="white-space: nowrap; text-align: center; width: 800px; padding: 6px 0;">        <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=40.33111076245651~47.90663402743529&amp;sty=r&amp;lvl=7&amp;FORM=MBEDLD">View Larger Map</a> &nbsp; | &nbsp;        <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=40.33111076245651~47.90663402743529&amp;sty=r&amp;lvl=7&amp;rtp=~pos.40.33111076245651_47.90663402743529____&amp;FORM=MBEDLD">Get Directions</a>    </div></div>*@
     </div>
 </main>
 
@@ -745,6 +781,11 @@
 <script src="~/Public/assets/js/pi.js"></script>
 
 <script>
+
+    $(document).ready(function () {        
+        MapFunction();
+        console.log($("#mapDiv"))
+    });
 
     $("#select-district").on("change", function () {        
         var regionid = document.querySelector("#select-district").value;
@@ -812,7 +853,7 @@
                 $(".Network div").remove();
                 var Drenaj = response.data.Drenaj;
                 for (var i = 0; i < Drenaj.length; i++) {
-                    $(".Network").append("<div class='ckbox'><input type='checkbox' id='" +Drenaj[i].OBJECTID +"'><label for='" +Drenaj[i].OBJECTID+"'>" + Drenaj[i].NAME + "</label></div>");
+                    $(".Network").append("<div class='ckbox'><input type='checkbox' id='" + Drenaj[i].OBJECTID + "'><label data-goe=" + Drenaj[i].SHAPE+" for='" +Drenaj[i].OBJECTID+"'>" + Drenaj[i].NAME + "</label></div>");
                 }
 
                 $(".riverband div").remove();
