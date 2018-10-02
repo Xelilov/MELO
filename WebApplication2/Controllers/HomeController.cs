@@ -13,9 +13,23 @@ namespace WebApplication2.Controllers
     public class HomeController : Controller
     {
         MelogisEntities db = new MelogisEntities();
-
+        static List<Regions> RegionList = new List<Regions>();
+        static List<Village> VillageList = new List<Village>();
+        static List<Drenaj> DrenajList = new List<Drenaj>();
+        static List<Riverbandcs> RiverbandList = new List<Riverbandcs>();
+        static List<Device> DeviceList = new List<Device>();
+        static List<Channels> ChannelList = new List<Channels>();
         public ActionResult Login()
         {
+            using (Context con = new Context())
+            {
+                RegionList = con.Region.QueryStringAsList("select * from Meloregions").ToList();
+                VillageList= con.village.QueryStringAsList($"select * from MUNICIPALITIES").ToList();
+                DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,NAME,OBJECTID,PASSING_AREAS, Region_ID from DRENAJ").ToList();
+                RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Region_ID from RIVERBAND").ToList();
+                DeviceList = con.Device.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id from DEVICE").ToList();
+                ChannelList= con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id from CHANNELS").ToList();
+            }
             return View();
         }
 
@@ -38,10 +52,9 @@ namespace WebApplication2.Controllers
 
             return RedirectToAction("Login");
         }
-
         [UserAuthenticationController]
         public ActionResult Index()
-        {
+        {            
             List<Regions> regin = new List<Regions>();
             using (Context con=new Context())
             {               
@@ -62,19 +75,24 @@ namespace WebApplication2.Controllers
         }
 
 
-        public ActionResult Laylar()
+        public ActionResult Laylar(int? id)
         {            
             LaylarViewModel laylarViewModel = new LaylarViewModel();
-            using (Context con = new Context())
-            {
-                laylarViewModel.Device = con.Device.QueryStringAsList("select * from DEVICE").ToList();
-                laylarViewModel.Channels = con.Channel.QueryStringAsList("select * from CHANNELS").ToList();
-            }
+            
+            //using (Context con = new Context())
+            //{
+            //    laylarViewModel.Device = con.Device.QueryStringAsList("select * from DEVICE").ToList();
+            //    laylarViewModel.Channels = con.Channel.QueryStringAsList("select * from CHANNELS").ToList();
+            //}
+            laylarViewModel.Device = DeviceList.Where(s=>s.Municipality_id==id).ToList();
+            laylarViewModel.Channels = ChannelList.Where(s=>s.Municipality_id==id).ToList();
 
-            return Json(new { data=laylarViewModel }, JsonRequestBehavior.AllowGet);
+            var jsonResult = Json(new { data = laylarViewModel }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
         }
 
-
+        
 
         public ActionResult All(int[] id)
         {
@@ -83,30 +101,28 @@ namespace WebApplication2.Controllers
             SebekelerViewModel sebekelerViewModel = new SebekelerViewModel();
             using (Context con = new Context())
             {
-                //string list = "";
-                //List<string> list2 = new List<string>();
+                
                 for (int i = 0; i < id.Length; i++)
                 {
                     if (id[i] == 0)
                     {
-                        sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select * from DRENAJ").ToList();
+                        sebekelerViewModel.Drenaj = DrenajList.ToList();
                         break;
                     }
                     else
                     {
                         string Reggionname = con.Region.QueryStringFind($"select * from MELOREGIONS where OBJECTID_1='{id[i]}'").NAME_AZ;
-                        //list2.Add(Reggionname);
-                        //list += Reggionname + ",";
-                        sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select * from DRENAJ where PASSING_AREAS ='{Reggionname}'").ToList();
+
+                        //sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,NAME,OBJECTID,PASSING_AREAS from DRENAJ where PASSING_AREAS ='{Reggionname}'").ToList();
+                        sebekelerViewModel.Drenaj = DrenajList.Where(s => s.PASSING_AREAS == Reggionname).ToList();
+                        sebekelerViewModel.riverbandcs = RiverbandList;
                     }
                 }
-                //list = list.Remove(list.Length - 1, 1);
-                //sebekelerViewModel.Drenaj = con.Drenaj.QueryStringAsList($"select * from DRENAJ where PASSING_AREAS IN ({list2})").ToList();
 
-                sebekelerViewModel.riverbandcs = con.riverband.QueryStringAsList("select * from RIVERBAND").ToList();
-            }          
-
-            return Json(new { data = sebekelerViewModel }, JsonRequestBehavior.AllowGet);
+            }
+            var jsonResult = Json(new { data = sebekelerViewModel }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
         }
     }
 }

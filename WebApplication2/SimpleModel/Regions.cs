@@ -9,5 +9,6 @@ namespace WebApplication2.SimpleModel
     {
         public int OBJECTID_1 { get; set; }
         public string NAME_AZ { get; set; }
+        public int Region_ID_1 { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace WebApplication2.Models.ViewModels
     {
         public IEnumerable<Drenaj> Drenaj { get; set; }
         public IEnumerable<Riverbandcs> riverbandcs { get; set; }
+        public string Nama { get; set; }
     }
 }

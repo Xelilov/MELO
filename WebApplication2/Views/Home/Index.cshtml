@@ -50,16 +50,14 @@
     <link rel="stylesheet" href="~/Public/assets/icons/style.css" />
 
     <link rel="stylesheet" href="https://js.arcgis.com/3.25/esri/css/esri.css" />
-    <style>
-        html, body, #mapDiv {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-        }
-    </style>
     <script src="https://js.arcgis.com/3.25/"></script>
     <script>
+
+        var Latitude = 49.465965;
+        var Longitude = 40.437018;
+        var zoommap = 8;
         function MapFunction() {
+            $("#mapdiv div").remove();
             var map;
             require([
                 "esri/map",
@@ -69,8 +67,8 @@
                 Map, ArcGISDynamicMapServiceLayer, ImageParameters) {
                     map = new Map("mapDiv", {
                         basemap: "topo",
-                        center: [49.465965, 40.437018],
-                        zoom: 8,
+                        center: [Latitude, Longitude],
+                        zoom: zoommap,
                         sliderOrientation: "horizontal"
                     });
                     //Takes a URL to a non cached map service.
@@ -88,10 +86,9 @@
             var map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {});
             map.setView({
                 mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-                center: new Microsoft.Maps.Location(40.437018, 49.465965),
-                zoom: 8
+                center: new Microsoft.Maps.Location(Longitude, Latitude),
+                zoom: zoommap
             });
-
         }
     </script>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
@@ -109,7 +106,7 @@
             //// create layer switcher widget in top right corner of map.
             //var layer_switcher = new OpenLayers.Control.LayerSwitcher({});
             //map.addControl(layer_switcher);
-            ////Set start centrepoint and zoom    
+            ////Set start centrepoint and zoom
             //var lonLat = new OpenLayers.LonLat(9.5788, 48.9773)
             //    .transform(
             //    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
@@ -239,14 +236,14 @@
             <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu-search">
                 <div class="menu-body">
                     @*@foreach (var region in Model)
-                    {
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
-                                <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
+                        {
+                            <div class="menu-item">
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
+                                    <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
+                                </div>
                             </div>
-                        </div>
-                    }*@
+                        }*@
                     <div class="menu-item">
                         <div class="ckbox">
                             <input type="checkbox" name="rayon" id="all-d" checked>
@@ -440,6 +437,9 @@
                     <span id="testsearch" class="btn btn-primary">
                         search
                     </span>
+                    <span id="testUndersearch" class="btn btn-primary">
+                        searchUnder
+                    </span>
 
                     <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu">
                         <div class="menu-body RegionList">
@@ -450,33 +450,33 @@
                                 </div>
                             </div>
                             @foreach (var region in Model)
-                            {
-                                <div class="menu-item">
-                                    <div class="ckbox">
-                                        <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
-                                        <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
-                                    </div>
-                                </div>
-                            }
-                             
+            {
+                <div class="menu-item">
+                    <div class="ckbox">
+                        <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
+                        <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
+                    </div>
+                </div>
+}
+
                             @*<div class="menu-item">
-                                <div class="ckbox">
-                                    <input type="checkbox" name="rayon" id="rayon-1">
-                                    <label for="rayon-1">Rayon adı</label>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="ckbox">
-                                    <input type="checkbox" name="rayon" id="rayon-2">
-                                    <label for="rayon-2">Rayon adı</label>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="ckbox">
-                                    <input type="checkbox" name="rayon" id="rayon-3">
-                                    <label for="rayon-3">Rayon adı</label>
-                                </div>
-                            </div>*@
+                    <div class="ckbox">
+                        <input type="checkbox" name="rayon" id="rayon-1">
+                        <label for="rayon-1">Rayon adı</label>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="ckbox">
+                        <input type="checkbox" name="rayon" id="rayon-2">
+                        <label for="rayon-2">Rayon adı</label>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="ckbox">
+                        <input type="checkbox" name="rayon" id="rayon-3">
+                        <label for="rayon-3">Rayon adı</label>
+                    </div>
+                </div>*@
                         </div>
                     </div>
 
@@ -489,29 +489,29 @@
 
                 <div class="pl-10 riverband">
                     @*<div class="ckbox">
-                        <input type="checkbox" id="network-1">
-                        <label for="network-1">Network name</label>
-                    </div>
+                            <input type="checkbox" id="network-1">
+                            <label for="network-1">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-2">
-                        <label for="network-2">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-2">
+                            <label for="network-2">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-3">
-                        <label for="network-3">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-3">
+                            <label for="network-3">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-4">
-                        <label for="network-4">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-4">
+                            <label for="network-4">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-5">
-                        <label for="network-5">Network name</label>
-                    </div>*@
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-5">
+                            <label for="network-5">Network name</label>
+                        </div>*@
                 </div>
 
             </div>
@@ -522,29 +522,29 @@
 
                 <div class="pl-10 Network">
                     @*<div class="ckbox">
-                        <input type="checkbox" id="network-6">
-                        <label for="network-6">Network name</label>
-                    </div>
+                            <input type="checkbox" id="network-6">
+                            <label for="network-6">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-7">
-                        <label for="network-7">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-7">
+                            <label for="network-7">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-8">
-                        <label for="network-8">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-8">
+                            <label for="network-8">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-9">
-                        <label for="network-9">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-9">
+                            <label for="network-9">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-10">
-                        <label for="network-10">Network name</label>
-                    </div>*@
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-10">
+                            <label for="network-10">Network name</label>
+                        </div>*@
                 </div>
 
             </div>
@@ -555,29 +555,29 @@
 
                 <div class="pl-10">
                     @*<div class="ckbox">
-                        <input type="checkbox" id="network-11">
-                        <label for="network-11">Network name</label>
-                    </div>
+                            <input type="checkbox" id="network-11">
+                            <label for="network-11">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-12">
-                        <label for="network-12">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-12">
+                            <label for="network-12">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-13">
-                        <label for="network-13">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-13">
+                            <label for="network-13">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-14">
-                        <label for="network-14">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-14">
+                            <label for="network-14">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-15">
-                        <label for="network-15">Network name</label>
-                    </div>*@
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-15">
+                            <label for="network-15">Network name</label>
+                        </div>*@
                 </div>
 
             </div>
@@ -588,53 +588,53 @@
 
                 <div class="pl-10">
                     @*<div class="ckbox">
-                        <input type="checkbox" id="network-16">
-                        <label for="network-16">Network name</label>
-                    </div>
+                            <input type="checkbox" id="network-16">
+                            <label for="network-16">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-17">
-                        <label for="network-17">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-17">
+                            <label for="network-17">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-18">
-                        <label for="network-18">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-18">
+                            <label for="network-18">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-19">
-                        <label for="network-19">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-19">
+                            <label for="network-19">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-20">
-                        <label for="network-20">Network name</label>
-                    </div>*@
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-20">
+                            <label for="network-20">Network name</label>
+                        </div>*@
                 </div>
 
             </div>
 
             @*<div class="group mb-20">
 
-                <strong class="d-block mb-10">Saatlı</strong>
+                    <strong class="d-block mb-10">Saatlı</strong>
 
-                <div class="pl-10">
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-21">
-                        <label for="network-21">Network name</label>
+                    <div class="pl-10">
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-21">
+                            <label for="network-21">Network name</label>
+                        </div>
+
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-22">
+                            <label for="network-22">Network name</label>
+                        </div>
                     </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-22">
-                        <label for="network-22">Network name</label>
-                    </div>
-                </div>
-
-            </div>*@
+                </div>*@
 
         </div>
-       
+
         <div class="tab-panel scroll o-auto p-20" role="tabpanel" data-tab="layers">
 
             <div class="row as-7 xxs-5">
@@ -666,29 +666,29 @@
 
                 <div class="pl-10 CHannels">
                     @*<div class="ckbox">
-                        <input type="radio" name="channels" id="channel-name-1">
-                        <label for="channel-name-1">Channel name</label>
-                    </div>
+                            <input type="radio" name="channels" id="channel-name-1">
+                            <label for="channel-name-1">Channel name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="radio" name="channels" id="channel-name-2">
-                        <label for="channel-name-2">Channel name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="radio" name="channels" id="channel-name-2">
+                            <label for="channel-name-2">Channel name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="radio" name="channels" id="channel-name-3">
-                        <label for="channel-name-3">Channel name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="radio" name="channels" id="channel-name-3">
+                            <label for="channel-name-3">Channel name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="radio" name="channels" id="channel-name-4">
-                        <label for="channel-name-4">Channel name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="radio" name="channels" id="channel-name-4">
+                            <label for="channel-name-4">Channel name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="radio" name="channels" id="channel-name-5">
-                        <label for="channel-name-5">Channel name</label>
-                    </div>*@
+                        <div class="ckbox">
+                            <input type="radio" name="channels" id="channel-name-5">
+                            <label for="channel-name-5">Channel name</label>
+                        </div>*@
                 </div>
 
             </div>
@@ -699,14 +699,14 @@
 
                 <div class="pl-10 DeviceList">
                     @*<div class="ckbox">
-                        <input type="radio" name="devices" id="duke">
-                        <label for="duke">Düker</label>
-                    </div>
+                            <input type="radio" name="devices" id="duke">
+                            <label for="duke">Düker</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="radio" name="devices" id="bridge">
-                        <label for="bridge">Körpü</label>
-                    </div>*@
+                        <div class="ckbox">
+                            <input type="radio" name="devices" id="bridge">
+                            <label for="bridge">Körpü</label>
+                        </div>*@
                 </div>
 
             </div>
@@ -721,8 +721,6 @@
 <!-- Map wrap-->
 <main class="map-wrap responsive w-100p tr-3s">
     <div id="mapDiv" style="width:100%; height:620px">
-
-        @*<div>     <iframe width="800" height="620" frameborder="0" src="https://www.bing.com/maps/embed?h=620&w=800&cp=40.33111076245651~47.90663402743529&lvl=7&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">     </iframe>     <div style="white-space: nowrap; text-align: center; width: 800px; padding: 6px 0;">        <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=40.33111076245651~47.90663402743529&amp;sty=r&amp;lvl=7&amp;FORM=MBEDLD">View Larger Map</a> &nbsp; | &nbsp;        <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=40.33111076245651~47.90663402743529&amp;sty=r&amp;lvl=7&amp;rtp=~pos.40.33111076245651_47.90663402743529____&amp;FORM=MBEDLD">Get Directions</a>    </div></div>*@
     </div>
 </main>
 
@@ -782,91 +780,160 @@
 
 <script>
 
-    $(document).ready(function () {        
-        MapFunction();
-        console.log($("#mapDiv"))
-    });
+        $(document).ready(function () {
+                    MapFunction();
+                    console.log($("#mapDiv"))
+                });
 
-    $("#select-district").on("change", function () {        
-        var regionid = document.querySelector("#select-district").value;
-        $.ajax({
-            url: "/Home/Village/" + regionid,   
-            method: "post",
-            dataType: "JSON",
-            success: function (res) {                
-                var village = res.data;
-                $("#select-village option").remove();
-                $("#select-village").attr("disabled", false);
-                for (var i = 0; i < village.length; i++) {
-                    $("#select-village").append("<option value=" + village[i].OBJECTID + ">" + village[i].Name + "</option>")
+            $("#select-district").on("change", function () {
+                var regionid = document.querySelector("#select-district").value;
+                $.ajax({
+                    url: "/Home/Village/" + regionid,
+                    method: "post",
+                    dataType: "JSON",
+                    success: function (res) {
+                        var village = res.data;
+                        $("#select-village option").remove();
+                        $("#select-village").attr("disabled", false);
+                        for (var i = 0; i < village.length; i++) {
+                            $("#select-village").append("<option value=" + village[i].Municipality_ID + ">" + village[i].Name + "</option>")
+                        }
+                    }
+                })
+            })
+
+
+            $("#select-village").on("change", function () {
+                var villageID = document.querySelector("#select-village").value;
+                $.ajax({
+                    url: "/Home/Laylar/" + villageID,
+                    method: "post",
+                    dataType: "JSON",
+                    success: function (res) {
+                        var DEvices = res.data.Device;
+                        $(".DeviceList div").remove();
+                        for (var i = 0; i < DEvices.length; i++) {
+                            $(".DeviceList").append("<div class='ckbox'><input type='radio' name='devices' id='" + i + "'><label for='" + i + "'>" + DEvices[i].NAME + "</label></div>")
+
+                        }
+
+                        var Channels = res.data.Channels;
+                        $(".CHannels div").remove();
+                        for (var i = 0; i < Channels.length; i++) {
+                            $(".CHannels").append("<div class='ckbox'><input type='radio' name='channels' id='" + i + "'><label for='" + i + "'>" + Channels[i].NAME + "</label></div>")
+
+                        }
+
+                    }
+                })
+            })
+            var Listid = [];
+            $(".RegionList .ckbox input").click(function () {
+                let count = $(this).attr("id");
+                if (checkElementInArr(Listid, parseInt(count))) {
+                    var index = Listid.indexOf(parseInt(count));
+                    Listid.splice(index, 1);
+                } else {
+                    Listid.push(parseInt(count));
+                }
+            });
+            function checkElementInArr(array, value) {
+                return array.indexOf(value) > -1;
+            }
+
+
+            $("#testsearch").on("click", function () {
+                console.log(Listid)
+                $.ajax({
+                    url: "/Home/All",
+                    data: { id: Listid },
+                    method: "post",
+                    type: "JSON",
+                    success: function (response) {
+                        $(".Network div").remove();
+                        var Drenaj = response.data.Drenaj;
+                        for (var i = 0; i < Drenaj.length; i++) {
+                            $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + Drenaj[i].OBJECTID + "'><label data-goe='" + Drenaj[i].shape + "' for='" + Drenaj[i].OBJECTID + "'>" + Drenaj[i].NAME + "</label></div>");
+
+                        }
+
+                        $(".riverband div").remove();
+                        var riverband = response.data.riverbandcs;
+                        for (var i = 0; i < riverband.length; i++) {
+                            $(".riverband").append("<div class='ckbox'><input type='checkbox' id='" + riverband[i].OBJECTID + "'><label data-goe='" + riverband[i].SHAPE + "' for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
+                        }
+                    }
+                })
+            })
+
+            var networkselectlist = [];            
+            function func(a) {                
+                let count = $(a).attr("id");
+                if (checkElementInArr(networkselectlist, parseInt(count))) {
+                    var index = networkselectlist.indexOf(parseInt(count));
+                    networkselectlist.splice(index, 1);
+                } else {
+                    networkselectlist.push(parseInt(count));
                 }
             }
-        })
-    })
-
-
-    $("#select-village").on("change", function () {
-        $.ajax({
-        url: "/Home/Laylar",
-        method: "post",
-        dataType: "JSON",
-        success: function (res) {
-                var DEvices = res.data.Device;
-                $(".DeviceList div").remove();
-                for (var i = 0; i<DEvices.length; i++) {
-                    $(".DeviceList").append("<div class='ckbox'><input type='radio' name='devices' id='" + i + "'><label for='" + i + "'>" + DEvices[i].NAME + "</label></div>")                        
-
+            
+            var lastlat = 0;
+            var lastlon= 0;
+            var latarray = [];
+            var lonarray = [];
+            $("#testUndersearch").on("click", function () {
+                for (var i = 0; i < networkselectlist.length; i++) {
+                    StringSplit($("#" + networkselectlist[i] + "").next().attr("data-goe"))
                 }
-
-                var Channels = res.data.Channels;
-                $(".CHannels div").remove();                
-                for (var i = 0; i < Channels.length; i++) {                    
-                    $(".CHannels").append("<div class='ckbox'><input type='radio' name='channels' id='" + i + "'><label for='" + i +"'>"+Channels[i].NAME+"</label></div>")                        
-                        
+                lasttotallat(latarray, lonarray)
+                Latitude = lastlat;
+                Longitude = lastlon;
+                zoommap = 12;
+                loadMapScenario();
+            })
+            function StringSplit(word) {                
+                var lat = [];
+                var lon = [];
+                var stringword = word;
+                var firstspit = stringword.indexOf("(")+1
+                var lastsplit = stringword.indexOf(")")
+                var splitword = stringword.substring(firstspit, lastsplit)
+                var array = splitword.split(" ");
+                for (var i = 0; i < array.length; i++) {
+                    if (i % 2 == 0) {
+                        lat.push(array[i])
+                    }
+                    else {
+                        var index = array[i]
+                        var lonelement = index.substring(0,index.length-1)
+                        lon.push(lonelement)
+                    }
                 }
-
+                var totallat = 0;
+                for (var i = 0; i < lat.length; i++) {
+                    totallat += parseFloat(lat[i]);
+                }
+                latarray.push(totallat / lat.length);
+                var totallon = 0;
+                for (var i = 0; i < lon.length; i++) {
+                    totallon += parseFloat(lon[i]);
+                }
+                lonarray.push(totallon / lon.length);
             }
-        })
-    })      
-    var Listid = [];
-    $(".RegionList .ckbox input").click(function () {        
-        let count = $(this).attr("id");
-        if (checkElementInArr(Listid, parseInt(count))) {
-            var index = Listid.indexOf(parseInt(count));
-            Listid.splice(index, 1);
-        } else {
-            Listid.push(parseInt(count));
-        } 
-    });
-    function checkElementInArr(array, value) {
-        return array.indexOf(value) > -1;
-    }    
-
-
-    $("#testsearch").on("click", function () {
-        $.ajax({
-            url: "/Home/All",
-            data: { id: Listid },
-            method: "post",
-            type: "JSON",
-            success: function (response) {
-                $(".Network div").remove();
-                var Drenaj = response.data.Drenaj;
-                for (var i = 0; i < Drenaj.length; i++) {
-                    $(".Network").append("<div class='ckbox'><input type='checkbox' id='" + Drenaj[i].OBJECTID + "'><label data-goe=" + Drenaj[i].SHAPE+" for='" +Drenaj[i].OBJECTID+"'>" + Drenaj[i].NAME + "</label></div>");
+            var totaln = 0;
+            var totalt = 0;
+            function lasttotallat(arraylat, arraylon) {
+                for (var i = 0; i < arraylat.length; i++) {
+                    totalt+= arraylat[i]
                 }
-
-                $(".riverband div").remove();
-                var riverband = response.data.riverbandcs;
-                for (var i = 0; i < riverband.length; i++) {
-                    $(".riverband").append("<div class='ckbox'><input type='checkbox' id='" + riverband[i].OBJECTID + "'><label for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
+                lastlat = totalt / arraylat.length;
+                    
+                for (var i = 0; i < arraylon.length; i++) {
+                    totaln+= arraylon[i]
                 }
-
-                
-                
+                lastlon = totaln / arraylon.length;
             }
-        })
-    })    
+
 </script>
 <script>
 
@@ -874,9 +941,9 @@
 
     $('.side-toggle').on('click', function () {
         $body.toggleClass('side-shown');
-        if($body.hasClass('side-shown')){
+        if ($body.hasClass('side-shown')) {
             $(this).attr('aria-expanded', 'true');
-        }else{
+        } else {
             $(this).attr('aria-expanded', 'false');
         }
     });
@@ -903,7 +970,7 @@
     const $searchFilter = $('.search-filter');
     const $searchInput = $('#search-input');
 
-    $searchInput.on('focus',function () {
+    $searchInput.on('focus', function () {
         $searchFilter.attr('hidden', false);
     });
 
