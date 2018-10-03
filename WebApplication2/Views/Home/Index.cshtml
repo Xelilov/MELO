@@ -1,5 +1,4 @@
-﻿@using WebApplication2.SimpleModel
-@model List<Regions>
+﻿@model WebApplication2.Models.ViewModels.IndexViewModel
 @{
     Layout = null;
 }
@@ -36,6 +35,7 @@
     <meta name="designer" content="Kamal Balayev" />
     <meta name="generator" content="Beekoder web studio" />
     <meta name="copyright" content="Ontravel.com (c) 2017 Bütün hüquqlar qorunur" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <meta name="description" content="Description" />
 
@@ -47,75 +47,77 @@
     <!-- Styles -->
     <link rel="stylesheet" href="~/Public/assets/css/main.css" />
     <link rel="stylesheet" href="~/Public/assets/css/pi.css">
-    <link rel="stylesheet" href="~/Public/assets/icons/style.css" />
+    <link rel="stylesheet" href="~/Public/assets/icons/style.css" />   
 
-    <link rel="stylesheet" href="https://js.arcgis.com/3.25/esri/css/esri.css" />
-    <script src="https://js.arcgis.com/3.25/"></script>
+
+    <style>
+        html, body, #mapDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
     <script>
-
         var Latitude = 49.465965;
         var Longitude = 40.437018;
         var zoommap = 8;
         function MapFunction() {
-            $("#mapdiv div").remove();
-            var map;
             require([
-                "esri/map",
-                "esri/layers/ArcGISDynamicMapServiceLayer",
-                "esri/layers/ImageParameters"
-            ], function MapFunction(
-                Map, ArcGISDynamicMapServiceLayer, ImageParameters) {
-                    map = new Map("mapDiv", {
-                        basemap: "topo",
-                        center: [Latitude, Longitude],
-                        zoom: zoommap,
-                        sliderOrientation: "horizontal"
-                    });
-                    //Takes a URL to a non cached map service.
-                    var dynamicMapServiceLayer = new ArcGISDynamicMapServiceLayer("http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer", {
-                        "opacity": 10
-                    });
-
-                    map.addLayer(dynamicMapServiceLayer);
+                "esri/Map",
+                "esri/views/MapView"
+            ], function (Map, MapView) {
+                var map = new Map({
+                    basemap: "topo"
                 });
+                var view = new MapView({
+                    container: "mapDiv",  // Reference to the DOM node that will contain the view
+                    map: map,  // References the map object created in step 3
+                    zoom: zoommap,          // Sets the initial scale to 1:50,000,000
+                    center: [Latitude, Longitude]  // Sets the center point of view with lon/lat
+                });
+            });
         }
-    </script>
-    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=YourBingMapsKey&callback=loadMapScenario' async defer></script>
-    <script type='text/javascript'>
+
+        function OsmFunction() {
+            require([
+                "esri/Map",
+                "esri/views/MapView"
+            ], function (Map, MapView) {
+                var map = new Map({
+                    basemap: "osm"
+                });
+                var view = new MapView({
+                    container: "mapDiv",  // Reference to the DOM node that will contain the view
+                    map: map,  // References the map object created in step 3
+                    zoom: zoommap,          // Sets the initial scale to 1:50,000,000
+                    center: [Latitude, Longitude]  // Sets the center point of view with lon/lat
+                });
+            });
+        }
+
         function loadMapScenario() {
-            var map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {});
-            map.setView({
-                mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-                center: new Microsoft.Maps.Location(Longitude, Latitude),
-                zoom: zoommap
+            require([
+                "esri/Map",
+                "esri/views/MapView"
+            ], function (Map, MapView) {
+                var map = new Map({
+                    basemap: "satellite"
+                });
+                var view = new MapView({
+                    container: "mapDiv",  // Reference to the DOM node that will contain the view
+                    map: map,  // References the map object created in step 3
+                    zoom: zoommap,          // Sets the initial scale to 1:50,000,000
+                    center: [Latitude, Longitude]  // Sets the center point of view with lon/lat
+                });
             });
         }
     </script>
-    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-    <script>
-        function OsmFunction() {
-            //map = new OpenLayers.Map("mapdiv");
-            //map.addLayer(new OpenLayers.Layer.OSM());
 
-            //var pois = new OpenLayers.Layer.Text("My Points",
-            //    {
-            //        location: "lat 48.9459301	lon 9.6075669",
-            //        projection: map.displayProjection
-            //    });
-            //map.addLayer(pois);
-            //// create layer switcher widget in top right corner of map.
-            //var layer_switcher = new OpenLayers.Control.LayerSwitcher({});
-            //map.addControl(layer_switcher);
-            ////Set start centrepoint and zoom
-            //var lonLat = new OpenLayers.LonLat(9.5788, 48.9773)
-            //    .transform(
-            //    new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            //    map.getProjectionObject() // to Spherical Mercator Projection
-            //    );
-            //var zoom = 11;
-            //map.setCenter(lonLat, zoom);
-        }
-    </script>
+
+
 
 
 </head>
@@ -125,7 +127,7 @@
 
     <a href="index.php" title="Meliogis" class="logo float-left" lang="en">
         <strong>
-            M<span class="hide-xxs">eliogis</span>
+            <span class="hide-xxs">Meliogis</span>
         </strong>
     </a>
 
@@ -234,40 +236,46 @@
             </span>
 
             <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu-search">
-                <div class="menu-body">
-                    @*@foreach (var region in Model)
-                        {
-                            <div class="menu-item">
-                                <div class="ckbox">
-                                    <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
-                                    <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
-                                </div>
+                <div class="menu-body SearchRegion">
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-0">
+                            <label for="rayon-0">Hamısı</label>
+                        </div>
+                    </div>
+                    @foreach (var region in Model.Regions)
+                    {
+                        <div class="menu-item">
+                            <div class="ckbox">
+                                <input type="checkbox" name="rayon" id="rayon-@region.Region_ID_1">
+                                <label for="rayon-@region.Region_ID_1">@region.NAME_AZ</label>
                             </div>
-                        }*@
-                    <div class="menu-item">
-                        <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="all-d" checked>
-                            <label for="all-d">Hamısı</label>
                         </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="rayon-d-1">
-                            <label for="rayon-d-1">Rayon adı</label>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="rayon-d-2">
-                            <label for="rayon-d-2">Rayon adı</label>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="rayon-d-3">
-                            <label for="rayon-d-3">Rayon adı</label>
-                        </div>
-                    </div>
+                     }
+                    @*<div class="menu-item">
+            <div class="ckbox">
+                <input type="checkbox" name="rayon" id="all-d" checked>
+                <label for="all-d">Hamısı</label>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="ckbox">
+                <input type="checkbox" name="rayon" id="rayon-d-1">
+                <label for="rayon-d-1">Rayon adı</label>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="ckbox">
+                <input type="checkbox" name="rayon" id="rayon-d-2">
+                <label for="rayon-d-2">Rayon adı</label>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="ckbox">
+                <input type="checkbox" name="rayon" id="rayon-d-3">
+                <label for="rayon-d-3">Rayon adı</label>
+            </div>
+        </div>*@
                 </div>
             </div>
 
@@ -280,10 +288,10 @@
             </span>
 
             <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="village-menu-search">
-                <div class="menu-body">
-                    <div class="menu-item">
+                <div class="menu-body villageSearch">
+                    @*<div class="menu-item">
                         <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="all-v" checked>
+                            <input type="checkbox" name="rayon" id="all-v">
                             <label for="all-v">Hamısı</label>
                         </div>
                     </div>
@@ -304,7 +312,7 @@
                             <input type="checkbox" name="rayon" id="kend-v-3">
                             <label for="kend-v-3">Kənd adı</label>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
 
@@ -320,28 +328,43 @@
                 <div class="menu-body">
                     <div class="menu-item">
                         <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="all-a" checked>
-                            <label for="all-a">Hamısı</label>
+                            <input type="checkbox" name="rayon" id="0">
+                            <label for="0">Hamısı</label>
                         </div>
                     </div>
-                    <div class="menu-item">
+                    @foreach (var item in Model.Channels)
+                    {
+                        <div class="menu-item">
+                            <div class="ckbox">
+                                <input type="checkbox" name="rayon" id="type-@item.TYPE">
+                                <label for="type-@item.TYPE">@item.TYPE</label>
+                            </div>
+                        </div>
+                    }
+                    @*<div class="menu-item">
                         <div class="ckbox">
                             <input type="checkbox" name="rayon" id="rayon-a-1">
-                            <label for="rayon-a-1">Atribut adı</label>
+                            <label for="rayon-a-1">Type-1</label>
                         </div>
                     </div>
                     <div class="menu-item">
                         <div class="ckbox">
                             <input type="checkbox" name="rayon" id="rayon-a-2">
-                            <label for="rayon-a-2">Atribut adı</label>
+                            <label for="rayon-a-2">Type-2</label>
                         </div>
                     </div>
                     <div class="menu-item">
                         <div class="ckbox">
                             <input type="checkbox" name="rayon" id="rayon-a-3">
-                            <label for="rayon-a-3">Atribut adı</label>
+                            <label for="rayon-a-3">Type-3</label>
                         </div>
                     </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="rayon-a-3">
+                            <label for="rayon-a-3">Type-Magistral</label>
+                        </div>
+                    </div>*@
                 </div>
             </div>
 
@@ -449,34 +472,34 @@
                                     <label for="0">Hamısı</label>
                                 </div>
                             </div>
-                            @foreach (var region in Model)
-            {
-                <div class="menu-item">
-                    <div class="ckbox">
-                        <input type="checkbox" name="rayon" id="@region.OBJECTID_1">
-                        <label for="@region.OBJECTID_1">@region.NAME_AZ</label>
-                    </div>
-                </div>
-}
+                            @foreach (var region in Model.Regions)
+                            {
+                                <div class="menu-item">
+                                    <div class="ckbox">
+                                        <input type="checkbox" name="rayon" id="@region.Region_ID_1">
+                                        <label for="@region.Region_ID_1">@region.NAME_AZ</label>
+                                    </div>
+                                </div>
+                              }
 
                             @*<div class="menu-item">
-                    <div class="ckbox">
-                        <input type="checkbox" name="rayon" id="rayon-1">
-                        <label for="rayon-1">Rayon adı</label>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <div class="ckbox">
-                        <input type="checkbox" name="rayon" id="rayon-2">
-                        <label for="rayon-2">Rayon adı</label>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <div class="ckbox">
-                        <input type="checkbox" name="rayon" id="rayon-3">
-                        <label for="rayon-3">Rayon adı</label>
-                    </div>
-                </div>*@
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="rayon-1">
+                                    <label for="rayon-1">Rayon adı</label>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="rayon-2">
+                                    <label for="rayon-2">Rayon adı</label>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="rayon-3">
+                                    <label for="rayon-3">Rayon adı</label>
+                                </div>
+                            </div>*@
                         </div>
                     </div>
 
@@ -487,7 +510,7 @@
 
                 <strong class="d-block mb-10">Açıq suvarma şəbəkəsi</strong>
 
-                <div class="pl-10 riverband">
+                <div class="pl-10 ">
                     @*<div class="ckbox">
                             <input type="checkbox" id="network-1">
                             <label for="network-1">Network name</label>
@@ -553,7 +576,7 @@
 
                 <strong class="d-block mb-10">Mühafizə bəndləri</strong>
 
-                <div class="pl-10">
+                <div class="pl-10 riverband">
                     @*<div class="ckbox">
                             <input type="checkbox" id="network-11">
                             <label for="network-11">Network name</label>
@@ -586,7 +609,7 @@
 
                 <strong class="d-block mb-10">Digər obyektlər</strong>
 
-                <div class="pl-10">
+                <div class="pl-10 dbwell">
                     @*<div class="ckbox">
                             <input type="checkbox" id="network-16">
                             <label for="network-16">Network name</label>
@@ -643,9 +666,9 @@
                     <label for="select-district">Rayonlar</label>
                     <select name="" id="select-district" class="input">
                         <option>Seç</option>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Regions)
                         {
-                            <option value="@item.OBJECTID_1">@item.NAME_AZ</option>
+                            <option value="@item.Region_ID_1">@item.NAME_AZ</option>
                         }
                     </select>
                 </div>
@@ -720,7 +743,7 @@
 
 <!-- Map wrap-->
 <main class="map-wrap responsive w-100p tr-3s">
-    <div id="mapDiv" style="width:100%; height:620px">
+    <div id="mapDiv" style="width:100%; height:100vh">
     </div>
 </main>
 
@@ -780,15 +803,64 @@
 
 <script>
 
-        $(document).ready(function () {
-                    MapFunction();
-                    console.log($("#mapDiv"))
-                });
+            $(document).ready(function () {
+                MapFunction();
+                //document.onload = function () {
+                //    $.ajax({
+                //        url: "/Home/Dataload",
+                //        method: "post",
+                //        dataType: "JSON",
+                //        success: function (res) {
+                //            console.log("salam");
+                //        }
+                //    })
+                //};
+                   
+            });
+
+            var ListRegid = [];
+            $(".SearchRegion .ckbox input").click(function () {
+                let count = $(this).attr("id");
+                count = count.substring(6, count.length)
+                if (checkElementInArr(ListRegid, parseInt(count))) {
+                    var index = ListRegid.indexOf(parseInt(count));
+                    ListRegid.splice(index, 1);
+                } else {
+                    ListRegid.push(parseInt(count));
+                }
+            });
+            
+            $("#village-menu-search").on("click", function () {
+                if (ListRegid.length!=0) {
+                    $.ajax({
+                        url: "/Home/Village",
+                        data: { id: ListRegid },
+                        method: "post",
+                        type: "JSON",
+                        success: function (response) {
+                            $(".villageSearch div").remove();
+
+                            $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' name='rayon' id='village-0'><label for='village-0'>Hamısı</label></div></div>")
+
+                            var village = response.data;
+                            for (var i = 0; i < village.length; i++) {
+                                $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' name='rayon' id='village-" + village[i].Municipality_ID + "'><label for='" + village[i].Municipality_ID + "'>" + village[i].NAME_AZ + "</label></div></div>")
+
+                            }
+                        }
+                    })
+                } else {
+                    console.log("salam")
+                }
+            })
+
+            
 
             $("#select-district").on("change", function () {
                 var regionid = document.querySelector("#select-district").value;
                 $.ajax({
-                    url: "/Home/Village/" + regionid,
+                    url: "/Home/Village",
+                    data:{id: regionid},
                     method: "post",
                     dataType: "JSON",
                     success: function (res) {
@@ -796,7 +868,7 @@
                         $("#select-village option").remove();
                         $("#select-village").attr("disabled", false);
                         for (var i = 0; i < village.length; i++) {
-                            $("#select-village").append("<option value=" + village[i].Municipality_ID + ">" + village[i].Name + "</option>")
+                            $("#select-village").append("<option value=" + village[i].Municipality_ID + ">" + village[i].NAME_AZ + "</option>")
                         }
                     }
                 })
@@ -839,8 +911,8 @@
             });
             function checkElementInArr(array, value) {
                 return array.indexOf(value) > -1;
-            }
-
+            }           
+            
 
             $("#testsearch").on("click", function () {
                 console.log(Listid)
@@ -860,7 +932,13 @@
                         $(".riverband div").remove();
                         var riverband = response.data.riverbandcs;
                         for (var i = 0; i < riverband.length; i++) {
-                            $(".riverband").append("<div class='ckbox'><input type='checkbox' id='" + riverband[i].OBJECTID + "'><label data-goe='" + riverband[i].SHAPE + "' for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
+                            $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + riverband[i].OBJECTID + "'><label data-goe='" + riverband[i].SHAPE + "' for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
+                        }
+
+                        $(".dbwell div").remove();
+                        var well = response.data.Well;
+                        for (var i = 0; i < well.length; i++) {
+                            $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + well[i].OBJECTID + "'><label data-goe='" + well[i].SHAPE + "' for='" + well[i].OBJECTID + "'>" + well[i].NAME + "</label></div>");
                         }
                     }
                 })
@@ -889,7 +967,7 @@
                 Latitude = lastlat;
                 Longitude = lastlon;
                 zoommap = 12;
-                loadMapScenario();
+                MapFunction();
             })
             function StringSplit(word) {                
                 var lat = [];

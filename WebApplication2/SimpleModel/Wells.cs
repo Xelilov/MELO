@@ -5,11 +5,11 @@ using System.Web;
 
 namespace WebApplication2.SimpleModel
 {
-    public class Village
+    public class Wells
     {
         public int OBJECTID { get; set; }
-        public int Region_ID_1 { get; set; }
-        public string NAME_AZ { get; set; }
-        public int Municipality_ID { get; set; }
+        public string  NAME { get; set; }
+        public string SHAPE { get; set; }
+        public int Region_ID { get; set; }
     }
 }
