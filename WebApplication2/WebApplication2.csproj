@@ -589,6 +589,7 @@
     <Compile Include="SimpleModel\Context.cs" />
     <Compile Include="SimpleModel\Device.cs" />
     <Compile Include="SimpleModel\Drenaj.cs" />
+    <Compile Include="SimpleModel\MutlySelect.cs" />
     <Compile Include="SimpleModel\Regions.cs" />
     <Compile Include="SimpleModel\Riverbandcs.cs" />
     <Compile Include="SimpleModel\Village.cs" />

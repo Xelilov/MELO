@@ -9,8 +9,8 @@ namespace WebApplication2.Models.ViewModels
 {
     public class SebekelerViewModel
     {
-        public IEnumerable<Drenaj> Drenaj { get; set; }
-        public IEnumerable<Riverbandcs> riverbandcs { get; set; }
-        public IEnumerable<Wells> Well { get; set; }
+        public IEnumerable<Drenaj> DrenajselectList { get; set; }
+        public IEnumerable<Riverbandcs> RiverbandselectList { get; set; }
+        public IEnumerable<Wells> WellselectList { get; set; }
     }
 }

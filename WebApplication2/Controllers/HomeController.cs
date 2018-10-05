@@ -185,8 +185,7 @@ namespace WebApplication2.Controllers
                            
                         }
                     }
-                }
-                
+                }                
             }
             else
             {
@@ -212,20 +211,28 @@ namespace WebApplication2.Controllers
         //}
 
         public ActionResult Village(int[] id)
-        {
-            List<Village> Villages = new List<Village>();
+        {            
+            List<MutlySelect> ms = new List<MutlySelect>();
             for (int i = 0; i < id.Length; i++)
             {
                 if (id[i]==0)
                 {
-                    Villages = VillageList;
+                    ms.Add(new MutlySelect
+                    {
+                        Villages = VillageList
+                    });
+                    break;
                 }
                 else
                 {
-                    Villages = VillageList.Where(s => s.Region_ID_1 == id[i]).ToList();
+                    ms.Add(new MutlySelect
+                    {
+                        Villages = VillageList.Where(s => s.Region_ID_1 == id[i]).ToList()
+                    });
+                    
                 }
             }
-            var jsonResult = Json(new { data = Villages }, JsonRequestBehavior.AllowGet);
+            var jsonResult = Json(new { data = ms }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
         }
@@ -245,9 +252,10 @@ namespace WebApplication2.Controllers
 
         public ActionResult All(int[] id)
         {
-
             List<Drenaj> drej = new List<Drenaj>();
             SebekelerViewModel sebekelerViewModel = new SebekelerViewModel();
+
+            List<SebekelerViewModel> sbwm = new List<SebekelerViewModel>();
             using (Context con = new Context())
             {
                 
@@ -255,24 +263,32 @@ namespace WebApplication2.Controllers
                 {
                     if (id[i] == 0)
                     {
-                        sebekelerViewModel.Drenaj = DrenajList.ToList();
+                        sbwm.Add(new SebekelerViewModel
+                        {
+                            DrenajselectList = DrenajList,
+                            RiverbandselectList = RiverbandList,
+                            WellselectList = WellList
+                        });
                         break;
                     }
                     else
                     {
-                        //string Reggionname = con.Region.QueryStringFind($"select * from MELOREGIONS where OBJECTID_1='{id[i]}'").NAME_AZ;
-
-                        
-                        sebekelerViewModel.Drenaj = DrenajList.Where(s => s.Region_ID == id[i]).ToList();
-                        sebekelerViewModel.riverbandcs = RiverbandList.Where(s => s.Region_ID == id[i]).ToList();
-                        sebekelerViewModel.Well = WellList.Where(s => s.Region_ID == id[i]).ToList();
+                        sbwm.Add(new SebekelerViewModel
+                        {
+                            DrenajselectList= DrenajList.Where(s => s.Region_ID == id[i]).ToList(),
+                            RiverbandselectList= RiverbandList.Where(s => s.Region_ID == id[i]).ToList(),
+                            WellselectList= WellList.Where(s => s.Region_ID == id[i]).ToList()
+                        });
+                        //sebekelerViewModel.Drenaj = DrenajList.Where(s => s.Region_ID == id[i]).ToList();
+                        //sebekelerViewModel.riverbandcs = RiverbandList.Where(s => s.Region_ID == id[i]).ToList();
+                        //sebekelerViewModel.Well = WellList.Where(s => s.Region_ID == id[i]).ToList();
 
                     }
                 }
                 
 
             }
-            var jsonResult = Json(new { data = sebekelerViewModel }, JsonRequestBehavior.AllowGet);
+            var jsonResult = Json(new { data = sbwm }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
         }

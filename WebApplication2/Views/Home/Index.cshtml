@@ -899,7 +899,10 @@
 
                     var village = response.data;
                     for (var i = 0; i < village.length; i++) {
-                        $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-" + village[i].Municipality_ID + "'><label for='village-" + village[i].Municipality_ID + "'>" + village[i].NAME_AZ + "</label></div></div>")
+                        for (var a = 0; a < village[i].Villages.length; a++) {
+                            $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-" + village[i].Villages[a].Municipality_ID + "'><label for='village-" + village[i].Villages[a].Municipality_ID + "'>" + village[i].Villages[a].NAME_AZ + "</label></div></div>")
+
+                        }
                     }
                 }
             })
@@ -1001,23 +1004,26 @@
             method: "post",
             type: "JSON",
             success: function (response) {
+                var Drenaj;
+                var riverband;
+                var well
                 $(".Network div").remove();
-                var Drenaj = response.data.Drenaj;
-                for (var i = 0; i < Drenaj.length; i++) {
-                    $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + Drenaj[i].OBJECTID + "'><label data-goe='" + Drenaj[i].shape + "' for='" + Drenaj[i].OBJECTID + "'>" + Drenaj[i].NAME + "</label></div>");
-
-                }
-
                 $(".riverband div").remove();
-                var riverband = response.data.riverbandcs;
-                for (var i = 0; i < riverband.length; i++) {
-                    $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + riverband[i].OBJECTID + "'><label data-goe='" + riverband[i].SHAPE + "' for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
-                }
-
                 $(".dbwell div").remove();
-                var well = response.data.Well;
-                for (var i = 0; i < well.length; i++) {
-                    $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + well[i].OBJECTID + "'><label data-goe='" + well[i].SHAPE + "' for='" + well[i].OBJECTID + "'>" + well[i].NAME + "</label></div>");
+                for (var i = 0; i < response.data.length; i++) {
+                    Drenaj = response.data[i].DrenajselectList;
+                    for (var i = 0; i < Drenaj.length; i++) {
+                        $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + Drenaj[i].OBJECTID + "'><label data-goe='" + Drenaj[i].shape + "' for='" + Drenaj[i].OBJECTID + "'>" + Drenaj[i].NAME + "</label></div>");
+
+                    }
+                    riverband = response.data[i].RiverbandselectList;
+                    for (var i = 0; i < riverband.length; i++) {
+                        $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + riverband[i].OBJECTID + "'><label data-goe='" + riverband[i].SHAPE + "' for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
+                    }
+                    well = response.data[i].WellselectList;
+                    for (var i = 0; i < well.length; i++) {
+                        $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + well[i].OBJECTID + "'><label data-goe='" + well[i].SHAPE + "' for='" + well[i].OBJECTID + "'>" + well[i].NAME + "</label></div>");
+                    }
                 }
             }
         })
