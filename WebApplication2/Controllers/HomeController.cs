@@ -20,6 +20,7 @@ namespace WebApplication2.Controllers
         static List<Device> DeviceList = new List<Device>();
         static List<Channels> ChannelList = new List<Channels>();
         static List<Wells> WellList = new List<Wells>();
+        static List<ChannelType> ChTypeList = new List<ChannelType>();
         public ActionResult Login()
         {
             using (Context con = new Context())
@@ -29,8 +30,9 @@ namespace WebApplication2.Controllers
                 DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,NAME,OBJECTID,PASSING_AREAS, Region_ID from DRENAJ").ToList();
                 RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Region_ID from RIVERBAND").ToList();
                 DeviceList = con.Device.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id from DEVICE").ToList();
-                ChannelList = con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape, TYPE, NAME,OBJECTID,Municipality_id from CHANNELS").ToList();
+                ChannelList = con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape, TYPE, NAME,OBJECTID,Municipality_id,Region_ID from CHANNELS").ToList();
                 WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,NAME,OBJECTID ,Region_ID from WELL").ToList();
+                ChTypeList= con.channeltype.QueryStringAsList("select distinct type from CHANNELS").ToList();
             }
             return View();
         }
@@ -61,10 +63,139 @@ namespace WebApplication2.Controllers
             using (Context con=new Context())
             {               
                 IndexVM.Regions = con.Region.QueryStringAsList("select * from Meloregions").ToList();
-                IndexVM.Channels = con.channeltype.QueryStringAsList("select distinct type from CHANNELS").ToList();
+                IndexVM.Channels = ChTypeList;
 
             }
             return View(IndexVM);
+        }
+
+
+        public ActionResult Attributes(int[] id, int[] idVil, string[] Attr)
+        {
+            List<ChannelMultiSelectList> ChanelsAttribute = new List<ChannelMultiSelectList>();
+            List<Channels> AllChannels = new List<Channels>();
+            List<ChannelAttr> AttributList = new List<ChannelAttr>();
+            if (id!=null)
+            {
+                for (int i = 0; i < id.Length; i++)
+                {
+                    if (id[i] == 0)
+                    {
+                        ChanelsAttribute.Add(new ChannelMultiSelectList
+                        {
+                            MultiSeletChanell = ChannelList
+                        });
+                        break;
+                    }
+                    else
+                    {
+                        if (idVil != null)
+                        {
+                            for (int x = 0; x < idVil.Length; x++)
+                            {
+                                if (idVil[i] == 0)
+                                {
+
+                                }
+                                else
+                                {
+                                    ChanelsAttribute.Add(new ChannelMultiSelectList
+                                    {
+                                        MultiSeletChanell = ChannelList.Where(s => s.Region_ID == id[i] && s.Municipality_id == idVil[x]).ToList()
+                                    });
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ChanelsAttribute.Add(new ChannelMultiSelectList
+                            {
+                                MultiSeletChanell = ChannelList.Where(s => s.Region_ID == id[i]).ToList()
+                            });
+                        }
+                    }
+                }
+            }
+            int count = 0;
+            if (ChanelsAttribute.Count!=0)
+            {
+                for (int i = 0; i < ChanelsAttribute.Count; i++)
+                {
+                    foreach (var item in ChTypeList)
+                    {
+                        count = ChanelsAttribute[i].MultiSeletChanell.Where(s => s.TYPE == item.TYPE).Count();
+                        if (AttributList.Where(d => d.TypeName == item.TYPE).Count() == 0)
+                        {
+                            AttributList.Add(new ChannelAttr
+                            {
+                                TypeName = item.TYPE,
+                                TypeCount = count
+                            });
+                        }
+                        else
+                        {
+                            var dd = AttributList.Find(s => s.TypeName == item.TYPE);
+                            dd.TypeCount += count;
+                        }
+                        count = 0;
+                    }
+                }
+            }
+
+            List<ChannelAttr> arrtibut = new List<ChannelAttr>();
+            
+            if (Attr != null)
+            {
+                if (AttributList.Count!=0)
+                {
+                    for (int i = 0; i < Attr.Length; i++)
+                    {
+                        if (Attr[i] == "0")
+                        {
+                            arrtibut = AttributList;
+                        }
+                        else
+                        {
+                            arrtibut = AttributList.Where(s => s.TypeName == Attr[i]).ToList();
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Attr.Length; i++)
+                    {
+                        if (Attr[i] == "0")
+                        {
+                            foreach (var item in ChTypeList)
+                            {
+                                arrtibut.Add(new ChannelAttr
+                                {
+                                    TypeCount = ChannelList.Where(s => s.TYPE == item.TYPE).Count(),
+                                    TypeName = item.TYPE
+                                });
+                            }
+                        }
+                        else
+                        {
+                            arrtibut.Add(new ChannelAttr
+                            {
+                                TypeCount = ChannelList.Where(s => s.TYPE == Attr[i]).Count(),
+                                TypeName = Attr[i]
+                            });
+                           
+                        }
+                    }
+                }
+                
+            }
+            else
+            {
+                arrtibut = AttributList;
+            }
+            
+            var jsonResult = Json(new { data = arrtibut }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
         }
         //public ActionResult Dataload()
         //{

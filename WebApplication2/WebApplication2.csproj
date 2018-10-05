@@ -164,6 +164,7 @@
     <Compile Include="Models\ADDRESS.cs">
       <DependentUpon>MeligiosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChannelAttr.cs" />
     <Compile Include="Models\BORDER.cs">
       <DependentUpon>MeligiosModel.tt</DependentUpon>
     </Compile>
@@ -582,6 +583,7 @@
       <DependentUpon>MeligiosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleModel\ChannelMultiSelectList.cs" />
     <Compile Include="SimpleModel\Channels.cs" />
     <Compile Include="SimpleModel\ChannelType.cs" />
     <Compile Include="SimpleModel\Context.cs" />
