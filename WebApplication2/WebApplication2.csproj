@@ -354,6 +354,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MeligiosModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MUltiSelectDrenaj.cs" />
     <Compile Include="Models\POI.cs">
       <DependentUpon>MeligiosModel.tt</DependentUpon>
     </Compile>
@@ -577,7 +578,10 @@
       <DependentUpon>MeligiosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\Koordinatscs.cs" />
     <Compile Include="Models\ViewModels\LaylarViewModel.cs" />
+    <Compile Include="Models\ViewModels\MultiSelectRiverband.cs" />
+    <Compile Include="Models\ViewModels\MultiSelectWell.cs" />
     <Compile Include="Models\ViewModels\SebekelerViewModel.cs" />
     <Compile Include="Models\WELL.cs">
       <DependentUpon>MeligiosModel.tt</DependentUpon>
@@ -589,11 +593,14 @@
     <Compile Include="SimpleModel\Context.cs" />
     <Compile Include="SimpleModel\Device.cs" />
     <Compile Include="SimpleModel\Drenaj.cs" />
+    <Compile Include="SimpleModel\DrenajType.cs" />
     <Compile Include="SimpleModel\MutlySelect.cs" />
     <Compile Include="SimpleModel\Regions.cs" />
     <Compile Include="SimpleModel\Riverbandcs.cs" />
+    <Compile Include="SimpleModel\RiverbandType.cs" />
     <Compile Include="SimpleModel\Village.cs" />
     <Compile Include="SimpleModel\Wells.cs" />
+    <Compile Include="SimpleModel\WellType.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>

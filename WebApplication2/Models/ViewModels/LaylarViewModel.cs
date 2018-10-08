@@ -10,5 +10,7 @@ namespace WebApplication2.Models.ViewModels
     {
         public IEnumerable<Channels> Channels { get; set; }
         public IEnumerable<Device> Device { get; set; }
+        
+
     }
 }

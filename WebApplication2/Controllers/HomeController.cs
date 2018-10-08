@@ -21,18 +21,26 @@ namespace WebApplication2.Controllers
         static List<Channels> ChannelList = new List<Channels>();
         static List<Wells> WellList = new List<Wells>();
         static List<ChannelType> ChTypeList = new List<ChannelType>();
+        static List<DrenajType> drejTypeList = new List<DrenajType>();
+        static List<RiverbandType> rbTypeList = new List<RiverbandType>();
+        static List<WellType> welltypeList = new List<WellType>();
+
         public ActionResult Login()
         {
             using (Context con = new Context())
             {
                 RegionList = con.Region.QueryStringAsList("select * from Meloregions").ToList();
                 VillageList = con.village.QueryStringAsList($"select * from RESIDENTIAL_AREA").ToList();
-                DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,NAME,OBJECTID,PASSING_AREAS, Region_ID from DRENAJ").ToList();
-                RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Region_ID from RIVERBAND").ToList();
+                DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,TYPE,OBJECTID, Region_ID from DRENAJ").ToList();
+                RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape,TYPE,OBJECTID,Region_ID from RIVERBAND").ToList();
                 DeviceList = con.Device.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id from DEVICE").ToList();
                 ChannelList = con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape, TYPE, NAME,OBJECTID,Municipality_id,Region_ID from CHANNELS").ToList();
-                WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,NAME,OBJECTID ,Region_ID from WELL").ToList();
-                ChTypeList= con.channeltype.QueryStringAsList("select distinct type from CHANNELS").ToList();
+                WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID ,Region_ID,WELL_TYPE from WELL").ToList();
+                ChTypeList = con.channeltype.QueryStringAsList("select distinct type from CHANNELS").ToList();
+                drejTypeList = con.drenajtype.QueryStringAsList("select distinct type, Region_ID from DRENAJ").ToList();
+                rbTypeList = con.riverbandtype.QueryStringAsList("select distinct type, Region_ID from RIVERBAND").ToList();
+                welltypeList = con.welltype.QueryStringAsList("select distinct WELL_TYPE, Region_ID from Well").ToList();
+
             }
             return View();
         }
@@ -130,7 +138,7 @@ namespace WebApplication2.Controllers
                             {
                                 TypeName = item.TYPE,
                                 TypeCount = count
-                            });
+                            }); 
                         }
                         else
                         {
@@ -181,8 +189,7 @@ namespace WebApplication2.Controllers
                             {
                                 TypeCount = ChannelList.Where(s => s.TYPE == Attr[i]).Count(),
                                 TypeName = Attr[i]
-                            });
-                           
+                            });                           
                         }
                     }
                 }                
@@ -196,6 +203,8 @@ namespace WebApplication2.Controllers
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
         }
+
+
         //public ActionResult Dataload()
         //{
         //    using (Context con = new Context())
@@ -251,44 +260,156 @@ namespace WebApplication2.Controllers
         
 
         public ActionResult All(int[] id)
-        {
-            List<Drenaj> drej = new List<Drenaj>();
-            SebekelerViewModel sebekelerViewModel = new SebekelerViewModel();
-
-            List<SebekelerViewModel> sbwm = new List<SebekelerViewModel>();
+        {           
+            SebekelerViewModel sbwm = new SebekelerViewModel();
+            List<MUltiSelectDrenaj> MsDrej = new List<MUltiSelectDrenaj>();
+            List<MultiSelectRiverband> Msriver = new List<MultiSelectRiverband>();
+            List<MultiSelectWell> MsWell = new List<MultiSelectWell>();
             using (Context con = new Context())
-            {
-                
+            {                
                 for (int i = 0; i < id.Length; i++)
                 {
-                    if (id[i] == 0)
+                    if (id[i] == 0000)
                     {
-                        sbwm.Add(new SebekelerViewModel
+                        var drej = drejTypeList;
+                        var riverband = rbTypeList;
+                        var wells = welltypeList.ToList();
+                        foreach (var item in drej)
                         {
-                            DrenajselectList = DrenajList,
-                            RiverbandselectList = RiverbandList,
-                            WellselectList = WellList
-                        });
+                            if (MsDrej.Where(s => s.DrejType == item.TYPE).Count() == 0)
+                            {
+                                MsDrej.Add(new MUltiSelectDrenaj
+                                {
+                                    DrejType = item.TYPE
+                                });
+                            }
+                        }
+                        foreach (var item in riverband)
+                        {
+                            if (Msriver.Where(s => s.Riverbandtype == Convert.ToString(item.TYPE)).Count() == 0)
+                            {
+                                Msriver.Add(new MultiSelectRiverband
+                                {
+                                    Riverbandtype = Convert.ToString(item.TYPE)
+                                });
+                            }
+                        }
+                        foreach (var item in wells)
+                        {
+                            if (MsWell.Where(s => s.WellType == item.WELL_TYPE).Count() == 0)
+                            {
+                                MsWell.Add(new MultiSelectWell
+                                {
+                                    WellType = item.WELL_TYPE
+                                });
+                            }
+                        }
+                        sbwm.DrenajselectList = MsDrej;
+                        sbwm.RiverbandselectList = Msriver;
+                        sbwm.WellselectList = MsWell;
                         break;
                     }
                     else
                     {
-                        sbwm.Add(new SebekelerViewModel
-                        {
-                            DrenajselectList= DrenajList.Where(s => s.Region_ID == id[i]).ToList(),
-                            RiverbandselectList= RiverbandList.Where(s => s.Region_ID == id[i]).ToList(),
-                            WellselectList= WellList.Where(s => s.Region_ID == id[i]).ToList()
-                        });
-                        //sebekelerViewModel.Drenaj = DrenajList.Where(s => s.Region_ID == id[i]).ToList();
-                        //sebekelerViewModel.riverbandcs = RiverbandList.Where(s => s.Region_ID == id[i]).ToList();
-                        //sebekelerViewModel.Well = WellList.Where(s => s.Region_ID == id[i]).ToList();
 
+                        var drej = drejTypeList.Where(s => s.Region_ID == id[i]).ToList();
+                        foreach (var item in drej)
+                        {
+                            if (MsDrej.Where(s => s.DrejType == item.TYPE).Count() == 0)
+                            {
+                                MsDrej.Add(new MUltiSelectDrenaj
+                                {
+                                    DrejType=item.TYPE
+                                });
+                            }
+                        }
+
+                        var riverband = rbTypeList.Where(s => s.Region_ID == id[i]).ToList();
+                        foreach (var item in riverband)
+                        {
+                            if (Msriver.Where(s => s.Riverbandtype == Convert.ToString(item.TYPE)).Count() == 0)
+                            {
+                                Msriver.Add(new MultiSelectRiverband
+                                {
+                                    Riverbandtype = Convert.ToString(item.TYPE)
+                                });
+                            }
+                        }
+
+                        var wells = welltypeList.Where(s => s.Region_ID == id[i]).ToList();
+                        foreach (var item in wells)
+                        {
+                            if (MsWell.Where(s => s.WellType ==item.WELL_TYPE).Count() == 0)
+                            {
+                                MsWell.Add(new MultiSelectWell
+                                {
+                                    WellType = item.WELL_TYPE
+                                });
+                            }
+                        }                        
                     }
                 }
-                
-
             }
+
+            sbwm.DrenajselectList = MsDrej;
+            sbwm.RiverbandselectList = Msriver;
+            sbwm.WellselectList = MsWell;
+
+
             var jsonResult = Json(new { data = sbwm }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+
+
+
+        public ActionResult Koordinats(int[] Listid, string[] networkselectlist) {
+            List<Koordinatscs> mapkd = new List<Koordinatscs>();
+            var x = 1;
+            for (int i = 0; i < x; i++)
+            {
+                if (x<=Listid.Length)
+                {
+                    for (int q = 0; q < Listid.Length; q++)
+                    {
+                        var Drenaj01 = DrenajList.Where(w => w.Region_ID == Listid[q]).ToList();
+                        var Riverband01 = RiverbandList.Where(w => w.Region_ID == Listid[q]).ToList();
+                        var Well01 = WellList.Where(w => w.Region_ID == Listid[q]).ToList();
+                        for (int d = 0; d < networkselectlist.Length; d++)
+                        {
+                            var Drtype = Drenaj01.Where(s => s.TYPE == networkselectlist[d]).ToList();
+                            var Rvtype = Riverband01.Where(s => s.TYPE == Convert.ToDecimal(networkselectlist[d])).ToList();
+                            var Wltype = Well01.Where(s => s.WELL_TYPE == networkselectlist[d]).ToList();
+                            foreach (var item in Drtype)
+                            {
+                                mapkd.Add(new Koordinatscs
+                                {
+                                    Koordi=item.shape
+                                });
+                            }
+                            foreach (var item in Rvtype)
+                            {
+                                mapkd.Add(new Koordinatscs
+                                {
+                                    Koordi = item.SHAPE
+                                });
+                            }
+                            foreach (var item in Wltype)
+                            {
+                                mapkd.Add(new Koordinatscs
+                                {
+                                    Koordi = item.SHAPE
+                                });
+                            }
+
+                        }
+                    }
+                    x++;
+                }
+            }
+
+
+            var jsonResult = Json(new { data = mapkd }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
         }

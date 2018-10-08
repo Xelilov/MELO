@@ -340,31 +340,7 @@
                                 <label for="type-@item.TYPE">@item.TYPE</label>
                             </div>
                         </div>
-                    }
-                    @*<div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="rayon-a-1">
-                                <label for="rayon-a-1">Type-1</label>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="rayon-a-2">
-                                <label for="rayon-a-2">Type-2</label>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="rayon-a-3">
-                                <label for="rayon-a-3">Type-3</label>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="rayon-a-3">
-                                <label for="rayon-a-3">Type-Magistral</label>
-                            </div>
-                        </div>*@
+                    }                    
                 </div>
             </div>
 
@@ -426,8 +402,8 @@
             <div class="_md-center">
                 <table>
                     <tr class="_tabel-rows">
-                        <th>Type Name</th>
-                        <th>Count</th>
+                        <th>Tipler</th>
+                        <th>Ümumi Say</th>
                     </tr>
                     <tr class="_tabel-rows">
                         
@@ -486,19 +462,13 @@
                     <span role="button" class="drop-toggle input caret" id="district-menu" aria-label="Rayonlar" aria-haspopup="true" aria-expanded="true">
                         Seç
                     </span>
-                    <span id="testsearch" class="btn btn-primary">
-                        search
-                    </span>
-                    <span id="testUndersearch" class="btn btn-primary">
-                        searchUnder
-                    </span>
 
                     <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="district-menu">
                         <div class="menu-body RegionList">
                             <div class="menu-item">
                                 <div class="ckbox">
-                                    <input type="checkbox" name="rayon" id="0">
-                                    <label for="0">Hamısı</label>
+                                    <input type="checkbox" name="rayon" id="0000">
+                                    <label for="0000">Hamısı</label>
                                 </div>
                             </div>
                             @foreach (var region in Model.Regions)
@@ -573,30 +543,33 @@
                 <strong class="d-block mb-10">Kollektor Drenaj Şəbəkəsi</strong>
 
                 <div class="pl-10 Network">
+                    @*@foreach (var item in Model.drejtype)
+                    {
+                        <div class="ckbox">
+                            <input type="checkbox" onclick="func(this)" id="drej-@item.TYPE">
+                            <label for="drej-@item.TYPE">@item.TYPE</label>
+                        </div>
+                    }*@
+
                     @*<div class="ckbox">
-                            <input type="checkbox" id="network-6">
-                            <label for="network-6">Network name</label>
-                        </div>
+                        <input type="checkbox" id="network-7">
+                        <label for="network-7">Network name</label>
+                    </div>
 
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-7">
-                            <label for="network-7">Network name</label>
-                        </div>
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-8">
+                        <label for="network-8">Network name</label>
+                    </div>
 
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-8">
-                            <label for="network-8">Network name</label>
-                        </div>
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-9">
+                        <label for="network-9">Network name</label>
+                    </div>
 
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-9">
-                            <label for="network-9">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-10">
-                            <label for="network-10">Network name</label>
-                        </div>*@
+                    <div class="ckbox">
+                        <input type="checkbox" id="network-10">
+                        <label for="network-10">Network name</label>
+                    </div>*@
                 </div>
 
             </div>
@@ -606,12 +579,15 @@
                 <strong class="d-block mb-10">Mühafizə bəndləri</strong>
 
                 <div class="pl-10 riverband">
-                    @*<div class="ckbox">
-                            <input type="checkbox" id="network-11">
-                            <label for="network-11">Network name</label>
-                        </div>
-
+                    @*@foreach (var item in Model.rivertype)
+                    {
                         <div class="ckbox">
+                            <input type="checkbox" onclick="func(this)" id="rver-@item.TYPE">
+                            <label for="rver-@item.TYPE">@item.TYPE</label>
+                        </div>
+                    }*@
+
+                        @*<div class="ckbox">
                             <input type="checkbox" id="network-12">
                             <label for="network-12">Network name</label>
                         </div>
@@ -639,12 +615,15 @@
                 <strong class="d-block mb-10">Digər obyektlər</strong>
 
                 <div class="pl-10 dbwell">
-                    @*<div class="ckbox">
-                            <input type="checkbox" id="network-16">
-                            <label for="network-16">Network name</label>
-                        </div>
-
+                    @*@foreach (var item in Model.wellType)
+                    {
                         <div class="ckbox">
+                            <input type="checkbox" onclick="func(this)" id="well-@item.WELL_TYPE">
+                            <label for="well-@item.WELL_TYPE">@item.WELL_TYPE</label>
+                        </div>
+                    }*@
+
+                        @*<div class="ckbox">
                             <input type="checkbox" id="network-17">
                             <label for="network-17">Network name</label>
                         </div>
@@ -911,7 +890,7 @@
 
 
     $("#_Modalbutton").on("click", function () {
-        if (ListRegid.count != 0 || ListVilid.count != 0 || attrList.count != 0){
+        if (ListRegid.length != 0 || ListVilid.length != 0 || attrList.length != 0) {
             console.log(ListRegid)
             console.log(ListVilid)
             console.log(attrList)
@@ -923,7 +902,7 @@
                 success: function (response) {
                     var attributs = response.data;
                     $("._md-center table tr").remove();
-                    $("._md-center table").append("<tr class='_tabel-rows'><th>Type Name</th><th>Count</th></tr>");
+                    $("._md-center table").append("<tr class='_tabel-rows'><th>Tipler</th><th>Ümumi say</th></tr>");
                     for (var i = 0; i < attributs.length; i++) {
                         $("._md-center table").append("<tr class='_tabel-rows'><td>" + attributs[i].TypeName + "</td><td>"+ attributs[i].TypeCount + "</td></tr>");
                     }
@@ -936,8 +915,6 @@
         document.getElementById("_ModalContent").style.display = "none";
     })
 
-
-
     $("#select-district").on("change", function () {
         var regionid = document.querySelector("#select-district").value;
         $.ajax({
@@ -949,8 +926,8 @@
                 var village = res.data;
                 $("#select-village option").remove();
                 $("#select-village").attr("disabled", false);
-                for (var i = 0; i < village.length; i++) {
-                    $("#select-village").append("<option value=" + village[i].Municipality_ID + ">" + village[i].NAME_AZ + "</option>")
+                for (var i = 0; i < village[0].Villages.length; i++) {
+                    $("#select-village").append("<option value=" + village[0].Villages[i].Municipality_ID + ">" + village[0].Villages[i].NAME_AZ + "</option>")
                 }
             }
         })
@@ -981,6 +958,11 @@
             }
         })
     })
+
+
+    function checkElementInArr(array, value) {
+        return array.indexOf(value) > -1;
+    }
     var Listid = [];
     $(".RegionList .ckbox input").click(function () {
         let count = $(this).attr("id");
@@ -990,79 +972,104 @@
         } else {
             Listid.push(parseInt(count));
         }
-    });
-    function checkElementInArr(array, value) {
-        return array.indexOf(value) > -1;
-    }
 
-
-    $("#testsearch").on("click", function () {
-        console.log(Listid)
-        $.ajax({
-            url: "/Home/All",
-            data: { id: Listid },
-            method: "post",
-            type: "JSON",
-            success: function (response) {
-                var Drenaj;
-                var riverband;
-                var well
-                $(".Network div").remove();
-                $(".riverband div").remove();
-                $(".dbwell div").remove();
-                for (var i = 0; i < response.data.length; i++) {
-                    Drenaj = response.data[i].DrenajselectList;
-                    for (var i = 0; i < Drenaj.length; i++) {
-                        $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + Drenaj[i].OBJECTID + "'><label data-goe='" + Drenaj[i].shape + "' for='" + Drenaj[i].OBJECTID + "'>" + Drenaj[i].NAME + "</label></div>");
+        if (Listid.length != 0) {
+            $.ajax({
+                url: "/Home/All",
+                data: { id: Listid },
+                method: "post",
+                type: "JSON",
+                success: function (response) {
+                    var allData = response.data;
+                    $(".Network div").remove();
+                    $(".riverband div").remove();
+                    $(".dbwell div").remove();
+                    for (var k = 0; k < allData.DrenajselectList.length; k++) {
+                        var type;
+                        if (parseInt(allData.DrenajselectList[k].DrejType)) {
+                            type = allData.DrenajselectList[k].DrejType + '-ci dərəcəli kollektorlar';
+                        }
+                        else {
+                            type = allData.DrenajselectList[k].DrejType
+                        }
+                        //$(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.DrenajselectList[k].OBJECTID + "'><label data-goe='" + allData.DrenajselectList[k].shape + "' for='" + allData.DrenajselectList[k].OBJECTID + "'>" + allData.DrenajselectList[k].NAME + "</label></div>");
+                        $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.DrenajselectList[k].DrejType + "'><label  for='drej-" + allData.DrenajselectList[k].DrejType + "'>" + type + "</label></div>");
+                    }
+                    for (var j = 0; j < allData.RiverbandselectList.length; j++) {
+                        var rivertype;
+                        if (parseInt(allData.RiverbandselectList[j].Riverbandtype)) {
+                            rivertype = allData.RiverbandselectList[j].Riverbandtype + '-ci dərəcəli kollektorlar';
+                        }
+                        else {
+                            rivertype = allData.RiverbandselectList[j].Riverbandtype
+                        }
+                        //$(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.RiverbandselectList[j].OBJECTID + "'><label data-goe='" + allData.RiverbandselectList[j].SHAPE + "' for='" + allData.RiverbandselectList[j].OBJECTID + "'>" + allData.RiverbandselectList[j].NAME + "</label></div>");
+                        $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'><label for='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'>" + rivertype + "</label></div>");
+                    }
+                    for (var t = 0; t < allData.WellselectList.length; t++) {
+                        //$(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.WellselectList[t].OBJECTID + "'><label data-goe='" + allData.WellselectList[t].SHAPE + "' for='" + allData.WellselectList[t].OBJECTID + "'>" + allData.WellselectList[t].NAME + "</label></div>");
+                        $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='well-" + allData.WellselectList[t].WellType + "'><label for='well" + allData.WellselectList[t].WellType + "'>" + allData.WellselectList[t].WellType + "</label></div>");
 
                     }
-                    riverband = response.data[i].RiverbandselectList;
-                    for (var i = 0; i < riverband.length; i++) {
-                        $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + riverband[i].OBJECTID + "'><label data-goe='" + riverband[i].SHAPE + "' for='" + riverband[i].OBJECTID + "'>" + riverband[i].NAME + "</label></div>");
-                    }
-                    well = response.data[i].WellselectList;
-                    for (var i = 0; i < well.length; i++) {
-                        $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + well[i].OBJECTID + "'><label data-goe='" + well[i].SHAPE + "' for='" + well[i].OBJECTID + "'>" + well[i].NAME + "</label></div>");
-                    }
+
                 }
-            }
-        })
-    })
-
-    var networkselectlist = [];
-    function func(a) {
-        let count = $(a).attr("id");
-        if (checkElementInArr(networkselectlist, parseInt(count))) {
-            var index = networkselectlist.indexOf(parseInt(count));
-            networkselectlist.splice(index, 1);
-        } else {
-            networkselectlist.push(parseInt(count));
+            })
         }
-    }
+        else {
+            $(".Network div").remove();
+            $(".riverband div").remove();
+            $(".dbwell div").remove();
+        }
+    });
+    
 
     var lastlat = 0;
     var lastlon = 0;
     var latarray = [];
     var lonarray = [];
-    $("#testUndersearch").on("click", function () {
-        for (var i = 0; i < networkselectlist.length; i++) {
-            StringSplit($("#" + networkselectlist[i] + "").next().attr("data-goe"))
+    var networkselectlist = [];
+    function func(a) {
+        let count = $(a).attr("id");
+        count = count.substring(5, count.length)
+        if (checkElementInArr(networkselectlist, count)) {
+            var index = networkselectlist.indexOf(count);
+            networkselectlist.splice(index, 1);
+        } else {
+            networkselectlist.push(count);
         }
-        lasttotallat(latarray, lonarray)
-        Latitude = lastlat;
-        Longitude = lastlon;
-        zoommap = 12;
-        MapFunction();
-    })
+
+        if (networkselectlist.length!=0) {
+            $.ajax({
+                url: "/Home/Koordinats",
+                data: { Listid: Listid, networkselectlist: networkselectlist },
+                method: "post",
+                type: "JSON",
+                success: function (response) {
+                    var kordonats = response.data;
+                    for (var i = 0; i < kordonats.length; i++) {
+                        StringSplit(kordonats[i].Koordi);
+                    }                    
+                    //console.log(latarray)
+                    lasttotallat(latarray, lonarray)
+
+                    Latitude = lastlat;
+                    Longitude = lastlon;
+                    zoommap = 12;
+                    MapFunction();
+                    //console.log(Latitude + "    " + Longitude)
+                }
+            })
+        }
+    }
     function StringSplit(word) {
         var lat = [];
         var lon = [];
-        var stringword = word;
-        var firstspit = stringword.indexOf("(") + 1
-        var lastsplit = stringword.indexOf(")")
-        var splitword = stringword.substring(firstspit, lastsplit)
+        var splitword = word;
+        var firstspit = splitword.indexOf("(")+1;
+        var lastsplit = splitword.indexOf(")");
+        var splitword = splitword.substring(firstspit, lastsplit);
         var array = splitword.split(" ");
-        for (var i = 0; i < array.length; i++) {
+        for (var i = 0; i < array.length; i++) {            
             if (i % 2 == 0) {
                 lat.push(array[i])
             }
@@ -1071,7 +1078,7 @@
                 var lonelement = index.substring(0, index.length - 1)
                 lon.push(lonelement)
             }
-        }
+        }        
         var totallat = 0;
         for (var i = 0; i < lat.length; i++) {
             totallat += parseFloat(lat[i]);
@@ -1082,7 +1089,7 @@
             totallon += parseFloat(lon[i]);
         }
         lonarray.push(totallon / lon.length);
-    }
+    }    
     var totaln = 0;
     var totalt = 0;
     function lasttotallat(arraylat, arraylon) {
@@ -1096,7 +1103,7 @@
         }
         lastlon = totaln / arraylon.length;
     }
-
+ 
 </script>
 <script>
 

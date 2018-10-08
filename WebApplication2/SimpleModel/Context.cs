@@ -18,6 +18,9 @@ namespace WebApplication2.SimpleModel
         public SimpleDbSet<Channels> Channel { get; set; }
         public SimpleDbSet<Wells> Well { get; set; }
         public SimpleDbSet<ChannelType> channeltype { get; set; }
+        public SimpleDbSet<DrenajType> drenajtype { get; set; }
+        public SimpleDbSet<RiverbandType> riverbandtype { get; set; }
+        public SimpleDbSet<WellType> welltype { get; set; }
         public override void Initializer()
         {            
             Drenaj = new SimpleDbSet<Drenaj>(_sqlConnection);
@@ -28,6 +31,10 @@ namespace WebApplication2.SimpleModel
             Channel = new SimpleDbSet<Channels>(_sqlConnection);
             Well = new SimpleDbSet<Wells>(_sqlConnection);
             channeltype = new SimpleDbSet<ChannelType>(_sqlConnection);
+            drenajtype = new SimpleDbSet<DrenajType>(_sqlConnection);
+            riverbandtype = new SimpleDbSet<RiverbandType>(_sqlConnection);
+            welltype = new SimpleDbSet<WellType>(_sqlConnection);
+
         }
     }
 }
