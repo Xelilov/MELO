@@ -1008,7 +1008,7 @@
                     }
                     for (var t = 0; t < allData.WellselectList.length; t++) {
                         //$(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.WellselectList[t].OBJECTID + "'><label data-goe='" + allData.WellselectList[t].SHAPE + "' for='" + allData.WellselectList[t].OBJECTID + "'>" + allData.WellselectList[t].NAME + "</label></div>");
-                        $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='well-" + allData.WellselectList[t].WellType + "'><label for='well" + allData.WellselectList[t].WellType + "'>" + allData.WellselectList[t].WellType + "</label></div>");
+                        $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='well-" + allData.WellselectList[t].WellType + "'><label for='well-" + allData.WellselectList[t].WellType + "'>" + allData.WellselectList[t].WellType + "</label></div>");
 
                     }
 
@@ -1048,15 +1048,19 @@
                     var kordonats = response.data;
                     for (var i = 0; i < kordonats.length; i++) {
                         StringSplit(kordonats[i].Koordi);
-                    }                    
-                    //console.log(latarray)
+                    }
                     lasttotallat(latarray, lonarray)
 
                     Latitude = lastlat;
                     Longitude = lastlon;
                     zoommap = 12;
                     MapFunction();
-                    //console.log(Latitude + "    " + Longitude)
+
+                    lastlat = 0;
+                    lastlon = 0;
+                    latarray = [];
+                    lonarray = [];
+                    
                 }
             })
         }
@@ -1080,15 +1084,31 @@
             }
         }        
         var totallat = 0;
+        var y = 0;
         for (var i = 0; i < lat.length; i++) {
-            totallat += parseFloat(lat[i]);
+            var ylat = parseFloat(lat[i])
+            if (!isNaN(ylat) && ylat.toString().indexOf(".") != -1 && ylat.toString().split(".")[0].length <= 2) {
+                //console.log("lat="+ylat)
+                totallat += ylat;
+                y++;
+            }
         }
-        latarray.push(totallat / lat.length);
+        if (totallat!=0) {
+            latarray.push(totallat / y);
+        }
+        
         var totallon = 0;
+        var x = 0;
         for (var i = 0; i < lon.length; i++) {
-            totallon += parseFloat(lon[i]);
+            var xlon = parseFloat(lon[i])
+            if (!isNaN(xlon) && xlon.toString().indexOf(".") != -1 && xlon.toString().split(".")[0].length <= 2) {                
+                totallon += xlon;
+                x++;                
+            }            
         }
-        lonarray.push(totallon / lon.length);
+        if (totallon!=0) {            
+            lonarray.push(totallon / x);
+        }
     }    
     var totaln = 0;
     var totalt = 0;
@@ -1097,11 +1117,13 @@
             totalt += arraylat[i]
         }
         lastlat = totalt / arraylat.length;
+        totalt = 0;
 
         for (var i = 0; i < arraylon.length; i++) {
             totaln += arraylon[i]
         }
         lastlon = totaln / arraylon.length;
+        totaln = 0;
     }
  
 </script>

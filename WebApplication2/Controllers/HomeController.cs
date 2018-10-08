@@ -378,22 +378,26 @@ namespace WebApplication2.Controllers
                         for (int d = 0; d < networkselectlist.Length; d++)
                         {
                             var Drtype = Drenaj01.Where(s => s.TYPE == networkselectlist[d]).ToList();
-                            var Rvtype = Riverband01.Where(s => s.TYPE == Convert.ToDecimal(networkselectlist[d])).ToList();
-                            var Wltype = Well01.Where(s => s.WELL_TYPE == networkselectlist[d]).ToList();
                             foreach (var item in Drtype)
                             {
                                 mapkd.Add(new Koordinatscs
                                 {
-                                    Koordi=item.shape
+                                    Koordi = item.shape
                                 });
                             }
-                            foreach (var item in Rvtype)
+                            decimal number;
+                            if (Decimal.TryParse(networkselectlist[d], out number))
                             {
-                                mapkd.Add(new Koordinatscs
+                                var Rvtype = Riverband01.Where(s => s.TYPE == number).ToList();
+                                foreach (var item in Rvtype)
                                 {
-                                    Koordi = item.SHAPE
-                                });
-                            }
+                                    mapkd.Add(new Koordinatscs
+                                    {
+                                        Koordi = item.SHAPE
+                                    });
+                                }
+                            }                            
+                            var Wltype = Well01.Where(s => s.WELL_TYPE == networkselectlist[d]).ToList();
                             foreach (var item in Wltype)
                             {
                                 mapkd.Add(new Koordinatscs
