@@ -34,7 +34,7 @@ namespace WebApplication2.Controllers
                 DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,TYPE,OBJECTID, Region_ID from DRENAJ").ToList();
                 RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape,TYPE,OBJECTID,Region_ID from RIVERBAND").ToList();
                 DeviceList = con.Device.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id from DEVICE").ToList();
-                ChannelList = con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape, TYPE, NAME,OBJECTID,Municipality_id,Region_ID from CHANNELS").ToList();
+                ChannelList = con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape,SERVED_AREA, TYPE, NAME,OBJECTID,Municipality_id,Region_ID from CHANNELS").ToList();
                 WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID ,Region_ID,WELL_TYPE from WELL").ToList();
                 ChTypeList = con.channeltype.QueryStringAsList("select distinct type from CHANNELS").ToList();
                 drejTypeList = con.drenajtype.QueryStringAsList("select distinct type, Region_ID from DRENAJ").ToList();
@@ -125,6 +125,7 @@ namespace WebApplication2.Controllers
                 }
             }
             int count = 0;
+            decimal length = 0;
             if (ChanelsAttribute.Count!=0)
             {
                 for (int i = 0; i < ChanelsAttribute.Count; i++)
@@ -132,20 +133,32 @@ namespace WebApplication2.Controllers
                     foreach (var item in ChTypeList)
                     {
                         count = ChanelsAttribute[i].MultiSeletChanell.Where(s => s.TYPE == item.TYPE).Count();
+                        var sametyps = ChanelsAttribute[i].MultiSeletChanell.Where(s => s.TYPE == item.TYPE).ToList();
+                        for (int c = 0; c < sametyps.Count; c++)
+                        {
+                            if (sametyps[i].SERVED_AREA!=null)
+                            {
+                                length += Convert.ToDecimal(sametyps[i].SERVED_AREA);
+                            }
+                        }
+                        
                         if (AttributList.Where(d => d.TypeName == item.TYPE).Count() == 0)
                         {
                             AttributList.Add(new ChannelAttr
                             {
                                 TypeName = item.TYPE,
-                                TypeCount = count
+                                TypeCount = count,
+                                TypeLength = length
                             }); 
                         }
                         else
                         {
                             var dd = AttributList.Find(s => s.TypeName == item.TYPE);
                             dd.TypeCount += count;
+                            dd.TypeLength += length;
                         }
                         count = 0;
+                        length = 0;
                     }
                 }
             }
@@ -164,7 +177,11 @@ namespace WebApplication2.Controllers
                         }
                         else
                         {
-                            arrtibut = AttributList.Where(s => s.TypeName == Attr[i]).ToList();
+                            arrtibut.Add(new ChannelAttr {
+                                TypeName= AttributList.Where(s => s.TypeName == Attr[i]).First().TypeName,
+                                TypeCount = AttributList.Where(s => s.TypeName == Attr[i]).First().TypeCount,
+                                TypeLength = AttributList.Where(s => s.TypeName == Attr[i]).First().TypeLength
+                            });
                         }
                     }
                 }
@@ -176,19 +193,42 @@ namespace WebApplication2.Controllers
                         {
                             foreach (var item in ChTypeList)
                             {
+                                var sameType = ChannelList.Where(s => s.TYPE == item.TYPE).ToList();
+                                var typelengt = 0;
+                                for (int x = 0; x < sameType.Count; x++)
+                                {
+                                    decimal number;
+                                    if (sameType[x].SERVED_AREA != null && Decimal.TryParse(sameType[x].SERVED_AREA, out number))
+                                    {
+                                        typelengt += Convert.ToInt32(sameType[x].SERVED_AREA);
+                                    }
+                                }
                                 arrtibut.Add(new ChannelAttr
                                 {
                                     TypeCount = ChannelList.Where(s => s.TYPE == item.TYPE).Count(),
-                                    TypeName = item.TYPE
+                                    TypeName = item.TYPE,
+                                    TypeLength= typelengt
+
                                 });
                             }
                         }
                         else
                         {
+                            var sameTypee = ChannelList.Where(s => s.TYPE == Attr[i]).ToList();
+                            decimal typelengt = 0;
+                            for (int x = 0; x < sameTypee.Count; x++)
+                            {
+                                decimal number;
+                                if (sameTypee[x].SERVED_AREA != null && Decimal.TryParse(sameTypee[x].SERVED_AREA, out number))
+                                {
+                                    typelengt += Convert.ToDecimal(sameTypee[x].SERVED_AREA);
+                                }
+                            }
                             arrtibut.Add(new ChannelAttr
                             {
                                 TypeCount = ChannelList.Where(s => s.TYPE == Attr[i]).Count(),
-                                TypeName = Attr[i]
+                                TypeName = Attr[i],
+                                TypeLength = typelengt
                             });                           
                         }
                     }

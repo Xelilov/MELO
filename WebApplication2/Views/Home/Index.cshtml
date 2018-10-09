@@ -837,6 +837,29 @@
         } else {
             ListRegid.push(parseInt(count));
         }
+
+
+        if (ListRegid.length != 0) {
+            $.ajax({
+                url: "/Home/Village",
+                data: { id: ListRegid },
+                method: "post",
+                type: "JSON",
+                success: function (response) {
+                    $(".villageSearch div").remove();
+
+                    $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-0'><label for='village-0'>Hamısı</label></div></div>")
+
+                    var village = response.data;
+                    for (var i = 0; i < village.length; i++) {
+                        for (var a = 0; a < village[i].Villages.length; a++) {
+                            $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-" + village[i].Villages[a].Municipality_ID + "'><label for='village-" + village[i].Villages[a].Municipality_ID + "'>" + village[i].Villages[a].NAME_AZ + "</label></div></div>")
+
+                        }
+                    }
+                }
+            })
+        }
     });
     var ListVilid = [];
     function getIDvillage(a) {
@@ -864,30 +887,6 @@
         }
     });
 
-    $("#village-menu-search").on("click", function () {
-        if (ListRegid.length != 0) {
-            $.ajax({
-                url: "/Home/Village",
-                data: { id: ListRegid },
-                method: "post",
-                type: "JSON",
-                success: function (response) {
-                    $(".villageSearch div").remove();
-
-                    $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-0'><label for='village-0'>Hamısı</label></div></div>")
-
-                    var village = response.data;
-                    for (var i = 0; i < village.length; i++) {
-                        for (var a = 0; a < village[i].Villages.length; a++) {
-                            $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-" + village[i].Villages[a].Municipality_ID + "'><label for='village-" + village[i].Villages[a].Municipality_ID + "'>" + village[i].Villages[a].NAME_AZ + "</label></div></div>")
-
-                        }
-                    }
-                }
-            })
-        }
-    })
-
 
     $("#_Modalbutton").on("click", function () {
         if (ListRegid.length != 0 || ListVilid.length != 0 || attrList.length != 0) {
@@ -902,9 +901,9 @@
                 success: function (response) {
                     var attributs = response.data;
                     $("._md-center table tr").remove();
-                    $("._md-center table").append("<tr class='_tabel-rows'><th>Tipler</th><th>Ümumi say</th></tr>");
+                    $("._md-center table").append("<tr class='_tabel-rows'><th>Tip adı</th><th>Ümumi say</th><th>Ümumi uzunluq</th></tr>");
                     for (var i = 0; i < attributs.length; i++) {
-                        $("._md-center table").append("<tr class='_tabel-rows'><td>" + attributs[i].TypeName + "</td><td>"+ attributs[i].TypeCount + "</td></tr>");
+                        $("._md-center table").append("<tr class='_tabel-rows'><td>" + attributs[i].TypeName + "</td><td>" + attributs[i].TypeCount + "</td><td>" + attributs[i].TypeLength + "</td></tr>");
                     }
                 }
             })
@@ -962,7 +961,7 @@
         })
     })
 
-    function Devicemap(e) {
+    function Devicemap(e)  {
         var DeviceKord = $(e).next().attr("data-goe");
         StringSplit(DeviceKord);
         lasttotallat(latarray, lonarray)
