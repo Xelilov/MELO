@@ -911,12 +911,15 @@
             document.getElementById("_ModalContent").style.display = "block";
         }        
     })
+
     $("._close-button").on("click", function () {
         document.getElementById("_ModalContent").style.display = "none";
     })
 
     $("#select-district").on("change", function () {
         var regionid = document.querySelector("#select-district").value;
+        $(".DeviceList div").remove();
+        $(".CHannels div").remove();
         $.ajax({
             url: "/Home/Village",
             data: { id: regionid },
@@ -944,20 +947,53 @@
                 var DEvices = res.data.Device;
                 $(".DeviceList div").remove();
                 for (var i = 0; i < DEvices.length; i++) {
-                    $(".DeviceList").append("<div class='ckbox'><input type='radio' name='devices' id='" + i + "'><label for='" + i + "'>" + DEvices[i].NAME + "</label></div>")
+                    $(".DeviceList").append("<div class='ckbox'><input type='radio' onclick='Devicemap(this)'  name='devices' id='" + DEvices[i].OBJECTID + "'><label data-goe='" + DEvices[i].SHAPE + "' for='" + DEvices[i].OBJECTID + "'>" + DEvices[i].NAME + "</label></div>")
 
                 }
 
                 var Channels = res.data.Channels;
                 $(".CHannels div").remove();
                 for (var i = 0; i < Channels.length; i++) {
-                    $(".CHannels").append("<div class='ckbox'><input type='radio' name='channels' id='" + i + "'><label for='" + i + "'>" + Channels[i].NAME + "</label></div>")
+                    $(".CHannels").append("<div class='ckbox'><input type='radio' onclick='ChannelMap(this)' name='channels' id='chanel-" + Channels[i].OBJECTID + "'><label data-goe='" + Channels[i].SHAPE + "' for='chanel-" + Channels[i].OBJECTID + "'>" + Channels[i].NAME + "</label></div>")
 
                 }
 
             }
         })
     })
+
+    function Devicemap(e) {
+        var DeviceKord = $(e).next().attr("data-goe");
+        StringSplit(DeviceKord);
+        lasttotallat(latarray, lonarray)
+
+        Latitude = lastlat;
+        Longitude = lastlon;
+        zoommap = 12;
+        MapFunction();
+
+        lastlat = 0;
+        lastlon = 0;
+        latarray = [];
+        lonarray = [];
+    }
+    function ChannelMap(e) {
+        var channelkord= $(e).next().attr("data-goe")
+        StringSplit(channelkord);
+        console.log(latarray + "   " + lonarray)
+        lasttotallat(latarray, lonarray)
+
+        Latitude = lastlat;
+        Longitude = lastlon;
+        zoommap = 12;
+        MapFunction();
+
+        lastlat = 0;
+        lastlon = 0;
+        latarray = [];
+        lonarray = [];
+    }
+
 
 
     function checkElementInArr(array, value) {
@@ -1088,7 +1124,6 @@
         for (var i = 0; i < lat.length; i++) {
             var ylat = parseFloat(lat[i])
             if (!isNaN(ylat) && ylat.toString().indexOf(".") != -1 && ylat.toString().split(".")[0].length <= 2) {
-                //console.log("lat="+ylat)
                 totallat += ylat;
                 y++;
             }
