@@ -30,7 +30,7 @@ namespace WebApplication2.Controllers
             using (Context con = new Context())
             {
                 RegionList = con.Region.QueryStringAsList("select * from Meloregions").ToList();
-                VillageList = con.village.QueryStringAsList($"select * from RESIDENTIAL_AREA").ToList();
+                VillageList = con.village.QueryStringAsList($"select * from RESIDENTIALAREA").ToList();
                 DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,TYPE,OBJECTID, Region_ID from DRENAJ").ToList();
                 RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape,TYPE,OBJECTID,Region_ID from RIVERBAND").ToList();
                 DeviceList = con.Device.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id from DEVICE").ToList();
@@ -276,7 +276,7 @@ namespace WebApplication2.Controllers
                 {
                     ms.Add(new MutlySelect
                     {
-                        Villages = VillageList.Where(s => s.Region_ID_1 == id[i]).ToList()
+                        Villages = VillageList.Where(s => s.REGION_ID == id[i]).ToList()
                     });
                     
                 }

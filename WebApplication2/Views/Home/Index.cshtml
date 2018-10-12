@@ -830,7 +830,31 @@
     var ListRegid = [];
     $(".SearchRegion .ckbox input").click(function () {
         let count = $(this).attr("id");
-        count = count.substring(6, count.length)
+        count = count.substring(6, count.length);
+        if (count == 0) {
+            var allregion = document.querySelectorAll(".SearchRegion .ckbox input");
+            if (allregion[0].getAttribute("checked")) {
+                for (var i = 0; i < allregion.length; i++) {
+                    allregion[i].removeAttribute("checked");
+                }
+            }
+            else {
+                for (var i = 0; i < allregion.length; i++) {
+                    allregion[i].setAttribute("checked", "checked")
+                    console.log("salkam")
+                }
+            }
+
+        }
+        else {
+            var oneRegion = document.querySelector("#rayon-" + count);
+            if (oneRegion.getAttribute("checked")) {
+                oneRegion.removeAttribute("checked");
+            }
+            else {
+                oneRegion.setAttribute("checked", "checked")
+            }
+        }
         if (checkElementInArr(ListRegid, parseInt(count))) {
             var index = ListRegid.indexOf(parseInt(count));
             ListRegid.splice(index, 1);
@@ -848,7 +872,7 @@
                 success: function (response) {
                     $(".villageSearch div").remove();
 
-                    $(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-0'><label for='village-0'>Hamısı</label></div></div>")
+                    //$(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-0'><label for='village-0'>Hamısı</label></div></div>")
 
                     var village = response.data;
                     for (var i = 0; i < village.length; i++) {
