@@ -828,39 +828,58 @@
     
 
     var ListRegid = [];
+    
     $(".SearchRegion .ckbox input").click(function () {
-        let count = $(this).attr("id");
+        var allregion = document.querySelectorAll(".SearchRegion .ckbox input");
+        var all = document.getElementById("rayon-0")
+        var count = $(this).attr("id");
         count = count.substring(6, count.length);
+       
+        
+        
         if (count == 0) {
-            var allregion = document.querySelectorAll(".SearchRegion .ckbox input");
-            if (allregion[0].getAttribute("checked")) {
+            if ($(all).is(":checked")) {
                 for (var i = 0; i < allregion.length; i++) {
-                    allregion[i].removeAttribute("checked");
+                    if (!$(allregion[i]).is(":checked"))
+                    {
+                        $(allregion[i]).prop("checked", true);
+                    }
                 }
             }
             else {
                 for (var i = 0; i < allregion.length; i++) {
-                    allregion[i].setAttribute("checked", "checked")
-                    console.log("salkam")
+                    if (i != 0) {
+                        $(allregion[i]).prop("checked", false);
+                    }
                 }
             }
-
         }
         else {
-            var oneRegion = document.querySelector("#rayon-" + count);
-            if (oneRegion.getAttribute("checked")) {
-                oneRegion.removeAttribute("checked");
-            }
-            else {
-                oneRegion.setAttribute("checked", "checked")
+            if ($(all).is(":checked")) {
+                $(all).prop("checked",false);
             }
         }
-        if (checkElementInArr(ListRegid, parseInt(count))) {
-            var index = ListRegid.indexOf(parseInt(count));
-            ListRegid.splice(index, 1);
-        } else {
-            ListRegid.push(parseInt(count));
+
+        ListRegid = [];
+        for (var i = 0; i < allregion.length; i++) {
+            
+            if ($(allregion[i]).is(":checked")) {
+                var regionId = $(allregion[i]).attr("id")
+                regionId = regionId.substring(6, regionId.length)
+                ListRegid.push(regionId);
+            }
         }
+
+        console.log(ListRegid)
+
+
+
+        //if (checkElementInArr(ListRegid, parseInt(count))) {
+        //    var index = ListRegid.indexOf(parseInt(count));
+        //    ListRegid.splice(index, 1);
+        //} else {
+        //    ListRegid.push(parseInt(count));
+        //}
 
 
         if (ListRegid.length != 0) {
