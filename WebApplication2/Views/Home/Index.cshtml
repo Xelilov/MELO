@@ -7,27 +7,20 @@
 <html lang="az">
 
 <head>
-
     <meta charset="utf-8">
-
     <title>Meliogis.com</title>
-
     <!--[if IE]>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
     <![endif]-->
-
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#2d71e2" />
-
     <meta name="msapplication-TileImage" content="/assets/images/favicon.png">
     <meta name="msapplication-TileColor" content="#2d71e2" />
     <meta name="msapplication-navbutton-color" content="#2d71e2" />
     <meta name="theme-color" content="#2d71e2" />
-
     <meta name="robots" content="noindex, nofollow, noarchive, noodp, noydir" />
-
     <meta name="country" content="Azerbaijan" />
     <meta name="language" content="Azerbaijani" />
     <meta name="content-language" content="az_AZ" />
@@ -36,21 +29,17 @@
     <meta name="generator" content="Beekoder web studio" />
     <meta name="copyright" content="Ontravel.com (c) 2017 Bütün hüquqlar qorunur" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-
     <meta name="description" content="Description" />
-
     <link rel="canonical" href="http://www.ontravel.az/" />
-
     <!-- Icons -->
     <link rel="shortcut icon" href="~/Public/assets/images/favicon.png" />
-
     <!-- Styles -->
     <link rel="stylesheet" href="~/Public/assets/css/main.css" />
     <link rel="stylesheet" href="~/Public/assets/css/pi.css">
     <link rel="stylesheet" href="~/Public/assets/icons/style.css" />
 
-
     <style>
+
         html, body, #mapDiv {
             padding: 0;
             margin: 0;
@@ -60,6 +49,7 @@
     </style>
     <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
     <script src="https://js.arcgis.com/4.9/"></script>
+
     <script>
         var Latitude = 49.465965;
         var Longitude = 40.437018;
@@ -67,25 +57,37 @@
         function MapFunction() {
             require([
                 "esri/Map",
-                "esri/views/MapView"
-            ], function (Map, MapView) {
+                "esri/views/MapView",
+                "esri/layers/MapImageLayer"
+            ], function (Map, MapView, MapImageLayer) {
                 var map = new Map({
                     basemap: "topo"
                 });
+
+
                 var view = new MapView({
                     container: "mapDiv",  // Reference to the DOM node that will contain the view
                     map: map,  // References the map object created in step 3
                     zoom: zoommap,          // Sets the initial scale to 1:50,000,000
                     center: [Latitude, Longitude]  // Sets the center point of view with lon/lat
                 });
+
+                view.ui.move("zoom", "bottom-right");
+
+                var layer = new MapImageLayer({
+                    url: "http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer"
+                });
+
+                map.add(layer);
             });
         }
 
         function OsmFunction() {
             require([
                 "esri/Map",
-                "esri/views/MapView"
-            ], function (Map, MapView) {
+                "esri/views/MapView",
+                "esri/layers/MapImageLayer"
+            ], function (Map, MapView, MapImageLayer) {
                 var map = new Map({
                     basemap: "osm"
                 });
@@ -95,14 +97,23 @@
                     zoom: zoommap,          // Sets the initial scale to 1:50,000,000
                     center: [Latitude, Longitude]  // Sets the center point of view with lon/lat
                 });
+
+                var layer = new MapImageLayer({
+                    url: "http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer"
+                });
+
+
+
+                map.add(layer);
             });
         }
 
         function loadMapScenario() {
             require([
                 "esri/Map",
-                "esri/views/MapView"
-            ], function (Map, MapView) {
+                "esri/views/MapView",
+                "esri/layers/MapImageLayer"
+            ], function (Map, MapView, MapImageLayer) {
                 var map = new Map({
                     basemap: "satellite"
                 });
@@ -112,12 +123,15 @@
                     zoom: zoommap,          // Sets the initial scale to 1:50,000,000
                     center: [Latitude, Longitude]  // Sets the center point of view with lon/lat
                 });
+
+                var layer = new MapImageLayer({
+                    url: "http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer"
+                });
+
+                map.add(layer);
             });
         }
     </script>
-
-
-
 
 
 </head>
@@ -284,7 +298,7 @@
         <div class="drop district-menu float-left">
 
             <span role="button" class="drop-toggle btn bg-white no-border caret" id="village-menu-search" aria-label="Kəndlər" aria-haspopup="true" aria-expanded="true">
-                Kən seç
+                Kənd seç
             </span>
 
             <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="village-menu-search">
@@ -340,7 +354,7 @@
                                 <label for="type-@item.TYPE">@item.TYPE</label>
                             </div>
                         </div>
-                    }                    
+                    }
                 </div>
             </div>
 
@@ -397,7 +411,7 @@
     <div id="_ModalContent" class="_modal-layout">
         <div class="_modal-content">
             <div class="_md-header">
-                
+
             </div>
             <div class="_md-center">
                 <table>
@@ -405,9 +419,7 @@
                         <th>Tipler</th>
                         <th>Ümumi Say</th>
                     </tr>
-                    <tr class="_tabel-rows">
-                        
-                    </tr>
+                    <tr class="_tabel-rows"></tr>
                 </table>
             </div>
             <div class="_md_footer">
@@ -544,32 +556,32 @@
 
                 <div class="pl-10 Network">
                     @*@foreach (var item in Model.drejtype)
-                    {
-                        <div class="ckbox">
-                            <input type="checkbox" onclick="func(this)" id="drej-@item.TYPE">
-                            <label for="drej-@item.TYPE">@item.TYPE</label>
-                        </div>
-                    }*@
+                        {
+                            <div class="ckbox">
+                                <input type="checkbox" onclick="func(this)" id="drej-@item.TYPE">
+                                <label for="drej-@item.TYPE">@item.TYPE</label>
+                            </div>
+                        }*@
 
                     @*<div class="ckbox">
-                        <input type="checkbox" id="network-7">
-                        <label for="network-7">Network name</label>
-                    </div>
+                            <input type="checkbox" id="network-7">
+                            <label for="network-7">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-8">
-                        <label for="network-8">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-8">
+                            <label for="network-8">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-9">
-                        <label for="network-9">Network name</label>
-                    </div>
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-9">
+                            <label for="network-9">Network name</label>
+                        </div>
 
-                    <div class="ckbox">
-                        <input type="checkbox" id="network-10">
-                        <label for="network-10">Network name</label>
-                    </div>*@
+                        <div class="ckbox">
+                            <input type="checkbox" id="network-10">
+                            <label for="network-10">Network name</label>
+                        </div>*@
                 </div>
 
             </div>
@@ -580,14 +592,14 @@
 
                 <div class="pl-10 riverband">
                     @*@foreach (var item in Model.rivertype)
-                    {
-                        <div class="ckbox">
-                            <input type="checkbox" onclick="func(this)" id="rver-@item.TYPE">
-                            <label for="rver-@item.TYPE">@item.TYPE</label>
-                        </div>
-                    }*@
+                        {
+                            <div class="ckbox">
+                                <input type="checkbox" onclick="func(this)" id="rver-@item.TYPE">
+                                <label for="rver-@item.TYPE">@item.TYPE</label>
+                            </div>
+                        }*@
 
-                        @*<div class="ckbox">
+                    @*<div class="ckbox">
                             <input type="checkbox" id="network-12">
                             <label for="network-12">Network name</label>
                         </div>
@@ -616,14 +628,14 @@
 
                 <div class="pl-10 dbwell">
                     @*@foreach (var item in Model.wellType)
-                    {
-                        <div class="ckbox">
-                            <input type="checkbox" onclick="func(this)" id="well-@item.WELL_TYPE">
-                            <label for="well-@item.WELL_TYPE">@item.WELL_TYPE</label>
-                        </div>
-                    }*@
+                        {
+                            <div class="ckbox">
+                                <input type="checkbox" onclick="func(this)" id="well-@item.WELL_TYPE">
+                                <label for="well-@item.WELL_TYPE">@item.WELL_TYPE</label>
+                            </div>
+                        }*@
 
-                        @*<div class="ckbox">
+                    @*<div class="ckbox">
                             <input type="checkbox" id="network-17">
                             <label for="network-17">Network name</label>
                         </div>
@@ -755,7 +767,7 @@
     </div>
 </main>
 
-<footer class="footer w-100p p-15 clear">
+<!--<footer class="footer w-100p p-15 clear">
 
     <div class="map-navigator responsive pb-100 bg-white shadow float-left hide-xs hide-xxs mr-15"></div>
 
@@ -763,9 +775,9 @@
         <img src="" alt="şərti işarələr" height="40">
     </span>
 
-    <strong class="maus-position float-right hide-xs hide-xxs">55.854689 76.114988</strong>
+    <strong class="maus-position float-right hide-xs hide-xxs">55.854689 76.11498</strong>
 
-</footer>
+</footer>-->
 
 <div class="alert-modal modal lg"
      data-modal="terms-of-use"
@@ -825,23 +837,22 @@
         //};
 
     });
-    
+
 
     var ListRegid = [];
-    
+
     $(".SearchRegion .ckbox input").click(function () {
         var allregion = document.querySelectorAll(".SearchRegion .ckbox input");
         var all = document.getElementById("rayon-0")
         var count = $(this).attr("id");
         count = count.substring(6, count.length);
-       
-        
-        
+
+
+
         if (count == 0) {
             if ($(all).is(":checked")) {
                 for (var i = 0; i < allregion.length; i++) {
-                    if (!$(allregion[i]).is(":checked"))
-                    {
+                    if (!$(allregion[i]).is(":checked")) {
                         $(allregion[i]).prop("checked", true);
                     }
                 }
@@ -856,13 +867,13 @@
         }
         else {
             if ($(all).is(":checked")) {
-                $(all).prop("checked",false);
+                $(all).prop("checked", false);
             }
         }
 
         ListRegid = [];
         for (var i = 0; i < allregion.length; i++) {
-            
+
             if ($(allregion[i]).is(":checked")) {
                 var regionId = $(allregion[i]).attr("id")
                 regionId = regionId.substring(6, regionId.length)
@@ -951,7 +962,7 @@
                 }
             })
             document.getElementById("_ModalContent").style.display = "block";
-        }        
+        }
     })
 
     $("._close-button").on("click", function () {
@@ -1004,7 +1015,7 @@
         })
     })
 
-    function Devicemap(e)  {
+    function Devicemap(e) {
         var DeviceKord = $(e).next().attr("data-goe");
         StringSplit(DeviceKord);
         lasttotallat(latarray, lonarray)
@@ -1020,7 +1031,7 @@
         lonarray = [];
     }
     function ChannelMap(e) {
-        var channelkord= $(e).next().attr("data-goe")
+        var channelkord = $(e).next().attr("data-goe")
         StringSplit(channelkord);
         console.log(latarray + "   " + lonarray)
         lasttotallat(latarray, lonarray)
@@ -1099,7 +1110,7 @@
             $(".dbwell div").remove();
         }
     });
-    
+
 
     var lastlat = 0;
     var lastlon = 0;
@@ -1116,7 +1127,7 @@
             networkselectlist.push(count);
         }
 
-        if (networkselectlist.length!=0) {
+        if (networkselectlist.length != 0) {
             $.ajax({
                 url: "/Home/Koordinats",
                 data: { Listid: Listid, networkselectlist: networkselectlist },
@@ -1138,7 +1149,7 @@
                     lastlon = 0;
                     latarray = [];
                     lonarray = [];
-                    
+
                 }
             })
         }
@@ -1147,11 +1158,11 @@
         var lat = [];
         var lon = [];
         var splitword = word;
-        var firstspit = splitword.indexOf("(")+1;
+        var firstspit = splitword.indexOf("(") + 1;
         var lastsplit = splitword.indexOf(")");
         var splitword = splitword.substring(firstspit, lastsplit);
         var array = splitword.split(" ");
-        for (var i = 0; i < array.length; i++) {            
+        for (var i = 0; i < array.length; i++) {
             if (i % 2 == 0) {
                 lat.push(array[i])
             }
@@ -1160,7 +1171,7 @@
                 var lonelement = index.substring(0, index.length - 1)
                 lon.push(lonelement)
             }
-        }        
+        }
         var totallat = 0;
         var y = 0;
         for (var i = 0; i < lat.length; i++) {
@@ -1170,23 +1181,23 @@
                 y++;
             }
         }
-        if (totallat!=0) {
+        if (totallat != 0) {
             latarray.push(totallat / y);
         }
-        
+
         var totallon = 0;
         var x = 0;
         for (var i = 0; i < lon.length; i++) {
             var xlon = parseFloat(lon[i])
-            if (!isNaN(xlon) && xlon.toString().indexOf(".") != -1 && xlon.toString().split(".")[0].length <= 2) {                
+            if (!isNaN(xlon) && xlon.toString().indexOf(".") != -1 && xlon.toString().split(".")[0].length <= 2) {
                 totallon += xlon;
-                x++;                
-            }            
+                x++;
+            }
         }
-        if (totallon!=0) {            
+        if (totallon != 0) {
             lonarray.push(totallon / x);
         }
-    }    
+    }
     var totaln = 0;
     var totalt = 0;
     function lasttotallat(arraylat, arraylon) {
@@ -1202,7 +1213,7 @@
         lastlon = totaln / arraylon.length;
         totaln = 0;
     }
- 
+
 </script>
 <script>
 
