@@ -348,12 +348,28 @@
                     </div>
                     @foreach (var item in Model.Channels)
                     {
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="type-@item.TYPE">
-                                <label for="type-@item.TYPE">@item.TYPE</label>
-                            </div>
-                        </div>
+                        if (item.TYPE != null && item.TYPE != " " && item.TYPE != "<Null>")
+                        {
+                            int typename;
+                            if (Int32.TryParse(item.TYPE, out typename))
+                            {
+                                <div class="menu-item">
+                                    <div class="ckbox">
+                                        <input type="checkbox" name="rayon" id="type-@item.TYPE">
+                                        <label for="type-@item.TYPE">@item.TYPE -ci dərəcəli kollektorlar</label>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="menu-item">
+                                    <div class="ckbox">
+                                        <input type="checkbox" name="rayon" id="type-@item.TYPE">
+                                        <label for="type-@item.TYPE">@item.TYPE</label>
+                                    </div>
+                                </div>
+                            }
+                        }
                     }
                 </div>
             </div>

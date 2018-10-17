@@ -70,7 +70,7 @@ namespace WebApplication2.Controllers
             IndexViewModel IndexVM = new IndexViewModel();
             using (Context con=new Context())
             {               
-                IndexVM.Regions = con.Region.QueryStringAsList("select * from Meloregions").ToList();
+                IndexVM.Regions = con.Region.QueryStringAsList("select * from Meloregions").ToList();                
                 IndexVM.Channels = ChTypeList;
 
             }
