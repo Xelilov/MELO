@@ -521,7 +521,7 @@
 
                 <strong class="d-block mb-10">Açıq suvarma şəbəkəsi</strong>
 
-                <div class="pl-10 ">
+                <div class="pl-10 _Channel">
                     @*<div class="ckbox">
                             <input type="checkbox" id="network-1">
                             <label for="network-1">Network name</label>
@@ -1015,37 +1015,37 @@
         })
     })
 
-    function Devicemap(e) {
-        var DeviceKord = $(e).next().attr("data-goe");
-        StringSplit(DeviceKord);
-        lasttotallat(latarray, lonarray)
+    //function Devicemap(e) {
+    //    var DeviceKord = $(e).next().attr("data-goe");
+    //    StringSplit(DeviceKord);
+    //    lasttotallat(latarray, lonarray)
 
-        Latitude = lastlat;
-        Longitude = lastlon;
-        zoommap = 12;
-        MapFunction();
+    //    Latitude = lastlat;
+    //    Longitude = lastlon;
+    //    zoommap = 12;
+    //    MapFunction();
 
-        lastlat = 0;
-        lastlon = 0;
-        latarray = [];
-        lonarray = [];
-    }
-    function ChannelMap(e) {
-        var channelkord = $(e).next().attr("data-goe")
-        StringSplit(channelkord);
-        console.log(latarray + "   " + lonarray)
-        lasttotallat(latarray, lonarray)
+    //    lastlat = 0;
+    //    lastlon = 0;
+    //    latarray = [];
+    //    lonarray = [];
+    //}
+    //function ChannelMap(e) {
+    //    var channelkord = $(e).next().attr("data-goe")
+    //    StringSplit(channelkord);
+    //    console.log(latarray + "   " + lonarray)
+    //    lasttotallat(latarray, lonarray)
 
-        Latitude = lastlat;
-        Longitude = lastlon;
-        zoommap = 12;
-        MapFunction();
+    //    Latitude = lastlat;
+    //    Longitude = lastlon;
+    //    zoommap = 12;
+    //    MapFunction();
 
-        lastlat = 0;
-        lastlon = 0;
-        latarray = [];
-        lonarray = [];
-    }
+    //    lastlat = 0;
+    //    lastlon = 0;
+    //    latarray = [];
+    //    lonarray = [];
+    //}
 
 
 
@@ -1072,33 +1072,52 @@
                     var allData = response.data;
                     $(".Network div").remove();
                     $(".riverband div").remove();
-                    $(".dbwell div").remove();
-                    for (var k = 0; k < allData.DrenajselectList.length; k++) {
-                        var type;
-                        if (parseInt(allData.DrenajselectList[k].DrejType)) {
-                            type = allData.DrenajselectList[k].DrejType + '-ci dərəcəli kollektorlar';
+                    $(".dbwell div").remove();                    
+                    $("._Channel div").remove();
+                    for (var c = 0; c < allData.ChannelTypes.length; c++) {
+                        console.log(allData.ChannelTypes[c].TYPE)
+                        if (allData.ChannelTypes[c].TYPE != null && allData.ChannelTypes[c].TYPE != " ") {
+                            var chaneltype
+                            if (parseInt(allData.ChannelTypes[c].TYPE)) {
+                                chaneltype = allData.ChannelTypes[c].TYPE + '-ci dərəcəli kollektorlar';
+                            }
+                            else {
+                                chaneltype = allData.ChannelTypes[c].TYPE
+                            }
+                            $("._Channel").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.ChannelTypes[c].TYPE + "'><label  for='drej-" + allData.ChannelTypes[c].TYPE + "'>" + chaneltype + "</label></div>");
+
                         }
-                        else {
-                            type = allData.DrenajselectList[k].DrejType
+                    }
+                    for (var k = 0; k < allData.DrenajselectList.length; k++) {
+                        if (allData.DrenajselectList[k].DrejType !=null && allData.DrenajselectList[k].DrejType != " ") {
+                            var type;
+                            if (parseInt(allData.DrenajselectList[k].DrejType)) {
+                                type = allData.DrenajselectList[k].DrejType + '-ci dərəcəli kollektorlar';
+                            }
+                            else {
+                                type = allData.DrenajselectList[k].DrejType
+                            }
+                            $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.DrenajselectList[k].DrejType + "'><label  for='drej-" + allData.DrenajselectList[k].DrejType + "'>" + type + "</label></div>");
                         }
                         //$(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.DrenajselectList[k].OBJECTID + "'><label data-goe='" + allData.DrenajselectList[k].shape + "' for='" + allData.DrenajselectList[k].OBJECTID + "'>" + allData.DrenajselectList[k].NAME + "</label></div>");
-                        $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.DrenajselectList[k].DrejType + "'><label  for='drej-" + allData.DrenajselectList[k].DrejType + "'>" + type + "</label></div>");
+                        
                     }
                     for (var j = 0; j < allData.RiverbandselectList.length; j++) {
                         var rivertype;
                         if (parseInt(allData.RiverbandselectList[j].Riverbandtype)) {
-                            rivertype = allData.RiverbandselectList[j].Riverbandtype + '-ci dərəcəli kollektorlar';
+                            var converttype = parseInt(allData.RiverbandselectList[j].Riverbandtype);
+                            rivertype = converttype + '-ci dərəcəli kollektorlar';
                         }
                         else {
                             rivertype = allData.RiverbandselectList[j].Riverbandtype
                         }
-                        //$(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.RiverbandselectList[j].OBJECTID + "'><label data-goe='" + allData.RiverbandselectList[j].SHAPE + "' for='" + allData.RiverbandselectList[j].OBJECTID + "'>" + allData.RiverbandselectList[j].NAME + "</label></div>");
                         $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'><label for='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'>" + rivertype + "</label></div>");
                     }
                     for (var t = 0; t < allData.WellselectList.length; t++) {
-                        //$(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.WellselectList[t].OBJECTID + "'><label data-goe='" + allData.WellselectList[t].SHAPE + "' for='" + allData.WellselectList[t].OBJECTID + "'>" + allData.WellselectList[t].NAME + "</label></div>");
-                        $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='well-" + allData.WellselectList[t].WellType + "'><label for='well-" + allData.WellselectList[t].WellType + "'>" + allData.WellselectList[t].WellType + "</label></div>");
+                        if (allData.WellselectList[t].WellType!=" ") {
+                            $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='well-" + allData.WellselectList[t].WellType + "'><label for='well-" + allData.WellselectList[t].WellType + "'>" + allData.WellselectList[t].WellType + "</label></div>");
 
+                        }
                     }
 
                 }

@@ -305,6 +305,7 @@ namespace WebApplication2.Controllers
             List<MUltiSelectDrenaj> MsDrej = new List<MUltiSelectDrenaj>();
             List<MultiSelectRiverband> Msriver = new List<MultiSelectRiverband>();
             List<MultiSelectWell> MsWell = new List<MultiSelectWell>();
+            List<ChannelType> MsChannel = new List<ChannelType>();
             using (Context con = new Context())
             {                
                 for (int i = 0; i < id.Length; i++)
@@ -314,6 +315,18 @@ namespace WebApplication2.Controllers
                         var drej = drejTypeList;
                         var riverband = rbTypeList;
                         var wells = welltypeList.ToList();
+                        var channel = ChannelList;
+                        foreach (var item in channel)
+                        {
+                            if (MsChannel.Where(s => s.TYPE == item.TYPE).Count() == 0)
+                            {
+                                MsChannel.Add(new ChannelType
+                                {
+                                    TYPE = item.TYPE
+                                });
+                            }
+                        }
+
                         foreach (var item in drej)
                         {
                             if (MsDrej.Where(s => s.DrejType == item.TYPE).Count() == 0)
@@ -344,6 +357,7 @@ namespace WebApplication2.Controllers
                                 });
                             }
                         }
+                        sbwm.ChannelTypes = MsChannel;
                         sbwm.DrenajselectList = MsDrej;
                         sbwm.RiverbandselectList = Msriver;
                         sbwm.WellselectList = MsWell;
@@ -351,7 +365,17 @@ namespace WebApplication2.Controllers
                     }
                     else
                     {
-
+                        var chan = ChannelList.Where(c => c.Region_ID == id[i]).ToList();
+                        foreach (var item in chan)
+                        {
+                            if (MsChannel.Where(s => s.TYPE == item.TYPE).Count() == 0)
+                            {
+                                MsChannel.Add(new ChannelType
+                                {
+                                    TYPE = item.TYPE
+                                });
+                            }
+                        }
                         var drej = drejTypeList.Where(s => s.Region_ID == id[i]).ToList();
                         foreach (var item in drej)
                         {
@@ -390,7 +414,7 @@ namespace WebApplication2.Controllers
                     }
                 }
             }
-
+            sbwm.ChannelTypes = MsChannel;
             sbwm.DrenajselectList = MsDrej;
             sbwm.RiverbandselectList = Msriver;
             sbwm.WellselectList = MsWell;

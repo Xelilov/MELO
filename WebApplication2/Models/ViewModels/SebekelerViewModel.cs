@@ -21,5 +21,6 @@ namespace WebApplication2.Models.ViewModels
         public List<MUltiSelectDrenaj> DrenajselectList { get; set; }
         public List<MultiSelectRiverband> RiverbandselectList { get; set; }
         public List<MultiSelectWell> WellselectList { get; set; }
+        public List<ChannelType> ChannelTypes { get; set; }
     }
 }
