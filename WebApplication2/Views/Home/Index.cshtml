@@ -57,14 +57,12 @@
         function MapFunction() {
             require([
                 "esri/Map",
-                "esri/views/MapView",
+                "esri/views/MapView",               
                 "esri/layers/MapImageLayer"
             ], function (Map, MapView, MapImageLayer) {
                 var map = new Map({
                     basemap: "topo"
                 });
-
-
                 var view = new MapView({
                     container: "mapDiv",  // Reference to the DOM node that will contain the view
                     map: map,  // References the map object created in step 3
@@ -75,10 +73,57 @@
                 view.ui.move("zoom", "bottom-right");
 
                 var layer = new MapImageLayer({
-                    url: "http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer"
+                    url: "http://10.10.1.253:6080/arcgis/rest/services/Map_08_24/MapServer"
                 });
 
                 map.add(layer);
+                //var template = { // autocasts as new PopupTemplate()
+                //    title: "Marriage in NY, Zip Code: {ZIP}",
+                //    content: [{
+                //        // It is also possible to set the fieldInfos outside of the content
+                //        // directly in the popupTemplate. If no fieldInfos is specifically set
+                //        // in the content, it defaults to whatever may be set within the popupTemplate.
+                //        type: "fields",
+                //        fieldInfos: [{
+                //            fieldName: "NAME",
+                //            label: "Adi",
+                //            visible: true
+                //        }, {
+                //            fieldName: "WATER_CAPABILITY",
+                //            label: "Tutumu",
+                //            visible: true,
+                //            format: {
+                //                digitSeparator: true,
+                //                places: 0
+                //            }
+                //        }, {
+                //            fieldName: "WATERPROOF_WIDTH",
+                //            label: "People that Never Married",
+                //            visible: true,
+                //            format: {
+                //                digitSeparator: true,
+                //                places: 0
+                //            }
+                //        }, {
+                //            fieldName: "FACTICAL_LENGTH",
+                //            label: "People Divorced",
+                //            visible: true,
+                //            format: {
+                //                digitSeparator: true,
+                //                places: 0
+                //            }
+                //        }]
+                //    }]
+                //};
+
+                //// Reference the popupTemplate instance in the
+                //// popupTemplate property of FeatureLayer
+                //var featureLayer = new FeatureLayer({
+                //    url: "http://10.10.1.253:6080/arcgis/rest/services/MeloDB_Restruct/FeatureServer/",
+                //    outFields: ["*"],
+                //    popupTemplate: template
+                //});
+                //map.add(featureLayer);
             });
         }
 
@@ -267,29 +312,11 @@
                         </div>
                     }
                     @*<div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="all-d" checked>
-                                <label for="all-d">Hamısı</label>
-                            </div>
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="all-d" checked>
+                            <label for="all-d">Hamısı</label>
                         </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="rayon-d-1">
-                                <label for="rayon-d-1">Rayon adı</label>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="rayon-d-2">
-                                <label for="rayon-d-2">Rayon adı</label>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="rayon-d-3">
-                                <label for="rayon-d-3">Rayon adı</label>
-                            </div>
-                        </div>*@
+                    </div>*@
                 </div>
             </div>
 
@@ -304,29 +331,11 @@
             <div class="drop-menu static animated fadeInUp mt-5" aria-labelledby="village-menu-search">
                 <div class="menu-body villageSearch">
                     @*<div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="all-v">
-                                <label for="all-v">Hamısı</label>
-                            </div>
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="all-v">
+                            <label for="all-v">Hamısı</label>
                         </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="kend-v-1">
-                                <label for="kend-v-1">Kənd adı</label>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="kend-v-2">
-                                <label for="kend-v-2">Kənd adı</label>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="ckbox">
-                                <input type="checkbox" name="rayon" id="kend-v-3">
-                                <label for="kend-v-3">Kənd adı</label>
-                            </div>
-                        </div>*@
+                    </div>*@
                 </div>
             </div>
 
@@ -342,11 +351,96 @@
                 <div class="menu-body  _Attrribut">
                     <div class="menu-item">
                         <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="0">
-                            <label for="0">Hamısı</label>
+                            <input type="checkbox" name="rayon" id="type-0">
+                            <label for="type-0">Hamısı</label>
                         </div>
                     </div>
-                    @foreach (var item in Model.Channels)
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tych-Magistral">
+                            <label for="tych-Magistral">Magistral Kanallar</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tych-1">
+                            <label for="tych-1">1-ci dərəcəli Kanallar</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tych-2">
+                            <label for="tych-2">2-ci dərəcəli Kanallar</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tych-3">
+                            <label for="tych-3">3-ci dərəcəli Kanallar</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tydr-1">
+                            <label for="tydj-1">1-ci dərəcəli kollektorlar</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tydr-2">
+                            <label for="tydj-2">2-ci dərəcəli yığıcı kollektorlar</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tydr-2">
+                            <label for="tydj-2">3-ci dərəcəli ilkin drenlər</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="type-2">
+                            <label for="type-2">Mühafizə Bəndləri</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="type-3">
+                            <label for="type-3">Müşahidə Quyuları</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="type-4">
+                            <label for="type-4">Hidrotexniki Qurğular</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="type-5">
+                            <label for="type-5">İdarələr</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="type-6">
+                            <label for="type-6">Nasos Stansiyaları</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="type-7">
+                            <label for="type-7">Binalar ve tikintilər</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="type-8">
+                            <label for="type-8">İstismar yolları</label>
+                        </div>
+                    </div>
+
+                    @*@foreach (var item in Model.Channels)
                     {
                         if (item.TYPE != null && item.TYPE != " " && item.TYPE != "<Null>")
                         {
@@ -370,7 +464,7 @@
                                 </div>
                             }
                         }
-                    }
+                    }*@
                 </div>
             </div>
 
@@ -538,30 +632,43 @@
                 <strong class="d-block mb-10">Açıq suvarma şəbəkəsi</strong>
 
                 <div class="pl-10 _Channel">
-                    @*<div class="ckbox">
-                            <input type="checkbox" id="network-1">
-                            <label for="network-1">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-2">
-                            <label for="network-2">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-3">
-                            <label for="network-3">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-4">
-                            <label for="network-4">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-5">
-                            <label for="network-5">Network name</label>
-                        </div>*@
+                    @*@foreach (var item in Model.Channels)
+                    {
+                        if (item.TYPE != null && item.TYPE != " " && item.TYPE != "<Null>")
+                        {
+                            int channeltype;
+                            if (Int32.TryParse(item.TYPE, out channeltype))
+                            {
+                                <div class="ckbox">
+                                    <input class="showmap" type="checkbox" id="channel-@item.TYPE">
+                                    <label for="channel-@item.TYPE">@channeltype -ci dərəcəli kollektorlar</label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="ckbox">
+                                    <input class="showmap" type="checkbox" id="channel-@item.TYPE">
+                                    <label for="channel-@item.TYPE">@item.TYPE</label>
+                                </div>
+                            }
+                        }
+                    }*@
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="channel-Magistral">
+                        <label for="channel-Magistral">Magistral Kanallar</label>
+                    </div>
+                    <div class="ckbox">
+                        <input  class="showmap" type="checkbox" id="channel-1">
+                        <label for="channel-1">1-ci dərəcəli Kanallar</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="channel-2">
+                        <label for="channel-2">2-ci dərəcəli Kanallar</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="channel-3">
+                        <label for="channel-3">3-ci dərəcəli Kanallar</label>
+                    </div>
                 </div>
 
             </div>
@@ -572,32 +679,39 @@
 
                 <div class="pl-10 Network">
                     @*@foreach (var item in Model.drejtype)
+                    {
+                        if (item.TYPE != null && item.TYPE != " " && item.TYPE != "<Null>" && item.TYPE != "Null")
                         {
-                            <div class="ckbox">
-                                <input type="checkbox" onclick="func(this)" id="drej-@item.TYPE">
-                                <label for="drej-@item.TYPE">@item.TYPE</label>
-                            </div>
-                        }*@
+                            int drenajtype;
+                            if (Int32.TryParse(item.TYPE, out drenajtype))
+                            {
+                                    <div class="ckbox">
+                                        <input class="showmap" type="checkbox" id="drenaj-@item.TYPE">
+                                        <label for="drenaj-@item.TYPE">@drenajtype -ci dərəcəli kollektorlar</label>
+                                    </div>
+                            }
+                            else
+                            {
+                                <div class="ckbox">
+                                    <input class="showmap" type="checkbox" id="drenaj-@item.TYPE">
+                                    <label for="drenaj-@item.TYPE">@item.TYPE</label>
+                                </div>
+                            }
+                        }                            
+                    }*@
 
-                    @*<div class="ckbox">
-                            <input type="checkbox" id="network-7">
-                            <label for="network-7">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-8">
-                            <label for="network-8">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-9">
-                            <label for="network-9">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-10">
-                            <label for="network-10">Network name</label>
-                        </div>*@
+                    <div class="ckbox">
+                        <input  class="showmap" type="checkbox" id="drenaj-1">
+                        <label for="drenaj-1">1-ci dərəcəli kollektorlar</label>
+                    </div>
+                    <div class="ckbox">
+                        <input  class="showmap" type="checkbox" id="drenaj-2">
+                        <label for="drenaj-2">2-ci dərəcəli yığıcı kollektorlar</label>
+                    </div>
+                    <div class="ckbox">
+                        <input  class="showmap" type="checkbox" id="drenaj-3">
+                        <label for="drenaj-3">3-ci dərəcəli ilkin drenlər</label>
+                    </div>
                 </div>
 
             </div>
@@ -607,33 +721,10 @@
                 <strong class="d-block mb-10">Mühafizə bəndləri</strong>
 
                 <div class="pl-10 riverband">
-                    @*@foreach (var item in Model.rivertype)
-                        {
-                            <div class="ckbox">
-                                <input type="checkbox" onclick="func(this)" id="rver-@item.TYPE">
-                                <label for="rver-@item.TYPE">@item.TYPE</label>
-                            </div>
-                        }*@
-
-                    @*<div class="ckbox">
-                            <input type="checkbox" id="network-12">
-                            <label for="network-12">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-13">
-                            <label for="network-13">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-14">
-                            <label for="network-14">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-15">
-                            <label for="network-15">Network name</label>
-                        </div>*@
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="network-12">
+                        <label for="network-12">Mühafizə Bəndləri</label>
+                    </div>
                 </div>
 
             </div>
@@ -641,35 +732,31 @@
             <div class="group mb-20">
 
                 <strong class="d-block mb-10">Digər obyektlər</strong>
-
                 <div class="pl-10 dbwell">
-                    @*@foreach (var item in Model.wellType)
-                        {
-                            <div class="ckbox">
-                                <input type="checkbox" onclick="func(this)" id="well-@item.WELL_TYPE">
-                                <label for="well-@item.WELL_TYPE">@item.WELL_TYPE</label>
-                            </div>
-                        }*@
-
-                    @*<div class="ckbox">
-                            <input type="checkbox" id="network-17">
-                            <label for="network-17">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-18">
-                            <label for="network-18">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-19">
-                            <label for="network-19">Network name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="checkbox" id="network-20">
-                            <label for="network-20">Network name</label>
-                        </div>*@
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="network-16">
+                        <label for="network-16">Müşahidə Quyuları</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="network-17">
+                        <label for="network-17">Hidrotexniki Qurğular</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="network-18">
+                        <label for="network-18">İdarələr</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="network-19">
+                        <label for="network-19">Nasos Stansiyaları</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="network-20">
+                        <label for="network-20">Binalar ve tikintilər</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="network-21">
+                        <label for="network-21">İstismar yolları</label>
+                    </div>
                 </div>
 
             </div>
@@ -725,29 +812,9 @@
 
                 <div class="pl-10 CHannels">
                     @*<div class="ckbox">
-                            <input type="radio" name="channels" id="channel-name-1">
-                            <label for="channel-name-1">Channel name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="radio" name="channels" id="channel-name-2">
-                            <label for="channel-name-2">Channel name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="radio" name="channels" id="channel-name-3">
-                            <label for="channel-name-3">Channel name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="radio" name="channels" id="channel-name-4">
-                            <label for="channel-name-4">Channel name</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="radio" name="channels" id="channel-name-5">
-                            <label for="channel-name-5">Channel name</label>
-                        </div>*@
+                        <input type="radio" name="channels" id="channel-name-1">
+                        <label for="channel-name-1">Channel name</label>
+                    </div>*@
                 </div>
 
             </div>
@@ -758,14 +825,9 @@
 
                 <div class="pl-10 DeviceList">
                     @*<div class="ckbox">
-                            <input type="radio" name="devices" id="duke">
-                            <label for="duke">Düker</label>
-                        </div>
-
-                        <div class="ckbox">
-                            <input type="radio" name="devices" id="bridge">
-                            <label for="bridge">Körpü</label>
-                        </div>*@
+                        <input type="radio" name="devices" id="duke">
+                        <label for="duke">Düker</label>
+                    </div>*@
                 </div>
 
             </div>
@@ -841,30 +903,15 @@
 
     $(document).ready(function () {
         MapFunction();
-        //document.onload = function () {
-        //    $.ajax({
-        //        url: "/Home/Dataload",
-        //        method: "post",
-        //        dataType: "JSON",
-        //        success: function (res) {
-        //            console.log("salam");
-        //        }
-        //    })
-        //};
-
     });
 
 
     var ListRegid = [];
-
     $(".SearchRegion .ckbox input").click(function () {
         var allregion = document.querySelectorAll(".SearchRegion .ckbox input");
         var all = document.getElementById("rayon-0")
         var count = $(this).attr("id");
         count = count.substring(6, count.length);
-
-
-
         if (count == 0) {
             if ($(all).is(":checked")) {
                 for (var i = 0; i < allregion.length; i++) {
@@ -896,19 +943,12 @@
                 ListRegid.push(regionId);
             }
         }
-
-        console.log(ListRegid)
-
-
-
         //if (checkElementInArr(ListRegid, parseInt(count))) {
         //    var index = ListRegid.indexOf(parseInt(count));
         //    ListRegid.splice(index, 1);
         //} else {
         //    ListRegid.push(parseInt(count));
         //}
-
-
         if (ListRegid.length != 0) {
             $.ajax({
                 url: "/Home/Village",
@@ -917,9 +957,6 @@
                 type: "JSON",
                 success: function (response) {
                     $(".villageSearch div").remove();
-
-                    //$(".villageSearch").append("<div class='menu-item'><div class='ckbox'><input type='checkbox' onclick='getIDvillage(this)' name='rayon' id='village-0'><label for='village-0'>Hamısı</label></div></div>")
-
                     var village = response.data;
                     for (var i = 0; i < village.length; i++) {
                         for (var a = 0; a < village[i].Villages.length; a++) {
@@ -947,22 +984,17 @@
     var attrList = [];
     $("._Attrribut .ckbox input").click(function () {
         let count = $(this).attr("id");
-        count = count.substring(5, count.length)
-        console.log(count)
         if (checkElementInArr(attrList, count)) {
             var index = attrList.indexOf(count);
             attrList.splice(index, 1);
         } else {
             attrList.push(count);
         }
+        console.log(attrList)
     });
-
 
     $("#_Modalbutton").on("click", function () {
         if (ListRegid.length != 0 || ListVilid.length != 0 || attrList.length != 0) {
-            console.log(ListRegid)
-            console.log(ListVilid)
-            console.log(attrList)
             $.ajax({
                 url: "/Home/Attributes",
                 data: { id: ListRegid, idVil: ListVilid, Attr: attrList },
@@ -980,11 +1012,9 @@
             document.getElementById("_ModalContent").style.display = "block";
         }
     })
-
     $("._close-button").on("click", function () {
         document.getElementById("_ModalContent").style.display = "none";
     })
-
     $("#select-district").on("change", function () {
         var regionid = document.querySelector("#select-district").value;
         $(".DeviceList div").remove();
@@ -1004,7 +1034,6 @@
             }
         })
     })
-
 
     $("#select-village").on("change", function () {
         var villageID = document.querySelector("#select-village").value;
@@ -1030,164 +1059,225 @@
             }
         })
     })
+    function Devicemap(e) {
+        var DeviceKord = $(e).next().attr("data-goe");
+        StringSplit(DeviceKord);
+        lasttotallat(latarray, lonarray)
 
-    //function Devicemap(e) {
-    //    var DeviceKord = $(e).next().attr("data-goe");
-    //    StringSplit(DeviceKord);
-    //    lasttotallat(latarray, lonarray)
+        Latitude = lastlat;
+        Longitude = lastlon;
+        zoommap = 12;
+        MapFunction();
 
-    //    Latitude = lastlat;
-    //    Longitude = lastlon;
-    //    zoommap = 12;
-    //    MapFunction();
+        lastlat = 0;
+        lastlon = 0;
+        latarray = [];
+        lonarray = [];
+    }
+    function ChannelMap(e) {
+        var channelkord = $(e).next().attr("data-goe")
+        StringSplit(channelkord);
+        console.log(latarray + "   " + lonarray)
+        lasttotallat(latarray, lonarray)
 
-    //    lastlat = 0;
-    //    lastlon = 0;
-    //    latarray = [];
-    //    lonarray = [];
-    //}
-    //function ChannelMap(e) {
-    //    var channelkord = $(e).next().attr("data-goe")
-    //    StringSplit(channelkord);
-    //    console.log(latarray + "   " + lonarray)
-    //    lasttotallat(latarray, lonarray)
+        Latitude = lastlat;
+        Longitude = lastlon;
+        zoommap = 12;
+        MapFunction();
 
-    //    Latitude = lastlat;
-    //    Longitude = lastlon;
-    //    zoommap = 12;
-    //    MapFunction();
-
-    //    lastlat = 0;
-    //    lastlon = 0;
-    //    latarray = [];
-    //    lonarray = [];
-    //}
-
-
-
+        lastlat = 0;
+        lastlon = 0;
+        latarray = [];
+        lonarray = [];
+    }
     function checkElementInArr(array, value) {
         return array.indexOf(value) > -1;
     }
     var Listid = [];
     $(".RegionList .ckbox input").click(function () {
-        let count = $(this).attr("id");
-        if (checkElementInArr(Listid, parseInt(count))) {
-            var index = Listid.indexOf(parseInt(count));
-            Listid.splice(index, 1);
-        } else {
-            Listid.push(parseInt(count));
+
+        var types = $(".showmap");
+        for (var t = 0; t < types.length; t++) {
+            $(types[t]).prop("checked", false);
         }
 
-        if (Listid.length != 0) {
-            $.ajax({
-                url: "/Home/All",
-                data: { id: Listid },
-                method: "post",
-                type: "JSON",
-                success: function (response) {
-                    var allData = response.data;
-                    $(".Network div").remove();
-                    $(".riverband div").remove();
-                    $(".dbwell div").remove();                    
-                    $("._Channel div").remove();
-                    for (var c = 0; c < allData.ChannelTypes.length; c++) {
-                        console.log(allData.ChannelTypes[c].TYPE)
-                        if (allData.ChannelTypes[c].TYPE != null && allData.ChannelTypes[c].TYPE != " ") {
-                            var chaneltype
-                            if (parseInt(allData.ChannelTypes[c].TYPE)) {
-                                chaneltype = allData.ChannelTypes[c].TYPE + '-ci dərəcəli kollektorlar';
-                            }
-                            else {
-                                chaneltype = allData.ChannelTypes[c].TYPE
-                            }
-                            $("._Channel").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.ChannelTypes[c].TYPE + "'><label  for='drej-" + allData.ChannelTypes[c].TYPE + "'>" + chaneltype + "</label></div>");
-
-                        }
+        var allregion = document.querySelectorAll(".RegionList .ckbox input");
+        var all = document.getElementById("0000")
+        let count = $(this).attr("id");
+        if (count == "0000") {
+            if ($(all).is(":checked")) {
+                for (var i = 0; i < allregion.length; i++) {
+                    if (!$(allregion[i]).is(":checked")) {
+                        $(allregion[i]).prop("checked", true);
                     }
-                    for (var k = 0; k < allData.DrenajselectList.length; k++) {
-                        if (allData.DrenajselectList[k].DrejType !=null && allData.DrenajselectList[k].DrejType != " ") {
-                            var type;
-                            if (parseInt(allData.DrenajselectList[k].DrejType)) {
-                                type = allData.DrenajselectList[k].DrejType + '-ci dərəcəli kollektorlar';
-                            }
-                            else {
-                                type = allData.DrenajselectList[k].DrejType
-                            }
-                            $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.DrenajselectList[k].DrejType + "'><label  for='drej-" + allData.DrenajselectList[k].DrejType + "'>" + type + "</label></div>");
-                        }
-                        //$(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.DrenajselectList[k].OBJECTID + "'><label data-goe='" + allData.DrenajselectList[k].shape + "' for='" + allData.DrenajselectList[k].OBJECTID + "'>" + allData.DrenajselectList[k].NAME + "</label></div>");
-                        
-                    }
-                    for (var j = 0; j < allData.RiverbandselectList.length; j++) {
-                        var rivertype;
-                        if (parseInt(allData.RiverbandselectList[j].Riverbandtype)) {
-                            var converttype = parseInt(allData.RiverbandselectList[j].Riverbandtype);
-                            rivertype = converttype + '-ci dərəcəli kollektorlar';
-                        }
-                        else {
-                            rivertype = allData.RiverbandselectList[j].Riverbandtype
-                        }
-                        $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'><label for='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'>" + rivertype + "</label></div>");
-                    }
-                    for (var t = 0; t < allData.WellselectList.length; t++) {
-                        if (allData.WellselectList[t].WellType!=" ") {
-                            $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='well-" + allData.WellselectList[t].WellType + "'><label for='well-" + allData.WellselectList[t].WellType + "'>" + allData.WellselectList[t].WellType + "</label></div>");
-
-                        }
-                    }
-
                 }
-            })
+            }
+            else {
+                for (var i = 0; i < allregion.length; i++) {
+                    if (i != 0) {
+                        $(allregion[i]).prop("checked", false);
+                    }
+                }
+            }
         }
         else {
-            $(".Network div").remove();
-            $(".riverband div").remove();
-            $(".dbwell div").remove();
+            if ($(all).is(":checked")) {
+                $(all).prop("checked", false);
+            }
         }
-    });
+        Listid = [];
+        for (var i = 0; i < allregion.length; i++) {
+            if ($(allregion[i]).is(":checked")) {
+                var regionId = $(allregion[i]).attr("id")
+                Listid.push(regionId);
+            }
+        }
+        //if (checkElementInArr(Listid, parseInt(count))) {
+        //    var index = Listid.indexOf(parseInt(count));
+        //    Listid.splice(index, 1);
+        //} else {
+        //    Listid.push(parseInt(count));
+        //}
 
+        //if (Listid.length != 0) {
+        //    $.ajax({
+        //        url: "/Home/All",
+        //        data: { id: Listid },
+        //        method: "post",
+        //        type: "JSON",
+        //        success: function (response) {
+        //            var allData = response.data;
+
+        //            //$(".Network div").remove();
+        //            //$(".riverband div").remove();
+        //            //$(".dbwell div").remove();                    
+        //            //$("._Channel div").remove();
+        //            //for (var c = 0; c < allData.ChannelTypes.length; c++) {
+        //            //    console.log(allData.ChannelTypes[c].TYPE)
+        //            //    if (allData.ChannelTypes[c].TYPE != null && allData.ChannelTypes[c].TYPE != " ") {
+        //            //        var chaneltype
+        //            //        if (parseInt(allData.ChannelTypes[c].TYPE)) {
+        //            //            chaneltype = allData.ChannelTypes[c].TYPE + '-ci dərəcəli kollektorlar';
+        //            //        }
+        //            //        else {
+        //            //            chaneltype = allData.ChannelTypes[c].TYPE
+        //            //        }
+        //            //        $("._Channel").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.ChannelTypes[c].TYPE + "'><label  for='drej-" + allData.ChannelTypes[c].TYPE + "'>" + chaneltype + "</label></div>");
+
+        //            //    }
+        //            //}
+        //            //for (var k = 0; k < allData.DrenajselectList.length; k++) {
+        //            //    if (allData.DrenajselectList[k].DrejType !=null && allData.DrenajselectList[k].DrejType != " ") {
+        //            //        var type;
+        //            //        if (parseInt(allData.DrenajselectList[k].DrejType)) {
+        //            //            type = allData.DrenajselectList[k].DrejType + '-ci dərəcəli kollektorlar';
+        //            //        }
+        //            //        else {
+        //            //            type = allData.DrenajselectList[k].DrejType
+        //            //        }
+        //            //        $(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='drej-" + allData.DrenajselectList[k].DrejType + "'><label  for='drej-" + allData.DrenajselectList[k].DrejType + "'>" + type + "</label></div>");
+        //            //    }
+        //            //    //$(".Network").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='" + allData.DrenajselectList[k].OBJECTID + "'><label data-goe='" + allData.DrenajselectList[k].shape + "' for='" + allData.DrenajselectList[k].OBJECTID + "'>" + allData.DrenajselectList[k].NAME + "</label></div>");
+                        
+        //            //}
+        //            //for (var j = 0; j < allData.RiverbandselectList.length; j++) {
+        //            //    var rivertype;
+        //            //    if (parseInt(allData.RiverbandselectList[j].Riverbandtype)) {
+        //            //        var converttype = parseInt(allData.RiverbandselectList[j].Riverbandtype);
+        //            //        rivertype = converttype + '-ci dərəcəli kollektorlar';
+        //            //    }
+        //            //    else {
+        //            //        rivertype = allData.RiverbandselectList[j].Riverbandtype
+        //            //    }
+        //            //    $(".riverband").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'><label for='rver-" + allData.RiverbandselectList[j].Riverbandtype + "'>" + rivertype + "</label></div>");
+        //            //}
+        //            //for (var t = 0; t < allData.WellselectList.length; t++) {
+        //            //    if (allData.WellselectList[t].WellType!=" ") {
+        //            //        $(".dbwell").append("<div class='ckbox'><input type='checkbox' onclick='func(this)' id='well-" + allData.WellselectList[t].WellType + "'><label for='well-" + allData.WellselectList[t].WellType + "'>" + allData.WellselectList[t].WellType + "</label></div>");
+
+        //            //    }
+        //            //}
+        //        }
+        //    })
+        //}
+        //else {
+        //    //$(".Network div").remove();
+        //    //$(".riverband div").remove();
+        //    //$(".dbwell div").remove();
+        //}
+    });
 
     var lastlat = 0;
     var lastlon = 0;
     var latarray = [];
     var lonarray = [];
-    var networkselectlist = [];
-    function func(a) {
-        let count = $(a).attr("id");
-        count = count.substring(5, count.length)
-        if (checkElementInArr(networkselectlist, count)) {
-            var index = networkselectlist.indexOf(count);
-            networkselectlist.splice(index, 1);
-        } else {
-            networkselectlist.push(count);
-        }
 
-        if (networkselectlist.length != 0) {
+    var networkselectlist = [];
+    $(".showmap").on("click", function () {
+        networkselectlist = [];
+        var selecttype = $(".showmap");
+        for (var i = 0; i < selecttype.length; i++) {
+            if ($(selecttype[i]).is(":checked")) {
+                networkselectlist.push(selecttype[i].id)
+            }
+        }
+        if (Listid.length != 0 && networkselectlist.length != 0) {
             $.ajax({
-                url: "/Home/Koordinats",
-                data: { Listid: Listid, networkselectlist: networkselectlist },
+                url: "/Home/MapShow",
+                data: { id: Listid, networkselectlist: networkselectlist },
                 method: "post",
                 type: "JSON",
                 success: function (response) {
                     var kordonats = response.data;
-                    for (var i = 0; i < kordonats.length; i++) {
-                        StringSplit(kordonats[i].Koordi);
-                    }
-                    lasttotallat(latarray, lonarray)
-
-                    Latitude = lastlat;
-                    Longitude = lastlon;
-                    zoommap = 12;
-                    MapFunction();
-
-                    lastlat = 0;
-                    lastlon = 0;
-                    latarray = [];
-                    lonarray = [];
-
+                    for (var i = 0; i < kordonats.SelectedChannels.length; i++) {
+                        console.log(kordonats.SelectedChannels[i])
+                    }                   
                 }
             })
         }
+
+    })
+
+    function MapShow(a) {
+        console.log(a)
+        console.log(Listid)
+        let count = $(a).attr("id");
+
+
+        //let count = $(a).attr("id");
+        //count = count.substring(5, count.length)
+        //if (checkElementInArr(networkselectlist, count)) {
+        //    var index = networkselectlist.indexOf(count);
+        //    networkselectlist.splice(index, 1);
+        //} else {
+        //    networkselectlist.push(count);
+        //}
+        //if (networkselectlist.length != 0) {
+        //    $.ajax({
+        //        url: "/Home/Koordinats",
+        //        data: { Listid: Listid, networkselectlist: networkselectlist },
+        //        method: "post",
+        //        type: "JSON",
+        //        success: function (response) {
+        //            var kordonats = response.data;
+        //            for (var i = 0; i < kordonats.length; i++) {
+        //                StringSplit(kordonats[i].Koordi);
+        //            }
+        //            lasttotallat(latarray, lonarray)
+
+        //            Latitude = lastlat;
+        //            Longitude = lastlon;
+        //            zoommap = 12;
+        //            MapFunction();
+
+        //            lastlat = 0;
+        //            lastlon = 0;
+        //            latarray = [];
+        //            lonarray = [];
+
+        //        }
+        //    })
+        //}
     }
     function StringSplit(word) {
         var lat = [];

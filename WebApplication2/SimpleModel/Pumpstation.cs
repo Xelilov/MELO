@@ -5,9 +5,11 @@ using System.Web;
 
 namespace WebApplication2.SimpleModel
 {
-    public class WellType
+    public class Pumpstation
     {
-        public string WELL_TYPE { get; set; }
+        public int OBJECTID { get; set; }
         public int Region_ID { get; set; }
+        public string NAME { get; set; }
+        public string SHAPE { get; set; }
     }
 }

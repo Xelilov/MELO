@@ -10,8 +10,6 @@ namespace WebApplication2.Models.ViewModels
     {
         public List<Regions> Regions { get; set; }
         public List<ChannelType> Channels { get; set; }
-        //public IEnumerable<DrenajType> drejtype { get; set; }
-        //public IEnumerable<RiverbandType> rivertype { get; set; }
-        //public IEnumerable<WellType> wellType { get; set; }
+        public IEnumerable<DrenajType> drejtype { get; set; }
     }
 }

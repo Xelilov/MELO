@@ -5,9 +5,11 @@ using System.Web;
 
 namespace WebApplication2.SimpleModel
 {
-    public class RiverbandType
+    public class Buildings
     {
-        public decimal TYPE { get; set; }
+        public int OBJECTID { get; set; }
         public int Region_ID { get; set; }
+        public string NAME { get; set; }
+        public string SHAPE { get; set; }
     }
 }

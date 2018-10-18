@@ -11,5 +11,6 @@ namespace WebApplication2.SimpleModel
         public decimal TYPE { get; set; }
         public string SHAPE { get; set; }
         public int Region_ID { get; set; }
+        public decimal LENGTH { get; set; }
     }
 }

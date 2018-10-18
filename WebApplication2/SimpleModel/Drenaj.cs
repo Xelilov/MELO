@@ -11,5 +11,6 @@ namespace WebApplication2.SimpleModel
         public string TYPE { get; set; }
         public string shape { get; set; }
         public int Region_ID { get; set; }
+        public decimal FACTICAL_LENGTH { get; set; }
     }
 }

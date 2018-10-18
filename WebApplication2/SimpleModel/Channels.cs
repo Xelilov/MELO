@@ -11,7 +11,7 @@ namespace WebApplication2.SimpleModel
         public string TYPE { get; set; }
         public string NAME { get; set; }
         public string SHAPE { get; set; }
-        public string SERVED_AREA { get; set; }
+        public decimal FACTICAL_LENGTH { get; set; }
         public int Municipality_id { get; set; }
         public int Region_ID { get; set; }
     }

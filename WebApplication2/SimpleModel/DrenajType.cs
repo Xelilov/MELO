@@ -8,6 +8,5 @@ namespace WebApplication2.SimpleModel
     public class DrenajType
     {
         public string TYPE { get; set; }
-        public int Region_ID { get; set; }
     }
 }
