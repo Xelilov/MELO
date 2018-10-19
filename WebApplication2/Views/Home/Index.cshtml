@@ -992,9 +992,10 @@
         }
         console.log(attrList)
     });
+    
 
     $("#_Modalbutton").on("click", function () {
-        if (ListRegid.length != 0 || ListVilid.length != 0 || attrList.length != 0) {
+        if (ListRegid.length != 0 || ListVilid.length != 0) {
             $.ajax({
                 url: "/Home/Attributes",
                 data: { id: ListRegid, idVil: ListVilid, Attr: attrList },
