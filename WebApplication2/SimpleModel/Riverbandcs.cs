@@ -12,5 +12,6 @@ namespace WebApplication2.SimpleModel
         public string SHAPE { get; set; }
         public int Region_ID { get; set; }
         public decimal LENGTH { get; set; }
+        public int Municipality_id { get; set; }
     }
 }

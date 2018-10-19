@@ -36,14 +36,14 @@ namespace WebApplication2.Controllers
                 RegionList = con.Region.QueryStringAsList("select * from Meloregions").ToList();
                 VillageList = con.village.QueryStringAsList($"select * from RESIDENTIALAREA").ToList();
                 ChannelList = con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape,FACTICAL_LENGTH, TYPE, NAME,OBJECTID,Municipality_id,Region_ID from CHANNELS").ToList();
-                DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,TYPE,OBJECTID,FACTICAL_LENGTH, Region_ID from DRENAJ").ToList();
-                RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape,TYPE,OBJECTID,LENGTH,Region_ID from RIVERBAND").ToList();
+                DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,TYPE,OBJECTID,FACTICAL_LENGTH, Region_ID,Municipality_id from DRENAJ").ToList();
+                RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape,TYPE,OBJECTID,LENGTH,Region_ID,Municipality_id from RIVERBAND").ToList();
                 DeviceList = con.Device.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id,Region_ID from DEVICE").ToList();
-                WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID ,Region_ID,WELL_TYPE from WELL").ToList();
+                WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID ,Region_ID,WELL_TYPE,Municipality_id from WELL").ToList();
                 DepartmentsList = con.department.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,AD,Region_ID from DEPARTMENTS").ToList();
-                PumpstationList = con.pumpstation.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID from PUMPSTATION").ToList();
-                buildinglist = con.building.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID from BUILDINGS").ToList();
-                exploitationroadList = con.exploitationroad.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID,LENGHT from EXPLOITATION_ROAD").ToList();
+                PumpstationList = con.pumpstation.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID,Municipality_id from PUMPSTATION").ToList();
+                buildinglist = con.building.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID,Municipality_id from BUILDINGS").ToList();
+                exploitationroadList = con.exploitationroad.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID,LENGHT,Municipality_id from EXPLOITATION_ROAD").ToList();
 
 
                 ChTypeList = con.channeltype.QueryStringAsList("select distinct type from CHANNELS").ToList();
@@ -94,6 +94,7 @@ namespace WebApplication2.Controllers
             AttributList.Add(new ChannelAttr
             {
                 TypeName = "Magistral",
+                TypeTitle= "tych-Magistral",
                 TypeCount = 0,
                 TypeLength = 0
 
@@ -101,12 +102,14 @@ namespace WebApplication2.Controllers
             AttributList.Add(new ChannelAttr
             {
                 TypeName = "1-ci dərəcəli Kanallar",
+                TypeTitle = "tych-1",
                 TypeCount = 0,
                 TypeLength = 0
             });
             AttributList.Add(new ChannelAttr
             {
                 TypeName = "2-ci dərəcəli Kanallar",
+                TypeTitle = "tych-2",
                 TypeCount = 0,
                 TypeLength = 0
 
@@ -114,6 +117,77 @@ namespace WebApplication2.Controllers
             AttributList.Add(new ChannelAttr
             {
                 TypeName = "3-ci dərəcəli Kanallar",
+                TypeTitle = "tych-3",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "1-ci dərəcəli kollektorlar",
+                TypeTitle = "tydj-1",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "2-ci dərəcəli yığıcı kollektorlar",
+                TypeTitle = "tydj-2",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "3-ci dərəcəli ilkin drenlər",
+                TypeTitle = "tydj-3",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "Mühafizə Bəndləri",
+                TypeTitle = "type-2",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "Müşahidə Quyuları",
+                TypeTitle = "type-3",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "Hidrotexniki Qurğular",
+                TypeTitle = "type-4",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "İdarələr",
+                TypeTitle = "type-5",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "Nasos Stansiyaları",
+                TypeTitle = "type-6",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "Binalar ve tikintilər",
+                TypeTitle = "type-7",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
+                TypeName = "İstismar yolları",
+                TypeTitle = "type-8",
                 TypeCount = 0,
                 TypeLength = 0
             });
@@ -125,7 +199,95 @@ namespace WebApplication2.Controllers
                 {
                     if (id[i]==0)
                     {
+                        var chnls = ChannelList.Where(c =>c.TYPE == "Magistral").ToList();
+                        var test = AttributList.Where(s => s.TypeName == "Magistral").First();
+                        test.TypeCount += chnls.Count;
+                        for (int c = 0; c < chnls.Count; c++)
+                        {
+                            if (chnls[c].TYPE == "Magistral")
+                            {
+                                test.TypeLength += chnls[c].FACTICAL_LENGTH;
+                            }
+                        }
+                        var chnls1 = ChannelList.Where(c =>c.TYPE == "1").ToList();
+                        var test1 = AttributList.Where(s => s.TypeName == "1-ci dərəcəli Kanallar").First();
+                        test1.TypeCount += chnls1.Count;
+                        for (int c = 0; c < chnls1.Count; c++)
+                        {
+                            test1.TypeLength += chnls1[c].FACTICAL_LENGTH;
+                        }
+                        var chnls2 = ChannelList.Where(c =>c.TYPE == "2").ToList();
+                        var test2 = AttributList.Where(s => s.TypeName == "2-ci dərəcəli Kanallar").First();
+                        test2.TypeCount += chnls2.Count;
+                        for (int c = 0; c < chnls2.Count; c++)
+                        {
+                            test2.TypeLength += chnls2[c].FACTICAL_LENGTH;
+                        }
+                        var chnls3 = ChannelList.Where(c =>c.TYPE == "3").ToList();
+                        var test3 = AttributList.Where(s => s.TypeName == "3-ci dərəcəli Kanallar").First();
+                        test3.TypeCount += chnls3.Count;
+                        for (int c = 0; c < chnls3.Count; c++)
+                        {
+                            test3.TypeLength += chnls3[c].FACTICAL_LENGTH;
+                        }
 
+                        var drej1 = DrenajList.Where(d =>d.TYPE == "1").ToList();
+                        var listdrej1 = AttributList.Where(s => s.TypeName == "1-ci dərəcəli kollektorlar").First();
+                        listdrej1.TypeCount += drej1.Count;
+                        for (int d = 0; d < drej1.Count; d++)
+                        {
+                            listdrej1.TypeLength += drej1[d].FACTICAL_LENGTH;
+                        }
+                        var drej2 = DrenajList.Where(d =>d.TYPE == "2").ToList();
+                        var listdrej2 = AttributList.Where(s => s.TypeName == "2-ci dərəcəli yığıcı kollektorlar").First();
+                        listdrej2.TypeCount += drej2.Count;
+                        for (int d = 0; d < drej2.Count; d++)
+                        {
+                            listdrej2.TypeLength += drej2[d].FACTICAL_LENGTH;
+                        }
+                        var drej3 = DrenajList.Where(d =>d.TYPE == "3").ToList();
+                        var listdrej3 = AttributList.Where(s => s.TypeName == "3-ci dərəcəli ilkin drenlər").First();
+                        listdrej3.TypeCount += drej3.Count;
+                        for (int d = 0; d < drej3.Count; d++)
+                        {
+                            listdrej3.TypeLength += drej3[d].FACTICAL_LENGTH;
+                        }
+
+                        var riverband = RiverbandList;
+                        var listriver = AttributList.Where(l => l.TypeName == "Mühafizə Bəndləri").First();
+                        listriver.TypeCount += riverband.Count;
+                        for (int r = 0; r < riverband.Count; r++)
+                        {
+                            listriver.TypeLength += riverband[r].LENGTH;
+                        }
+                        var well = WellList;
+                        var listwell = AttributList.Where(l => l.TypeName == "Müşahidə Quyuları").First();
+                        listwell.TypeCount += well.Count;
+
+                        var device = DeviceList;
+                        var listdevice = AttributList.Where(l => l.TypeName == "Hidrotexniki Qurğular").First();
+                        listdevice.TypeCount += device.Count;
+
+                        var departments = DepartmentsList;
+                        var listdepar = AttributList.Where(l => l.TypeName == "İdarələr").First();
+                        listdepar.TypeCount += departments.Count;
+
+                        var pumpstation = PumpstationList;
+                        var listpump = AttributList.Where(l => l.TypeName == "Nasos Stansiyaları").First();
+                        listpump.TypeCount += departments.Count;
+
+                        var buildings = buildinglist;
+                        var listbuild = AttributList.Where(l => l.TypeName == "Binalar ve tikintilər").First();
+                        listbuild.TypeCount += buildings.Count;
+
+                        var road = exploitationroadList;
+                        var listroad = AttributList.Where(l => l.TypeName == "İstismar yolları").First();
+                        listroad.TypeCount += road.Count;
+                        for (int r = 0; r < road.Count; r++)
+                        {
+                            listroad.TypeLength += road[r].LENGHT;
+                        }
+                        break;
                     }
                     else
                     {
@@ -141,14 +303,205 @@ namespace WebApplication2.Controllers
                         }
                         var chnls1 = ChannelList.Where(c => c.Region_ID == id[i] && c.TYPE == "1").ToList();
                         var test1 = AttributList.Where(s => s.TypeName == "1-ci dərəcəli Kanallar").First();
-                        test1.TypeCount += chnls.Count;
-                        for (int c = 0; c < chnls.Count; c++)
+                        test1.TypeCount += chnls1.Count;
+                        for (int c = 0; c < chnls1.Count; c++)
                         {
-                                test1.TypeLength += chnls[c].FACTICAL_LENGTH;
+                                test1.TypeLength += chnls1[c].FACTICAL_LENGTH;
+                        }
+                        var chnls2 = ChannelList.Where(c => c.Region_ID == id[i] && c.TYPE == "2").ToList();
+                        var test2 = AttributList.Where(s => s.TypeName == "2-ci dərəcəli Kanallar").First();
+                        test2.TypeCount += chnls2.Count;
+                        for (int c = 0; c < chnls2.Count; c++)
+                        {
+                            test2.TypeLength += chnls2[c].FACTICAL_LENGTH;
+                        }
+                        var chnls3 = ChannelList.Where(c => c.Region_ID == id[i] && c.TYPE == "3").ToList();
+                        var test3 = AttributList.Where(s => s.TypeName == "3-ci dərəcəli Kanallar").First();
+                        test3.TypeCount += chnls3.Count;
+                        for (int c = 0; c < chnls3.Count; c++)
+                        {
+                            test3.TypeLength += chnls3[c].FACTICAL_LENGTH;
+                        }
+
+                        var drej1 = DrenajList.Where(d => d.Region_ID == id[i] && d.TYPE == "1").ToList();
+                        var listdrej1= AttributList.Where(s => s.TypeName == "1-ci dərəcəli kollektorlar").First();
+                        listdrej1.TypeCount += drej1.Count;
+                        for (int d = 0; d < drej1.Count; d++)
+                        {
+                            listdrej1.TypeLength += drej1[d].FACTICAL_LENGTH;
+                        }
+                        var drej2 = DrenajList.Where(d => d.Region_ID == id[i] && d.TYPE == "2").ToList();
+                        var listdrej2 = AttributList.Where(s => s.TypeName == "2-ci dərəcəli yığıcı kollektorlar").First();
+                        listdrej2.TypeCount += drej2.Count;
+                        for (int d = 0; d < drej2.Count; d++)
+                        {
+                            listdrej2.TypeLength += drej2[d].FACTICAL_LENGTH;
+                        }
+                        var drej3 = DrenajList.Where(d => d.Region_ID == id[i] && d.TYPE == "3").ToList();
+                        var listdrej3 = AttributList.Where(s => s.TypeName == "3-ci dərəcəli ilkin drenlər").First();
+                        listdrej3.TypeCount += drej3.Count;
+                        for (int d = 0; d < drej3.Count; d++)
+                        {
+                            listdrej3.TypeLength += drej3[d].FACTICAL_LENGTH;
+                        }
+
+                        var riverband = RiverbandList.Where(r => r.Region_ID == id[i]).ToList();
+                        var listriver = AttributList.Where(l => l.TypeName == "Mühafizə Bəndləri").First();
+                        listriver.TypeCount += riverband.Count;
+                        for (int r = 0; r < riverband.Count; r++)
+                        {
+                            listriver.TypeLength += riverband[r].LENGTH;
+                        }
+                        var well = WellList.Where(r => r.Region_ID == id[i]).ToList();
+                        var listwell = AttributList.Where(l => l.TypeName == "Müşahidə Quyuları").First();
+                        listwell.TypeCount += well.Count;
+                        
+                        var device = DeviceList.Where(r => r.Region_ID == id[i]).ToList();
+                        var listdevice = AttributList.Where(l => l.TypeName == "Hidrotexniki Qurğular").First();
+                        listdevice.TypeCount += device.Count;
+
+                        var departments = DepartmentsList.Where(r => r.Region_ID == id[i]).ToList();
+                        var listdepar = AttributList.Where(l => l.TypeName == "İdarələr").First();
+                        listdepar.TypeCount += departments.Count;
+
+                        var pumpstation = PumpstationList.Where(r => r.Region_ID == id[i]).ToList();
+                        var listpump = AttributList.Where(l => l.TypeName == "Nasos Stansiyaları").First();
+                        listpump.TypeCount += departments.Count;
+
+                        var buildings = buildinglist.Where(r => r.Region_ID == id[i]).ToList();
+                        var listbuild = AttributList.Where(l => l.TypeName == "Binalar ve tikintilər").First();
+                        listbuild.TypeCount += buildings.Count;
+
+                        var road = exploitationroadList.Where(r => r.Region_ID == id[i]).ToList();
+                        var listroad = AttributList.Where(l => l.TypeName == "İstismar yolları").First();
+                        listroad.TypeCount += road.Count;
+                        for (int r = 0; r < road.Count; r++)
+                        {
+                            listroad.TypeLength += road[r].LENGHT;
                         }
                     }
                 }
             }
+            if (idVil != null)
+            {
+                for (int i = 0; i < idVil.Length; i++)
+                {
+                    var chnls = ChannelList.Where(c => c.Municipality_id == idVil[i] && c.TYPE == "Magistral").ToList();
+                    var test = AttributList.Where(s => s.TypeName == "Magistral").First();
+                    test.TypeCount += chnls.Count;
+                    for (int c = 0; c < chnls.Count; c++)
+                    {
+                        if (chnls[c].TYPE == "Magistral")
+                        {
+                            test.TypeLength += chnls[c].FACTICAL_LENGTH;
+                        }
+                    }
+                    var chnls1 = ChannelList.Where(c => c.Municipality_id == idVil[i] && c.TYPE == "1").ToList();
+                    var test1 = AttributList.Where(s => s.TypeName == "1-ci dərəcəli Kanallar").First();
+                    test1.TypeCount += chnls1.Count;
+                    for (int c = 0; c < chnls1.Count; c++)
+                    {
+                        test1.TypeLength += chnls1[c].FACTICAL_LENGTH;
+                    }
+                    var chnls2 = ChannelList.Where(c => c.Municipality_id == idVil[i] && c.TYPE == "2").ToList();
+                    var test2 = AttributList.Where(s => s.TypeName == "2-ci dərəcəli Kanallar").First();
+                    test2.TypeCount += chnls2.Count;
+                    for (int c = 0; c < chnls2.Count; c++)
+                    {
+                        test2.TypeLength += chnls2[c].FACTICAL_LENGTH;
+                    }
+                    var chnls3 = ChannelList.Where(c => c.Municipality_id == idVil[i] && c.TYPE == "3").ToList();
+                    var test3 = AttributList.Where(s => s.TypeName == "3-ci dərəcəli Kanallar").First();
+                    test3.TypeCount += chnls3.Count;
+                    for (int c = 0; c < chnls3.Count; c++)
+                    {
+                        test3.TypeLength += chnls3[c].FACTICAL_LENGTH;
+                    }
+
+                    var drej1 = DrenajList.Where(d => d.Region_ID == idVil[i] && d.TYPE == "1").ToList();
+                    var listdrej1 = AttributList.Where(s => s.TypeName == "1-ci dərəcəli kollektorlar").First();
+                    listdrej1.TypeCount += drej1.Count;
+                    for (int d = 0; d < drej1.Count; d++)
+                    {
+                        listdrej1.TypeLength += drej1[d].FACTICAL_LENGTH;
+                    }
+                    var drej2 = DrenajList.Where(d => d.Region_ID == idVil[i] && d.TYPE == "2").ToList();
+                    var listdrej2 = AttributList.Where(s => s.TypeName == "2-ci dərəcəli yığıcı kollektorlar").First();
+                    listdrej2.TypeCount += drej2.Count;
+                    for (int d = 0; d < drej2.Count; d++)
+                    {
+                        listdrej2.TypeLength += drej2[d].FACTICAL_LENGTH;
+                    }
+                    var drej3 = DrenajList.Where(d => d.Region_ID == idVil[i] && d.TYPE == "3").ToList();
+                    var listdrej3 = AttributList.Where(s => s.TypeName == "3-ci dərəcəli ilkin drenlər").First();
+                    listdrej3.TypeCount += drej3.Count;
+                    for (int d = 0; d < drej3.Count; d++)
+                    {
+                        listdrej3.TypeLength += drej3[d].FACTICAL_LENGTH;
+                    }
+
+                    var riverband = RiverbandList.Where(r => r.Region_ID == idVil[i]).ToList();
+                    var listriver = AttributList.Where(l => l.TypeName == "Mühafizə Bəndləri").First();
+                    listriver.TypeCount += riverband.Count;
+                    for (int r = 0; r < riverband.Count; r++)
+                    {
+                        listriver.TypeLength += riverband[r].LENGTH;
+                    }
+                    var well = WellList.Where(r => r.Region_ID == idVil[i]).ToList();
+                    var listwell = AttributList.Where(l => l.TypeName == "Müşahidə Quyuları").First();
+                    listwell.TypeCount += well.Count;
+
+                    var device = DeviceList.Where(r => r.Municipality_id == idVil[i]).ToList();
+                    var listdevice = AttributList.Where(l => l.TypeName == "Hidrotexniki Qurğular").First();
+                    listdevice.TypeCount += device.Count;
+
+                    var departments = DepartmentsList.Where(r => r.Region_ID == idVil[i]).ToList();
+                    var listdepar = AttributList.Where(l => l.TypeName == "İdarələr").First();
+                    listdepar.TypeCount += departments.Count;
+
+                    var pumpstation = PumpstationList.Where(r => r.Municipality_id == idVil[i]).ToList();
+                    var listpump = AttributList.Where(l => l.TypeName == "Nasos Stansiyaları").First();
+                    listpump.TypeCount += departments.Count;
+
+                    var buildings = buildinglist.Where(r => r.Municipality_id == idVil[i]).ToList();
+                    var listbuild = AttributList.Where(l => l.TypeName == "Binalar ve tikintilər").First();
+                    listbuild.TypeCount += buildings.Count;
+
+                    var road = exploitationroadList.Where(r => r.Municipality_id == idVil[i]).ToList();
+                    var listroad = AttributList.Where(l => l.TypeName == "İstismar yolları").First();
+                    listroad.TypeCount += road.Count;
+                    for (int r = 0; r < road.Count; r++)
+                    {
+                        listroad.TypeLength += road[r].LENGHT;
+                    }
+                    
+                }
+            }
+            List<ChannelAttr> attr = new List<ChannelAttr>();
+            if (Attr != null)
+            {
+                for (int i = 0; i < Attr.Length; i++)
+                {
+                    if (Attr[i]== "type-0")
+                    {
+                        attr = AttributList;
+                        break;
+                    }
+                    else
+                    {
+                        attr.Add(AttributList.Where(s => s.TypeTitle == Attr[i]).First());
+                    }
+                }
+
+            }
+            else
+            {
+                attr = AttributList;
+            }
+
+            var jsonResult = Json(new { data = attr }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
 
             //if (id!=null)
             //{
@@ -208,7 +561,7 @@ namespace WebApplication2.Controllers
             //                    length += Convert.ToDecimal(sametyps[i].SERVED_AREA);
             //                }
             //            }
-                        
+
             //            if (AttributList.Where(d => d.TypeName == item.TYPE).Count() == 0)
             //            {
             //                AttributList.Add(new ChannelAttr
@@ -231,7 +584,7 @@ namespace WebApplication2.Controllers
             //}
 
             //List<ChannelAttr> arrtibut = new List<ChannelAttr>();
-            
+
             //if (Attr != null)
             //{
             //    if (AttributList.Count!=0)
@@ -305,10 +658,10 @@ namespace WebApplication2.Controllers
             //{
             //    arrtibut = AttributList;
             //}
-            
-            var jsonResult = Json(new { data = "Salam" }, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
+
+            //var jsonResult = Json(new { data = "Salam" }, JsonRequestBehavior.AllowGet);
+            //jsonResult.MaxJsonLength = int.MaxValue;
+            //return jsonResult;
         }
                
 
