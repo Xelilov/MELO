@@ -197,8 +197,7 @@
             <input type="search" id="search-input" class="input no-border" placeholder="Axtar">
 
             <span class="input-group-btn">
-
-                <button type="submit" class="btn bg-white no-border" aria-label="Axtar">
+                <button type="button" class="btn bg-white no-border" aria-label="Axtar">
                     <i aria-hidden="true" class="icon-search"></i>
                 </button>
 
@@ -211,63 +210,9 @@
 
         <div class="search-filter animated fadeInUp mt-5 bg-white shadow w-100p light scroll" role="dialog" hidden>
 
-            <div class="filter-list" role="group" aria-hidden="true">
+            <div class="filter-list src-result" role="group" aria-hidden="true">
 
                 <ul class="type-none m-0 p-0" role="listbox" aria-hidden="true">
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
-                    <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
-                        <span class="line-camp line-1">
-                            <i aria-hidden="true" class="icon-map-pin mr-10"></i>
-                            <span>Search result</span>
-                        </span>
-                    </li>
                     <li role="listitem" class="pt-7 pb-7 pl-15 pr-15 pointer">
                         <span class="line-camp line-1">
                             <i aria-hidden="true" class="icon-map-pin mr-10"></i>
@@ -568,6 +513,8 @@
                     Laylar
                 </span>
             </li>
+            <button class="testajax">testajax</button>
+
 
         </ul>
     </div>
@@ -604,23 +551,11 @@
                             }
 
                             @*<div class="menu-item">
-                                    <div class="ckbox">
-                                        <input type="checkbox" name="rayon" id="rayon-1">
-                                        <label for="rayon-1">Rayon adı</label>
-                                    </div>
+                                <div class="ckbox">
+                                    <input type="checkbox" name="rayon" id="rayon-1">
+                                    <label for="rayon-1">Rayon adı</label>
                                 </div>
-                                <div class="menu-item">
-                                    <div class="ckbox">
-                                        <input type="checkbox" name="rayon" id="rayon-2">
-                                        <label for="rayon-2">Rayon adı</label>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="ckbox">
-                                        <input type="checkbox" name="rayon" id="rayon-3">
-                                        <label for="rayon-3">Rayon adı</label>
-                                    </div>
-                                </div>*@
+                            </div>*@
                         </div>
                     </div>
 
@@ -900,10 +835,69 @@
 <script src="~/Public/assets/js/pi.js"></script>
 
 <script>
-
+    var testList = [];
     $(document).ready(function () {
-        MapFunction();
+        MapFunction();         
     });
+
+    //Search
+    $("#search-input").on("keyup click", function () {
+        console.log("salam")
+        var searchitem = this.value;
+        $.ajax({
+            url: "/Home/Search",
+            data: { name: searchitem },
+            method: "post",
+            type: "JSON",
+            success: function (response) {
+                var itemName = response.data;
+                $(".src-result ul").remove();
+                if (itemName.length > 10) {
+                    for (var i = 0; i < 10; i++) {
+                        $(".src-result").append("<ul class='type-none m-0 p-0' role='listbox' aria-hidden='true'><li role='listitem' class='pt-7 pb-7 pl-15 pr-15 pointer'><span class='line-camp line-1'><i aria-hidden='true' class='icon-map-pin mr-10'></i><span onclick=Takename(this) data-type='" + itemName[i].Type +"' data-id='" + itemName[i].Id+"'>" + itemName[i].Name + "</span></span></li></ul>")
+                    }
+                }
+                else if (itemName.length < 10) {
+                    for (var i = 0; i < itemName.length; i++) {
+                        $(".src-result").append("<ul class='type-none m-0 p-0' role='listbox' aria-hidden='true'><li role='listitem' class='pt-7 pb-7 pl-15 pr-15 pointer'><span class='line-camp line-1'><i aria-hidden='true' class='icon-map-pin mr-10'></i><span onclick=Takename(this) data-type='" + itemName[i].Type +"' data-id='" + itemName[i].Id +"'>" + itemName[i].Name + "</span></span></li></ul>")
+                    }
+                }
+                else {
+                    $(".src-result").append("<ul class='type-none m-0 p-0' role='listbox' aria-hidden='true'><li role='listitem' class='pt-7 pb-7 pl-15 pr-15 pointer'><span class='line-camp line-1'><span>Uyğun nəticə tapılmadı</span></span></li></ul>")
+                     
+                }
+            }
+        })
+    })    
+
+    function Takename(e) {
+        var text = $(e).text();
+        var id = $(e).attr("data-id");
+        var type = $(e).attr("data-type");
+
+        $("#search-input").val(text);
+        $("#search-input").attr("data-id", id)
+        $("#search-input").attr("data-type", type)
+
+        console.log($("#search-input").val())
+    }
+
+
+
+
+    $(".testajax").on("click", function () {
+        console.log("salam")
+        $.ajax({
+            type: "post",
+            url: "http://10.10.1.253:6080/arcgis/rest/services/MeloDB_Restruct/MapServer/5/query",
+            data: { f: "json", where: "OBJECTID = '" + 37 + "'", outFields: '*', returnGeometry: false },
+            dataType: "jsonp",
+            jsonpCallback: "callback",
+            success: function (response) {
+                console.log("result is", response);
+            }
+        });
+    })
 
 
     var ListRegid = [];
@@ -1230,56 +1224,16 @@
                 type: "JSON",
                 success: function (response) {
                     var kordonats = response.data;
-                    for (var i = 0; i < kordonats.SelectedChannels.length; i++) {
-                        console.log(kordonats.SelectedChannels[i])
-                    }                   
+                    for (var i = 0; i < kordonats.SelectedChannels.length; i++){
+                        console.log(kordonats.SelectedChannels[i].OBJECTID)                       
+                    }      
                 }
             })
         }
 
     })
 
-    function MapShow(a) {
-        console.log(a)
-        console.log(Listid)
-        let count = $(a).attr("id");
-
-
-        //let count = $(a).attr("id");
-        //count = count.substring(5, count.length)
-        //if (checkElementInArr(networkselectlist, count)) {
-        //    var index = networkselectlist.indexOf(count);
-        //    networkselectlist.splice(index, 1);
-        //} else {
-        //    networkselectlist.push(count);
-        //}
-        //if (networkselectlist.length != 0) {
-        //    $.ajax({
-        //        url: "/Home/Koordinats",
-        //        data: { Listid: Listid, networkselectlist: networkselectlist },
-        //        method: "post",
-        //        type: "JSON",
-        //        success: function (response) {
-        //            var kordonats = response.data;
-        //            for (var i = 0; i < kordonats.length; i++) {
-        //                StringSplit(kordonats[i].Koordi);
-        //            }
-        //            lasttotallat(latarray, lonarray)
-
-        //            Latitude = lastlat;
-        //            Longitude = lastlon;
-        //            zoommap = 12;
-        //            MapFunction();
-
-        //            lastlat = 0;
-        //            lastlon = 0;
-        //            latarray = [];
-        //            lonarray = [];
-
-        //        }
-        //    })
-        //}
-    }
+    
     function StringSplit(word) {
         var lat = [];
         var lon = [];

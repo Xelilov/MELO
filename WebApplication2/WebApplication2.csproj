@@ -579,6 +579,7 @@
     <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\ViewModels\Koordinatscs.cs" />
     <Compile Include="Models\ViewModels\LaylarViewModel.cs" />
+    <Compile Include="Models\ViewModels\SearchName.cs" />
     <Compile Include="Models\ViewModels\SebekelerViewModel.cs" />
     <Compile Include="Models\WELL.cs">
       <DependentUpon>MeligiosModel.tt</DependentUpon>

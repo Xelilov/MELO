@@ -36,16 +36,16 @@ namespace WebApplication2.Controllers
                 RegionList = con.Region.QueryStringAsList("select * from Meloregions").ToList();
                 VillageList = con.village.QueryStringAsList($"select * from RESIDENTIALAREA").ToList();
                 ChannelList = con.Channel.QueryStringAsList("select SHAPE.STAsText() as shape,FACTICAL_LENGTH, TYPE, NAME,OBJECTID,Municipality_id,Region_ID from CHANNELS").ToList();
-                DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,TYPE,OBJECTID,FACTICAL_LENGTH, Region_ID,Municipality_id from DRENAJ").ToList();
-                RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape,TYPE,OBJECTID,LENGTH,Region_ID,Municipality_id from RIVERBAND").ToList();
+                DrenajList = con.Drenaj.QueryStringAsList($"select SHAPE.STAsText() as shape,NAME,TYPE,OBJECTID,FACTICAL_LENGTH, Region_ID,Municipality_id from DRENAJ").ToList();
+                RiverbandList = con.riverband.QueryStringAsList("select SHAPE.STAsText() as shape,NAME,TYPE,OBJECTID,LENGTH,Region_ID,Municipality_id from RIVERBAND").ToList();
                 DeviceList = con.Device.QueryStringAsList("select SHAPE.STAsText() as shape, NAME,OBJECTID,Municipality_id,Region_ID from DEVICE").ToList();
-                WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID ,Region_ID,WELL_TYPE,Municipality_id from WELL").ToList();
+                WellList = con.Well.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME ,Region_ID,WELL_TYPE,Municipality_id from WELL").ToList();
                 DepartmentsList = con.department.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,AD,Region_ID from DEPARTMENTS").ToList();
                 PumpstationList = con.pumpstation.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID,Municipality_id from PUMPSTATION").ToList();
                 buildinglist = con.building.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID,Municipality_id from BUILDINGS").ToList();
                 exploitationroadList = con.exploitationroad.QueryStringAsList("select SHAPE.STAsText() as shape,OBJECTID,NAME,Region_ID,LENGHT,Municipality_id from EXPLOITATION_ROAD").ToList();
 
-
+  
                 ChTypeList = con.channeltype.QueryStringAsList("select distinct type from CHANNELS").ToList();
                 drejTypeList = con.drenajtype.QueryStringAsList("select distinct type from DRENAJ").ToList();
             }
@@ -82,6 +82,104 @@ namespace WebApplication2.Controllers
                 IndexVM.drejtype = drejTypeList;
             }
             return View(IndexVM);
+        }
+
+        public ActionResult Search(string name)
+        {
+           List<SearchName> src = this.HttpContext.Application["searchResult"] as List<SearchName>;
+            if (src == null)
+            {
+                src = new List<SearchName>();
+                #region Search
+                foreach (var item in ChannelList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "Channel"
+                    });
+                }
+                foreach (var item in DrenajList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "Drenaj"
+                    });
+                }
+                foreach (var item in RiverbandList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "Riverband"
+                    });
+                }
+                foreach (var item in WellList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "well"
+                    });
+                }
+                foreach (var item in buildinglist)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "Build"
+                    });
+                }
+                foreach (var item in DeviceList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "Device"
+                    });
+                }
+                foreach (var item in DepartmentsList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.AD,
+                        Type = "Department"
+                    });
+                }
+                foreach (var item in PumpstationList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "Pumpstation"
+                    });
+                }
+                foreach (var item in exploitationroadList)
+                {
+                    src.Add(new SearchName
+                    {
+                        Id = item.OBJECTID,
+                        Name = item.NAME,
+                        Type = "ExploitationRoad"
+                    });
+                }
+                #endregion
+                this.HttpContext.Application.Add("searchResult", src);
+            }
+
+            var srcResult= src.Where(x =>x.Name!=null && x.Name.ToLower().StartsWith(name.ToLower()));
+            var jsonResult = Json(new { data = srcResult}, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
         }
 
 
