@@ -221,11 +221,18 @@ namespace WebApplication2.Controllers
             });
             AttributList.Add(new ChannelAttr
             {
+                TypeName = "Magistral kollektorlar",
+                TypeTitle = "tydj-magistral",
+                TypeCount = 0,
+                TypeLength = 0
+            });
+            AttributList.Add(new ChannelAttr
+            {
                 TypeName = "1-ci dərəcəli kollektorlar",
                 TypeTitle = "tydj-1",
                 TypeCount = 0,
                 TypeLength = 0
-            });
+            });            
             AttributList.Add(new ChannelAttr
             {
                 TypeName = "2-ci dərəcəli yığıcı kollektorlar",
@@ -328,6 +335,13 @@ namespace WebApplication2.Controllers
                         {
                             test3.TypeLength += chnls3[c].FACTICAL_LENGTH;
                         }
+                        var drejmagistral = DrenajList.Where(d => d.TYPE == "Magistral").ToList();
+                        var listdrejmagis = AttributList.Where(s => s.TypeName == "Magistral kollektorlar").First();
+                        listdrejmagis.TypeCount += drejmagistral.Count;
+                        for (int d = 0; d < drejmagistral.Count; d++)
+                        {
+                            listdrejmagis.TypeLength += drejmagistral[d].FACTICAL_LENGTH;
+                        }
 
                         var drej1 = DrenajList.Where(d =>d.TYPE == "1").ToList();
                         var listdrej1 = AttributList.Where(s => s.TypeName == "1-ci dərəcəli kollektorlar").First();
@@ -419,6 +433,14 @@ namespace WebApplication2.Controllers
                         for (int c = 0; c < chnls3.Count; c++)
                         {
                             test3.TypeLength += chnls3[c].FACTICAL_LENGTH;
+                        }
+
+                        var drejmagistral = DrenajList.Where(d => d.Region_ID == id[i] && d.TYPE == "Magistral").ToList();
+                        var listdrejmagis = AttributList.Where(s => s.TypeName == "Magistral kollektorlar").First();
+                        listdrejmagis.TypeCount += drejmagistral.Count;
+                        for (int d = 0; d < drejmagistral.Count; d++)
+                        {
+                            listdrejmagis.TypeLength += drejmagistral[d].FACTICAL_LENGTH;
                         }
 
                         var drej1 = DrenajList.Where(d => d.Region_ID == id[i] && d.TYPE == "1").ToList();
@@ -515,7 +537,13 @@ namespace WebApplication2.Controllers
                     {
                         test3.TypeLength += chnls3[c].FACTICAL_LENGTH;
                     }
-
+                    var drejmagistral = DrenajList.Where(d => d.TYPE == "Magistral" && d.Municipality_id==idVil[i]).ToList();
+                    var listdrejmagis = AttributList.Where(s => s.TypeName == "Magistral kollektorlar").First();
+                    listdrejmagis.TypeCount += drejmagistral.Count;
+                    for (int d = 0; d < drejmagistral.Count; d++)
+                    {
+                        listdrejmagis.TypeLength += drejmagistral[d].FACTICAL_LENGTH;
+                    }
                     var drej1 = DrenajList.Where(d => d.Region_ID == idVil[i] && d.TYPE == "1").ToList();
                     var listdrej1 = AttributList.Where(s => s.TypeName == "1-ci dərəcəli kollektorlar").First();
                     listdrej1.TypeCount += drej1.Count;
@@ -599,167 +627,7 @@ namespace WebApplication2.Controllers
 
             var jsonResult = Json(new { data = attr }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
-
-            //if (id!=null)
-            //{
-            //    for (int i = 0; i < id.Length; i++)
-            //    {
-            //        if (id[i] == 0)
-            //        {
-            //            ChanelsAttribute.Add(new ChannelMultiSelectList
-            //            {
-            //                MultiSeletChanell = ChannelList
-            //            });
-            //            break;
-            //        }
-            //        else
-            //        {
-            //            if (idVil != null)
-            //            {
-            //                for (int x = 0; x < idVil.Length; x++)
-            //                {
-            //                    if (idVil[i] == 0)
-            //                    {
-
-            //                    }
-            //                    else
-            //                    {
-            //                        ChanelsAttribute.Add(new ChannelMultiSelectList
-            //                        {
-            //                            MultiSeletChanell = ChannelList.Where(s => s.Region_ID == id[i] && s.Municipality_id == idVil[x]).ToList()
-            //                        });
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                ChanelsAttribute.Add(new ChannelMultiSelectList
-            //                {
-            //                    MultiSeletChanell = ChannelList.Where(s => s.Region_ID == id[i]).ToList()
-            //                });
-            //            }
-            //        }
-            //    }
-            //}
-            //int count = 0;
-            //decimal length = 0;
-            //if (ChanelsAttribute.Count!=0)
-            //{
-            //    for (int i = 0; i < ChanelsAttribute.Count; i++)
-            //    {
-            //        foreach (var item in ChTypeList)
-            //        {
-            //            count = ChanelsAttribute[i].MultiSeletChanell.Where(s => s.TYPE == item.TYPE).Count();
-            //            var sametyps = ChanelsAttribute[i].MultiSeletChanell.Where(s => s.TYPE == item.TYPE).ToList();
-            //            for (int c = 0; c < sametyps.Count; c++)
-            //            {
-            //                if (sametyps[i].SERVED_AREA!=null)
-            //                {
-            //                    length += Convert.ToDecimal(sametyps[i].SERVED_AREA);
-            //                }
-            //            }
-
-            //            if (AttributList.Where(d => d.TypeName == item.TYPE).Count() == 0)
-            //            {
-            //                AttributList.Add(new ChannelAttr
-            //                {
-            //                    TypeName = item.TYPE,
-            //                    TypeCount = count,
-            //                    TypeLength = length
-            //                }); 
-            //            }
-            //            else
-            //            {
-            //                var dd = AttributList.Find(s => s.TypeName == item.TYPE);
-            //                dd.TypeCount += count;
-            //                dd.TypeLength += length;
-            //            }
-            //            count = 0;
-            //            length = 0;
-            //        }
-            //    }
-            //}
-
-            //List<ChannelAttr> arrtibut = new List<ChannelAttr>();
-
-            //if (Attr != null)
-            //{
-            //    if (AttributList.Count!=0)
-            //    {
-            //        for (int i = 0; i < Attr.Length; i++)
-            //        {
-            //            if (Attr[i] == "0")
-            //            {
-            //                arrtibut = AttributList;
-            //            }
-            //            else
-            //            {
-            //                arrtibut.Add(new ChannelAttr {
-            //                    TypeName= AttributList.Where(s => s.TypeName == Attr[i]).First().TypeName,
-            //                    TypeCount = AttributList.Where(s => s.TypeName == Attr[i]).First().TypeCount,
-            //                    TypeLength = AttributList.Where(s => s.TypeName == Attr[i]).First().TypeLength
-            //                });
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        for (int i = 0; i < Attr.Length; i++)
-            //        {
-            //            if (Attr[i] == "0")
-            //            {
-            //                foreach (var item in ChTypeList)
-            //                {
-            //                    var sameType = ChannelList.Where(s => s.TYPE == item.TYPE).ToList();
-            //                    var typelengt = 0;
-            //                    for (int x = 0; x < sameType.Count; x++)
-            //                    {
-            //                        decimal number;
-            //                        if (sameType[x].SERVED_AREA != null && Decimal.TryParse(sameType[x].SERVED_AREA, out number))
-            //                        {
-            //                            typelengt += Convert.ToInt32(sameType[x].SERVED_AREA);
-            //                        }
-            //                    }
-            //                    arrtibut.Add(new ChannelAttr
-            //                    {
-            //                        TypeCount = ChannelList.Where(s => s.TYPE == item.TYPE).Count(),
-            //                        TypeName = item.TYPE,
-            //                        TypeLength= typelengt
-
-            //                    });
-            //                }
-            //            }
-            //            else
-            //            {
-            //                var sameTypee = ChannelList.Where(s => s.TYPE == Attr[i]).ToList();
-            //                decimal typelengt = 0;
-            //                for (int x = 0; x < sameTypee.Count; x++)
-            //                {
-            //                    decimal number;
-            //                    if (sameTypee[x].SERVED_AREA != null && Decimal.TryParse(sameTypee[x].SERVED_AREA, out number))
-            //                    {
-            //                        typelengt += Convert.ToDecimal(sameTypee[x].SERVED_AREA);
-            //                    }
-            //                }
-            //                arrtibut.Add(new ChannelAttr
-            //                {
-            //                    TypeCount = ChannelList.Where(s => s.TYPE == Attr[i]).Count(),
-            //                    TypeName = Attr[i],
-            //                    TypeLength = typelengt
-            //                });                           
-            //            }
-            //        }
-            //    }                
-            //}
-            //else
-            //{
-            //    arrtibut = AttributList;
-            //}
-
-            //var jsonResult = Json(new { data = "Salam" }, JsonRequestBehavior.AllowGet);
-            //jsonResult.MaxJsonLength = int.MaxValue;
-            //return jsonResult;
+            return jsonResult;            
         }
                
 

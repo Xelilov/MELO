@@ -46,9 +46,19 @@
             height: 100%;
             width: 100%;
         }
+
+        #search {
+            display: block;
+            position: absolute;
+            z-index: 2;
+            top: 70px;
+            left: 100px;
+        }
     </style>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.9/"></script>
+
+    <link rel="stylesheet" href=" https://js.arcgis.com/3.26/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href=" https://js.arcgis.com/3.26/esri/css/esri.css">
+    <script src=" https://js.arcgis.com/3.26/"></script>
 
     <script>
         var Latitude = 49.465965;
@@ -56,75 +66,62 @@
         var zoommap = 8;
         function MapFunction() {
             require([
-                "esri/Map",
-                "esri/views/MapView",               
-                "esri/layers/MapImageLayer"
-            ], function (Map, MapView, MapImageLayer) {
+                "esri/map",
+                "esri/layers/ArcGISDynamicMapServiceLayer",
+                "esri/layers/ImageParameters",
+                "dojo/dom",
+                "dojo/on",
+                "dojo/query",
+                "dojo/domReady!"
+            ], function (Map, ArcGISDynamicMapServiceLayer, ImageParameters, dom, on, query) {
+                var layer, visibleLayerIds = [];
+
                 var map = new Map({
                     basemap: "topo"
                 });
                 var view = new MapView({
-                    container: "mapDiv",  // Reference to the DOM node that will contain the view
-                    map: map,  // References the map object created in step 3
-                    zoom: zoommap,          // Sets the initial scale to 1:50,000,000
-                    center: [Latitude, Longitude]  // Sets the center point of view with lon/lat
+                    container: "mapDiv", // Reference to the DOM node that will contain the view
+                    map: map, // References the map object created in step 3
+                    zoom: zoommap, // Sets the initial scale to 1:50,000,000
+                    center: [Latitude, Longitude] // Sets the center point of view with lon/lat
                 });
 
                 view.ui.move("zoom", "bottom-right");
 
-                var layer = new MapImageLayer({
-                    url: "http://10.10.1.253:6080/arcgis/rest/services/Map_08_24/MapServer"
-                });
+                var imageParameters = new ImageParameters();
+                imageParameters.layerIds = [2];
+                imageParameters.layerOption = ImageParameters.LAYER_OPTION_SHOW;
+                //can also be: LAYER_OPTION_EXCLUDE, LAYER_OPTION_HIDE, LAYER_OPTION_INCLUDE
 
-                map.add(layer);
-                //var template = { // autocasts as new PopupTemplate()
-                //    title: "Marriage in NY, Zip Code: {ZIP}",
-                //    content: [{
-                //        // It is also possible to set the fieldInfos outside of the content
-                //        // directly in the popupTemplate. If no fieldInfos is specifically set
-                //        // in the content, it defaults to whatever may be set within the popupTemplate.
-                //        type: "fields",
-                //        fieldInfos: [{
-                //            fieldName: "NAME",
-                //            label: "Adi",
-                //            visible: true
-                //        }, {
-                //            fieldName: "WATER_CAPABILITY",
-                //            label: "Tutumu",
-                //            visible: true,
-                //            format: {
-                //                digitSeparator: true,
-                //                places: 0
-                //            }
-                //        }, {
-                //            fieldName: "WATERPROOF_WIDTH",
-                //            label: "People that Never Married",
-                //            visible: true,
-                //            format: {
-                //                digitSeparator: true,
-                //                places: 0
-                //            }
-                //        }, {
-                //            fieldName: "FACTICAL_LENGTH",
-                //            label: "People Divorced",
-                //            visible: true,
-                //            format: {
-                //                digitSeparator: true,
-                //                places: 0
-                //            }
-                //        }]
-                //    }]
-                //};
+                layer = new ArcGISDynamicMapServiceLayer(" http://213.154.5.139:8021/arcgis/rest/services/MeloDB_Restruct/MapServer"
+                    ,
+                    { "imageParameters": imageParameters });
+                map.addLayer(layer);
 
-                //// Reference the popupTemplate instance in the
-                //// popupTemplate property of FeatureLayer
-                //var featureLayer = new FeatureLayer({
-                //    url: "http://10.10.1.253:6080/arcgis/rest/services/MeloDB_Restruct/FeatureServer/",
-                //    outFields: ["*"],
-                //    popupTemplate: template
-                //});
-                //map.add(featureLayer);
-            });
+                on(dom.byId("channel-Magistral"), "change", updateLayerVisibility);
+                on(dom.byId("channel-1"), "change", updateLayerVisibility);
+                on(dom.byId("channel-2"), "change", updateLayerVisibility);
+                on(dom.byId("channel-3"), "change", updateLayerVisibility);
+
+                function updateLayerVisibility() {
+                    var inputs = query(".showmap");
+                    var inputCount = inputs.length;
+                    //in this application layer 2 is always on.
+                    visibleLayerIds = [2];
+
+                    for (var i = 0; i < inputCount; i++) {
+                        if (inputs[i].checked) {
+                            visibleLayerIds.push(inputs[i].value);
+                        }
+                    }
+
+                    if (visibleLayerIds.length === 0) {
+                        visibleLayerIds.push(-1);
+                    }
+
+                    layer.setVisibleLayers(visibleLayerIds);
+                };
+            })
         }
 
         function OsmFunction() {
@@ -146,9 +143,6 @@
                 var layer = new MapImageLayer({
                     url: "http://213.154.5.139:8021/arcgis/rest/services/Map_08_24/MapServer"
                 });
-
-
-
                 map.add(layer);
             });
         }
@@ -197,7 +191,7 @@
             <input type="search" id="search-input" class="input no-border" placeholder="Axtar">
 
             <span class="input-group-btn">
-                <button type="button" class="btn bg-white no-border" aria-label="Axtar">
+                <button type="button" class="btn bg-white no-border searchbutton" aria-label="Axtar">
                     <i aria-hidden="true" class="icon-search"></i>
                 </button>
 
@@ -326,6 +320,12 @@
                     </div>
                     <div class="menu-item">
                         <div class="ckbox">
+                            <input type="checkbox" name="rayon" id="tydj-magistral">
+                            <label for="tydj-magistral">Magistral kollektorlar</label>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="ckbox">
                             <input type="checkbox" name="rayon" id="tydj-1">
                             <label for="tydj-1">1-ci dərəcəli kollektorlar</label>
                         </div>
@@ -338,7 +338,7 @@
                     </div>
                     <div class="menu-item">
                         <div class="ckbox">
-                            <input type="checkbox" name="rayon" id="tydj-2">    
+                            <input type="checkbox" name="rayon" id="tydj-2">
                             <label for="tydj-2">3-ci dərəcəli ilkin drenlər</label>
                         </div>
                     </div>
@@ -384,32 +384,6 @@
                             <label for="type-8">İstismar yolları</label>
                         </div>
                     </div>
-
-                    @*@foreach (var item in Model.Channels)
-                    {
-                        if (item.TYPE != null && item.TYPE != " " && item.TYPE != "<Null>")
-                        {
-                            int typename;
-                            if (Int32.TryParse(item.TYPE, out typename))
-                            {
-                                <div class="menu-item">
-                                    <div class="ckbox">
-                                        <input type="checkbox" name="rayon" id="type-@item.TYPE">
-                                        <label for="type-@item.TYPE">@item.TYPE -ci dərəcəli kollektorlar</label>
-                                    </div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="menu-item">
-                                    <div class="ckbox">
-                                        <input type="checkbox" name="rayon" id="type-@item.TYPE">
-                                        <label for="type-@item.TYPE">@item.TYPE</label>
-                                    </div>
-                                </div>
-                            }
-                        }
-                    }*@
                 </div>
             </div>
 
@@ -566,28 +540,7 @@
 
                 <strong class="d-block mb-10">Açıq suvarma şəbəkəsi</strong>
 
-                <div class="pl-10 _Channel">
-                    @*@foreach (var item in Model.Channels)
-                    {
-                        if (item.TYPE != null && item.TYPE != " " && item.TYPE != "<Null>")
-                        {
-                            int channeltype;
-                            if (Int32.TryParse(item.TYPE, out channeltype))
-                            {
-                                <div class="ckbox">
-                                    <input class="showmap" type="checkbox" id="channel-@item.TYPE">
-                                    <label for="channel-@item.TYPE">@channeltype -ci dərəcəli kollektorlar</label>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="ckbox">
-                                    <input class="showmap" type="checkbox" id="channel-@item.TYPE">
-                                    <label for="channel-@item.TYPE">@item.TYPE</label>
-                                </div>
-                            }
-                        }
-                    }*@
+                <div class="pl-10 _Channel">                    
                     <div class="ckbox">
                         <input class="showmap" type="checkbox" id="channel-Magistral">
                         <label for="channel-Magistral">Magistral Kanallar</label>
@@ -613,48 +566,26 @@
                 <strong class="d-block mb-10">Kollektor Drenaj Şəbəkəsi</strong>
 
                 <div class="pl-10 Network">
-                    @*@foreach (var item in Model.drejtype)
-                    {
-                        if (item.TYPE != null && item.TYPE != " " && item.TYPE != "<Null>" && item.TYPE != "Null")
-                        {
-                            int drenajtype;
-                            if (Int32.TryParse(item.TYPE, out drenajtype))
-                            {
-                                    <div class="ckbox">
-                                        <input class="showmap" type="checkbox" id="drenaj-@item.TYPE">
-                                        <label for="drenaj-@item.TYPE">@drenajtype -ci dərəcəli kollektorlar</label>
-                                    </div>
-                            }
-                            else
-                            {
-                                <div class="ckbox">
-                                    <input class="showmap" type="checkbox" id="drenaj-@item.TYPE">
-                                    <label for="drenaj-@item.TYPE">@item.TYPE</label>
-                                </div>
-                            }
-                        }                            
-                    }*@
-
                     <div class="ckbox">
-                        <input  class="showmap" type="checkbox" id="drenaj-1">
+                        <input class="showmap" type="checkbox" id="drenaj-Magistral">
+                        <label for="drenaj-Magistral">Magistral Kollektorlar</label>
+                    </div>
+                    <div class="ckbox">
+                        <input class="showmap" type="checkbox" id="drenaj-1">
                         <label for="drenaj-1">1-ci dərəcəli kollektorlar</label>
                     </div>
                     <div class="ckbox">
-                        <input  class="showmap" type="checkbox" id="drenaj-2">
+                        <input class="showmap" type="checkbox" id="drenaj-2">
                         <label for="drenaj-2">2-ci dərəcəli yığıcı kollektorlar</label>
                     </div>
                     <div class="ckbox">
-                        <input  class="showmap" type="checkbox" id="drenaj-3">
+                        <input class="showmap" type="checkbox" id="drenaj-3">
                         <label for="drenaj-3">3-ci dərəcəli ilkin drenlər</label>
                     </div>
                 </div>
-
             </div>
-
             <div class="group mb-20">
-
                 <strong class="d-block mb-10">Mühafizə bəndləri</strong>
-
                 <div class="pl-10 riverband">
                     <div class="ckbox">
                         <input class="showmap" type="checkbox" id="network-12">
@@ -665,7 +596,6 @@
             </div>
 
             <div class="group mb-20">
-
                 <strong class="d-block mb-10">Digər obyektlər</strong>
                 <div class="pl-10 dbwell">
                     <div class="ckbox">
@@ -835,14 +765,12 @@
 <script src="~/Public/assets/js/pi.js"></script>
 
 <script>
-    var testList = [];
     $(document).ready(function () {
-        MapFunction();         
+        //OsmFunction();         
     });
 
     //Search
     $("#search-input").on("keyup click", function () {
-        console.log("salam")
         var searchitem = this.value;
         $.ajax({
             url: "/Home/Search",
@@ -883,6 +811,11 @@
     }
 
 
+    //$(".searchbutton").on("click", function () {
+    //    var searctitem = $("#search-input").val();
+    //    console.log(searctitem)
+    //})
+
 
 
     $(".testajax").on("click", function () {
@@ -901,7 +834,9 @@
 
 
     var ListRegid = [];
+    var ListVilid = [];
     $(".SearchRegion .ckbox input").click(function () {
+        ListVilid = [];
         var allregion = document.querySelectorAll(".SearchRegion .ckbox input");
         var all = document.getElementById("rayon-0")
         var count = $(this).attr("id");
@@ -962,7 +897,7 @@
             })
         }
     });
-    var ListVilid = [];
+    
     function getIDvillage(a) {
         let count = $(a).attr("id");
         count = count.substring(8, count.length)
@@ -984,7 +919,6 @@
         } else {
             attrList.push(count);
         }
-        console.log(attrList)
     });
     
 
@@ -1224,8 +1158,11 @@
                 type: "JSON",
                 success: function (response) {
                     var kordonats = response.data;
-                    for (var i = 0; i < kordonats.SelectedChannels.length; i++){
-                        console.log(kordonats.SelectedChannels[i].OBJECTID)                       
+                    for (var i = 0; i < kordonats.SelectedDrenajs.length; i++){
+                        console.log(kordonats.SelectedDrenajs[i].OBJECTID)
+                        //StringSplit(kordonats.SelectedChannels[i].SHAPE)
+                        //lasttotallat(latarray, lonarray)
+                        //console.log(lastlat + " " + lastlon )
                     }      
                 }
             })
